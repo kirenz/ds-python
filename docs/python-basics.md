@@ -12,12 +12,11 @@ Jupyter Notebook is a web-based interactive computational environment for creati
 
 [Jupyter Notebook](https://jupyter.org/) is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and narrative text:
 
-- A notebook is basically a list of cells 
-- Cells contain either 
-  - explanatory text or 
-  - executable code and its 
+- A notebook is basically a list of cells
+- Cells contain either
+  - explanatory text or
+  - executable code and its
   - output
-
 
 ## Colab
 
@@ -33,8 +32,15 @@ Watch this video from to get an first impression of Colab:
 
 Let`s start your first Colab notebook to get an overview about some basic features:
 
+```{admonition} To do
+:class: tip
+
 - [Colab basic features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb)
 
+- [Interactive 10 minute Markdown tutorial](https://commonmark.org/help/)
+```
+
+-
 
 ## Markdown
 
@@ -42,7 +48,7 @@ Let`s start your first Colab notebook to get an overview about some basic featur
 Markdown is a simple way to format text that looks great on any device. 
 :::
 
-Markdown is one of the world’s most popular markup languages used in data science. Jupyter Notebooks use Markdown to provide an unified authoring framework for data science, combining code, its results, and commentary in Markdown. 
+Markdown is one of the world’s most popular markup languages used in data science. Jupyter Notebooks use Markdown to provide an unified authoring framework for data science, combining code, its results, and commentary in Markdown.  
 
 According to {cite:t}`wickham2016`, Markdown files are designed to be used in three ways:
 
@@ -54,8 +60,13 @@ According to {cite:t}`wickham2016`, Markdown files are designed to be used in th
 
 Review this sites to learn more about Markdown:
 
+
+```{admonition} To do
+:class: tip
 - [Interactive Colab Markdown guide](https://colab.research.google.com/notebooks/markdown_guide.ipynb)
+
 - [Interactive 10 minute Markdown tutorial](https://commonmark.org/help/)
+```
 
 
 ## Libraries
@@ -64,35 +75,44 @@ Review this sites to learn more about Markdown:
 Python Libraries are a set of useful functions that eliminate the need for writing codes from scratch.
 :::
 
-A Python library is a reusable chunk of code that you can import in your projects so you dan't have to write all the code by yourself:
+A Python library is a reusable chunk of code that you can import in your own projects so you don't have to write all the code by yourself. There are around 140000 available Python projects and one way to discover and install them is to use the [Python Package Index (PyPI)](https://pypi.org/). Another way to install Python libraries is to use the open source data science platform Anaconda, which will be covered below.
 
-- NumPy provides efﬁcient storage and computation for multidimensional data arrays.
+Here a list of some of the libraries we will use frequently:
 
-- Pandas provides a DataFrame object along with a powerful set of methods to manipulate, ﬁlter, group, and transform data.
+- [pandas](https://pandas.pydata.org/) is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool.
 
-- SciPy contains a wide array of numerical tools such as numerical integration and interpolation.
+- [NumPy](https://numpy.org/) offers tools for scientific computing like mathematical functions and random number generators.
 
-- Statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration. Furthermore, you can use Rstyle formulas together with pandas data frames to ﬁt your models.
+- [SciPy](https://scipy.org/) contains algorithms for scientific computing.
 
-- Matplotlib provides a useful interface for creation of publication-quality plots and ﬁgures.
+- [matplotlib](https://matplotlib.org/) is a library for creating data visualizations.
 
-- Seaborn is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
+- [Seaborn](https://seaborn.pydata.org/) provides a high-level interface for drawing attractive and informative statistical graphics.
 
-- Scikit-Learn provides a uniform toolkit for applying common machine learning algorithms to data.
+- [plotly](https://plotly.com/python/) is a graphing library to make interactive, publication-quality graphs.
 
+- [statsmodels](https://www.statsmodels.org/stable/index.html) includes statistical models, hypothesis tests, and data exploration.
 
+- [scikit-learn](https://scikit-learn.org/stable/) provides a toolkit for applying common machine learning algorithms to data.
 
+- [TensorFlow](https://www.tensorflow.org/) is s an end-to-end open source platform for machine learning.
 
-Curated lists of resources for practicing data science using Python, including not only libraries, but also links to tutorials, code snippets, blog posts and talks:
+Here are two curated lists with an extensive list of resources for practicing data science using Python, including not only libraries, but also links to tutorials, code snippets, blog posts and talks:
 
 - [Awesome Data Science with Python](https://github.com/r0f1/datascience)
 - [Awesome Python Data Science](https://github.com/krzjoa/awesome-python-data-science)
 
 
-
-
 ## Anaconda
 
-Anaconda is a distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment.
+:::{note}
+Anaocnda is a data science toolkit which already includes most of the libraries we need.
+:::
 
-n contrast, conda analyses the current environment including everything currently installed, and, together with any version limitations specified (e.g. the user may wish to have TensorFlow version 2,0 or higher), works out how to install a compatible set of dependencies, and shows a warning if this cannot be done.
+The open-source [Anaconda](https://www.anaconda.com/products/individual) Individual Edition (Distribution) is on of the easiest ways to perform Python and R data science and machine learning since it already includes the most important packages and libraries we need. In particular, it already contains Jupyter Notebook and other important data science modules.
+
+Furthermore, Anaconda aims to simplify package management and deployment. The build in package manager `conda` analyses the current environment including everything currently installed, and, together with any version limitations specified (e.g. the user may wish to have TensorFlow version 2,0 or higher), works out how to install a compatible set of dependencies, and shows a warning if this cannot be done.
+
+
+
+
