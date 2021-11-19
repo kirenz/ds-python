@@ -196,22 +196,21 @@ rmdir /S          | rm -r                    | delete a directory         | **rm
 ## Git and GitHub
 
 :::{note}
-Git is a version control system -- like the “Track Changes” features from Microsoft Word and many more additional features.
+Git is a version control system -- like the “Track Changes” features from Microsoft Word with many more additional features.
 :::
 
 [GitHub](https://github.com/) is a provider of internet hosting for software development and version control using Git. We will use GitHub as a platform for web hosting and collaboration and as our course management system.
 
 - Git can be used to store content 
 - Code can be changed and other developers can add code in parallel.
-- Git has a remote repository which is stored in a server and a local repository which is stored in the computer of each developer.
+- Git has a remote repository which is stored in a server and a local repository which is stored in the computer of each developer.  
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w3jLJU7DT5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w3jLJU7DT5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 
 
-You need a free GitHub-account for our course. Please follow the instructions below. 
 
-*In case you already have a GitHub account: please add your HdM-email address to your account.*
+You need a free GitHub-account for our course. Please follow the instructions below (*in case you already have a GitHub account: please add your HdM-email address to your account*):
 
 ```{admonition} To do
 :class: tip
