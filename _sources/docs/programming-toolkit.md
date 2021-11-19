@@ -93,7 +93,7 @@ Here a list of some of the libraries we will use frequently:
 
 - [scikit-learn](https://scikit-learn.org/stable/) provides a toolkit for applying common machine learning algorithms to data.
 
-- [TensorFlow](https://www.tensorflow.org/) is s an end-to-end open source platform for machine learning.
+- [TensorFlow](https://www.tensorflow.org/) is an end-to-end open source platform for machine learning.
 
 Here are two curated lists with an extensive list of resources for practicing data science using Python, including not only libraries, but also links to tutorials, code snippets, blog posts and talks:
 
@@ -135,6 +135,7 @@ conda activate base
 conda install -c anaconda seaborn
 ```
 
+
 ## Visual Studio Code 
 
 :::{note}
@@ -163,11 +164,13 @@ Learn how to use Jupyter Notebooks:
 
 ## Command-line interface
 
-A command-line interface (CLI) processes commands to a computer program in the form of lines of text. The program which handles the interface is called a command-line interpreter or command-line processor. 
+:::{note}
+A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
+:::
 
-We sometimes use the command line interface (other names for the command line are: cmd, CLI, prompt, console or terminal) to perform some basic tasks so you should be familiar with some basic commands.
+Operating systems like Windows and MacOS implement a command-line interface (other names for the command line are: cmd, CLI, prompt, console or terminal) in a shell for interactive access to operating system functions or services. 
 
-If you aren't familiar with the terminal, read this short introduction to the command-line interface:
+We sometimes use the command line interface to perform some simple tasks so you should be familiar with basic commands. If you aren't familiar with the terminal, read this short introduction to the command-line interface:
 
 ```{admonition} To do
 :class: tip
@@ -189,3 +192,36 @@ rmdir (or del)    | rm                       | delete a file              | **de
 rmdir /S          | rm -r                    | delete a directory         | **rm -r testdirectory**
 [CMD] /?          | man [CMD]                | get help for a command     | **cd /?** (Windows) or **man cd** (Mac OS / Linux)
 
+
+## Git and GitHub
+
+:::{note}
+Git is a version control system -- like the “Track Changes” features from Microsoft Word and many more additional features.
+:::
+
+[GitHub](https://github.com/) is a provider of internet hosting for software development and version control using Git. We will use GitHub as a platform for web hosting and collaboration and as our course management system.
+
+- Git can be used to store content 
+- Code can be changed and other developers can add code in parallel.
+- Git has a remote repository which is stored in a server and a local repository which is stored in the computer of each developer.
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w3jLJU7DT5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+You need a free GitHub-account for our course. Please follow the instructions below. 
+
+*In case you already have a GitHub account: please add your HdM-email address to your account.*
+
+```{admonition} To do
+:class: tip
+
+- [Create a GitHub account with your HdM-email](https://github.com/join)
+
+- Verify your GitHub email
+- Adjust your GitHub settings
+  - Settings > Emails > Uncheck "Keep my email address private"
+  - Settings > Emails > Update name and photo
+
+- [Install GitHub desktop](https://desktop.github.com/)
+```
