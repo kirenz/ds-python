@@ -1,9 +1,9 @@
 format: jb-book
 root: docs/intro.md
 parts:
-  - caption: Introduction
+  - caption: Toolkit
     chapters:
-    - file: docs/notebooks.ipynb
+    - file: docs/programming-toolkit.md
   - caption: References
     chapters:
     - file: docs/reference.md
