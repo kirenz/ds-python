@@ -160,3 +160,16 @@ Learn how to use Jupyter Notebooks:
 
 - [How to use Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 ```
+
+## Command-line interface
+
+A command-line interface (CLI) processes commands to a computer program in the form of lines of text. The program which handles the interface is called a command-line interpreter or command-line processor. 
+
+We sometimes use the command line interface (other names for the command line are: cmd, CLI, prompt, console or terminal) to perform some basic tasks so you should be familiar with some basic commands.
+
+If you aren't familiar with the terminal, read this short introduction to the command-line interface:
+
+```{admonition} To do
+:class: tip
+- [Introduction to the command-line interface](https://tutorial.djangogirls.org/en/intro_to_command_line/)
+```
