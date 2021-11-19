@@ -1,29 +1,17 @@
 # Welcome
 
-Welcome to our course Applied Statistics!
+The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science projects.   
 
- In this course you will learn state-of-the art statistical methods, which refers to a set of tools for making sense of complex datasets. statistical learning has become a critical toolkit for anyone who wishes to understand data — and as more and more of today’s jobs involve data, this means that statistical learning is fast becoming a critical toolkit for everyone.
+A typical data science project looks something like this {cite:p}`Wickham2016`: 
 
-Learn how to explore, visualize, and analyze data to understand natural phenomena, investigate patterns, model outcomes, and make predictions, and do so in a reproducible and shareable manner. Gain experience in data collection, wrangling, and visualization, exploratory data analysis, predictive modeling, and effective communication of results while working on problems and case studies inspired by and based on real-world questions. The course will focus on the R statistical computing language. No statistical or computing background is necessary.
-
-
-
-
-{cite:t}`James2021`
-
-
-
-
-
-:::{note}
-Here is a note!
-:::
-
-And here is a code block:
-
+```{image} _static/img/process.png
+:alt: datascience
+:class: bg-primary mb-1
+:width: 600px
+:align: center
 ```
-e = mc^2
-```
+
+Surrounding all the steps covered above is programming. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate common tasks, and solve new problems with greater ease.
 
 
 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />
