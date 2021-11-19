@@ -1,8 +1,6 @@
 # Welcome
 
-The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science projects.  
-
-A typical data science project looks something like this {cite:p}`Wickham2016`: 
+The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this {cite:p}`Wickham2016`: 
 
 ```{image} ../_static/img/process.png
 :alt: datascience
@@ -11,7 +9,7 @@ A typical data science project looks something like this {cite:p}`Wickham2016`:
 :align: center
 ```
 
-Surrounding all the steps covered above is programming. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate common tasks, and solve new problems with greater ease.
+Surrounding all these steps is programming (e.g. with Python or R) and the usage of different tools like Git and Anaconda. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important basics. 
 
 ---
 

@@ -4,6 +4,7 @@ parts:
   - caption: Toolkit
     chapters:
     - file: docs/programming-toolkit.md
+    - file: docs/process.md
   - caption: References
     chapters:
     - file: docs/reference.md
