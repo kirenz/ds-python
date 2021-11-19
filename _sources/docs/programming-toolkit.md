@@ -49,7 +49,7 @@ Markdown is a simple way to format text that looks great on any device.
 
 Markdown is one of the world’s most popular markup languages used in data science. Jupyter Notebooks use Markdown to provide an unified authoring framework for data science, combining code, its results, and commentary in Markdown.  
 
-According to {cite:t}`wickham2016`, Markdown files are designed to be used in three ways:
+According to {cite:t}`Wickham2016`, Markdown files are designed to be used in three ways:
 
 1. For communicating to decision makers, who want to focus on the conclusions, not the code behind the analysis.
 
