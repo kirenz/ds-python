@@ -44,7 +44,7 @@ Let`s start your first Colab notebook to get an overview about some basic featur
 ## Markdown
 
 :::{note}
-Markdown is a simple way to format text that looks great on any device. 
+Markdown is a simple way to format text that looks great on any device.
 :::
 
 Markdown is one of the world’s most popular markup languages used in data science. Jupyter Notebooks use Markdown to provide an unified authoring framework for data science, combining code, its results, and commentary in Markdown.  
@@ -58,7 +58,6 @@ According to {cite:t}`Wickham2016`, Markdown files are designed to be used in th
 3. As an environment in which to do data science, as a modern day lab notebook where you can capture not only what you did, but also what you were thinking.
 
 Review this sites to learn more about Markdown:
-
 
 ```{admonition} To do
 :class: tip
@@ -77,7 +76,7 @@ A Python library is a reusable chunk of code that you can import in your own pro
 
 Here a list of some of the libraries we will use frequently:
 
-- [pandas](https://pandas.pydata.org/) is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool.
+- [pandas](https://pandas.pydata.org/) is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool. We will use pandas regularly in our course and you will find all relevant content in this [introduction to pandas]()
 
 - [NumPy](https://numpy.org/) offers tools for scientific computing like mathematical functions and random number generators.
 
