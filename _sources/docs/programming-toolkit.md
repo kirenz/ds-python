@@ -141,7 +141,7 @@ conda install -c anaconda seaborn
 Visual Studio Code is a code editor that can be used with a variety of programming languages including Python.
 :::
 
-Visual Studio Code (also called Code) is a powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with a rich ecosystem of extensions for Python and we use them to write our Pyton code.
+Visual Studio Code (also called Code) is a powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with a rich ecosystem of extensions for Python and we use them to write our Python code.
 
 ```{admonition} To do
 :class: tip
