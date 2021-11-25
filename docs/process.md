@@ -2,7 +2,7 @@
 
  A typical data science project looks something like this {cite:p}`Wickham2016`:
 
- ```{image} ../_static/img/process.png
+```{image} ../_static/img/process.png
 :alt: datascience
 :class: bg-primary mb-1
 :width: 600px
