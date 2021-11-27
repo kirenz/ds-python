@@ -20,6 +20,19 @@ Once you have tidy data, a common first step is to transform it. **Transformatio
 
 **Models** are complementary tools to visualisation. Once you have made your questions sufficiently precise, you can use a model to answer them. 
 
+Note that the cycle of analysis, modeling, and visualization often requires multiple iterations. This iterative process is especially true for modeling. The general phases are {cite:p}`Kuhn2021`:
+
+![](https://www.tmwr.org/premade/modeling-process.svg)
+
+
+- Exploratory data analysis (EDA): Initially there is a back and forth between numerical analysis and visualization of the data  where different discoveries lead to more questions and data analysis “side-quests” to gain more understanding.
+
+- Feature engineering: The understanding gained from EDA results in the creation of specific model terms that make it easier to accurately model the observed data. This can include complex methodologies (e.g., PCA) or simpler features (using the ratio of two predictors). 
+
+- Model tuning and selection (circles with blue and yellow segments): A variety of models are generated and their performance is compared. Some models require parameter tuning where some structural parameters are required to be specified or optimized. The colored segments within the circles signify the repeated data splitting used during resampling.
+
+- Model evaluation: During this phase of model development, we assess the model’s performance metrics, examine residual plots, and conduct other EDA-like analyses to understand how well the models work. 
+
 The last step is **communication**, an absolutely critical part of any data analysis project. It doesn't matter how well your models and visualisation have led you to understand the data unless you can also communicate your results to others.
 
 Surrounding all the data science steps covered above is **programming**. Programming is a cross-cutting tool that you use in every part of the project. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate
