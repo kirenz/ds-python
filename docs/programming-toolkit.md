@@ -161,6 +161,8 @@ Learn how to use Jupyter Notebooks:
 - [How to use Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 ```
 
+Additional options:
+
 How to configure native bracket pair colorization:
 
 - Remove any existing Bracket Pair Colorizer extensions.
@@ -172,7 +174,6 @@ How to configure native bracket pair colorization:
 ```bash
 "editor.bracketPairColorization.enabled": true
 ````
-
 
 
 - [More information about the native bracket pair colorization](https://code.visualstudio.com/blogs/2021/09/29/bracket-pair-colorization)
