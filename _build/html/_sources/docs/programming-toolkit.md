@@ -21,6 +21,7 @@ Jupyter Notebook is a web-based interactive computational environment for creati
   - explanatory text or
   - executable code and its
   - output
+  
 
 ## Colab
 
@@ -141,7 +142,11 @@ conda install -c anaconda seaborn
 Visual Studio Code is a code editor that can be used with a variety of programming languages including Python.
 :::
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/KMxo3T_MTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Visual Studio Code (also called Code) is a powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with a rich ecosystem of extensions for Python and we use them to write our Python code.
+
+
 
 ```{admonition} To do
 :class: tip
@@ -150,11 +155,16 @@ Install VS Code:
 
 - [Install Code](https://code.visualstudio.com/)
 
+Get familiar with Code
+
+- [Take a look at the intro videos](https://code.visualstudio.com/docs/getstarted/introvideos)
+
 Install Extensions:
 
 - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 - [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 - [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv)
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
 Learn how to use Jupyter Notebooks:
 
@@ -162,6 +172,8 @@ Learn how to use Jupyter Notebooks:
 ```
 
 Additional options:
+
+- Pro tips:[25 VS Code Productivity Tips and Speed Hacks](https://www.youtube.com/watch?v=ifTF3ags0XI)
 
 How to configure native bracket pair colorization:
 
@@ -174,7 +186,6 @@ How to configure native bracket pair colorization:
 ```bash
 "editor.bracketPairColorization.enabled": true
 ````
-
 
 - [More information about the native bracket pair colorization](https://code.visualstudio.com/blogs/2021/09/29/bracket-pair-colorization)
 
