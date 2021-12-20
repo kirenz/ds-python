@@ -155,6 +155,10 @@ Install VS Code:
 
 - [Install Code](https://code.visualstudio.com/)
 
+Get familiar with Code
+
+- [Take a look at the intro videos](https://code.visualstudio.com/docs/getstarted/introvideos)
+
 Install Extensions:
 
 - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
