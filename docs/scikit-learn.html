@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scikit learn &#8212; Data Science with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Toolkit
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-toolkit.html">
+   Programming toolkit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="process.html">
+   Programming process
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reference.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/scikit-learn.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://kirenz.github.io/ds-python/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/scikit-learn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python">
+   Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#colab">
+   Colab
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markdown">
+   Markdown
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#libraries">
+   Libraries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anaconda">
+   Anaconda
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visual-studio-code">
+   Visual Studio Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-interface">
+   Command-line interface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git-and-github">
+   Git and GitHub
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="scikit-learn">
+<h1>Scikit learn<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h1>
+<p>Most algorithms in scikit-learn need data to be stored in a two-dimensional array or matrix. The arrays are usually numpy arrays.</p>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>Python is an object-oriented language (an object is an entity that contains data along with associated metadata and/or functionality). One thing that distinguishes Python from other programming languages is that it is interpreted rather than compiled. This means that it is executed line by line which is particular useful for data analysis, as well as the creation of interactive, executable documents like Jupyter Notebooks.</p>
+<p>On top of this, there is a broad ecosystem of third-party tools and libraries that offer more specialized data science functionality.</p>
+</div>
+<div class="section" id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jupyter Notebook is a web-based interactive computational environment for creating documents that contain code and text</p>
+</div>
+<p><a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> is an open-source web application that allows you to create and share documents that contain code, equations, visualizations and narrative text:</p>
+<ul class="simple">
+<li><p>A notebook is basically a list of cells</p></li>
+<li><p>Cells contain either</p>
+<ul>
+<li><p>explanatory text or</p></li>
+<li><p>executable code and its</p></li>
+<li><p>output</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="colab">
+<h2>Colab<a class="headerlink" href="#colab" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Colab is a free Jupyter notebook environment that requires no setup, and runs entirely on the Cloud.</p>
+</div>
+<p>Colaboratory, or “Colab” for short, is a free to use product from Google Research. Colab allows anybody to write and execute python code through the browser, and is especially well suited to perform data analysis and machine learning.</p>
+<p>Watch this video to get a first impression of Colab:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/inN8seMm7UI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Let`s start your first Colab notebook to get an overview about some basic features:</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/basic_features_overview.ipynb">Colab basic features overview</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="markdown">
+<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Markdown is a simple way to format text that looks great on any device.</p>
+</div>
+<p>Markdown is one of the world’s most popular markup languages used in data science. Jupyter Notebooks use Markdown to provide an unified authoring framework for data science, combining code, its results, and commentary in Markdown.</p>
+<p>According to <span id="id1">Wickham and Grolemund [<a class="reference internal" href="reference.html#id9">2016</a>]</span>, Markdown files are designed to be used in three ways:</p>
+<ol class="simple">
+<li><p>For communicating to decision makers, who want to focus on the conclusions, not the code behind the analysis.</p></li>
+<li><p>For collaborating with other data scientists, who are interested in both your conclusions, and how you reached them (i.e. the code).</p></li>
+<li><p>As an environment in which to do data science, as a modern day lab notebook where you can capture not only what you did, but also what you were thinking.</p></li>
+</ol>
+<p>Review this sites to learn more about Markdown:</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">Interactive Colab Markdown guide</a></p></li>
+<li><p><a class="reference external" href="https://commonmark.org/help/">Interactive 10 minute Markdown tutorial</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="libraries">
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python Libraries are a set of useful functions that eliminate the need for writing codes from scratch.</p>
+</div>
+<p>A Python library is a reusable chunk of code that you can import in your own projects so you don’t have to write all the code by yourself. There are around 140000 available Python projects and one way to discover and install them is to use the <a class="reference external" href="https://pypi.org/">Python Package Index (PyPI)</a>. Another way to install Python libraries is to use the open source data science platform Anaconda, which will be covered below.</p>
+<p>Here a list of some of the libraries we will use frequently:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a> is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool. We will use pandas regularly in our course and you will find all relevant content in this <span class="xref myst">introduction to pandas</span></p></li>
+<li><p><a class="reference external" href="https://numpy.org/">NumPy</a> offers tools for scientific computing like mathematical functions and random number generators.</p></li>
+<li><p><a class="reference external" href="https://scipy.org/">SciPy</a> contains algorithms for scientific computing.</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/">matplotlib</a> is a library for creating data visualizations.</p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> provides a high-level interface for drawing attractive and informative statistical graphics.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/">plotly</a> is a graphing library to make interactive, publication-quality graphs.</p></li>
+<li><p><a class="reference external" href="https://www.statsmodels.org/stable/index.html">statsmodels</a> includes statistical models, hypothesis tests, and data exploration.</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a> provides a toolkit for applying common machine learning algorithms to data.</p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/">TensorFlow</a> is an end-to-end open source platform for machine learning.</p></li>
+</ul>
+<p>Here are two curated lists with an extensive list of resources for practicing data science using Python, including not only libraries, but also links to tutorials, code snippets, blog posts and talks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/r0f1/datascience">Awesome Data Science with Python</a></p></li>
+<li><p><a class="reference external" href="https://github.com/krzjoa/awesome-python-data-science">Awesome Python Data Science</a></p></li>
+</ul>
+</div>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Anaconda is a data science toolkit which already includes most of the libraries we need.</p>
+</div>
+<p>The open-source <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda</a> Individual Edition (Distribution) is on of the easiest ways to perform Python and R data science and machine learning since it already includes Python and the most important packages and libraries we need. In particular, it already contains Jupyter Notebook and other important data science modules.</p>
+<p>Furthermore, Anaconda’s package manager <code class="docutils literal notranslate"><span class="pre">conda</span></code> makes it easy to manage multiple data environments that can be maintained and run separately without interference from each other (in so called virtual environments). <code class="docutils literal notranslate"><span class="pre">conda</span></code> analyses the current environment including everything currently installed, and, together with any version limitations specified (e.g. the user may wish to have TensorFlow version 2,0 or higher), works out how to install a compatible set of dependencies, and shows a warning if this cannot be done.</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<p>Install Anaconda Individual Edition</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/codelabs/codelabs/anaconda-install/#0">Anaconda installation tutorial</a></p></li>
+</ul>
+</div>
+<p>Here an example of how to install the Python package seaborn using <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
+<ul class="simple">
+<li><p>On <em>Windows</em> open the Start menu and open an Anaconda Command Prompt.</p></li>
+<li><p>On <em>macOS</em> or <em>Linux</em> open a terminal window.</p></li>
+<li><p>Activate the conda environment of your choice (e.g. the base environment)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate base
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Install seaborn according to the <a class="reference external" href="https://anaconda.org/anaconda/seaborn">documentation</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c anaconda seaborn
+</pre></div>
+</div>
+</div>
+<div class="section" id="visual-studio-code">
+<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Visual Studio Code is a code editor that can be used with a variety of programming languages including Python.</p>
+</div>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/KMxo3T_MTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Visual Studio Code (also called Code) is a powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with a rich ecosystem of extensions for Python and we use them to write our Python code.</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<p>Install VS Code:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/">Install Code</a></p></li>
+</ul>
+<p>Get familiar with Code</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/getstarted/introvideos">Take a look at the intro videos</a></p></li>
+</ul>
+<p>Install Extensions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint">Markdownlint</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv">Rainbow CSV</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></p></li>
+</ul>
+<p>Learn how to use Jupyter Notebooks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">How to use Jupyter Notebooks in VS Code</a></p></li>
+</ul>
+</div>
+<p>Additional options:</p>
+<ul class="simple">
+<li><p>Pro tips:<a class="reference external" href="https://www.youtube.com/watch?v=ifTF3ags0XI">25 VS Code Productivity Tips and Speed Hacks</a></p></li>
+</ul>
+<p>How to configure native bracket pair colorization:</p>
+<ul class="simple">
+<li><p>Remove any existing Bracket Pair Colorizer extensions.</p></li>
+<li><p>Update VS Code</p></li>
+<li><p>Open your user settings: <code class="docutils literal notranslate"><span class="pre">CMD</span> <span class="pre">(CTRL</span> <span class="pre">for</span> <span class="pre">non-Mac</span> <span class="pre">users)</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">P</span></code> and type <code class="docutils literal notranslate"><span class="pre">settings</span></code>.</p></li>
+<li><p>Select `Open settings (JSON)</p></li>
+<li><p>Add the following code:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;editor.bracketPairColorization.enabled&quot;</span>: <span class="nb">true</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/blogs/2021/09/29/bracket-pair-colorization">More information about the native bracket pair colorization</a></p></li>
+</ul>
+</div>
+<div class="section" id="command-line-interface">
+<h2>Command-line interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A command-line interface (CLI) processes commands to a computer program in the form of lines of text.</p>
+</div>
+<p>Operating systems like Windows and MacOS implement a command-line interface (other names for the command line are: cmd, CLI, prompt, console or terminal) in a shell for interactive access to operating system functions or services.</p>
+<p>We sometimes use the command line interface to perform some simple tasks so you should be familiar with basic commands. If you aren’t familiar with the terminal, read this short introduction to the command-line interface:</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tutorial.djangogirls.org/en/intro_to_command_line/">Introduction to the command-line interface</a></p></li>
+</ul>
+</div>
+<p>Here is a summary of some useful commands:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command (Windows)</p></th>
+<th class="head"><p>Command (Mac OS / Linux)</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>exit</p></td>
+<td><p>exit</p></td>
+<td><p>close the window</p></td>
+<td><p><strong>exit</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>cd</p></td>
+<td><p>cd</p></td>
+<td><p>change directory</p></td>
+<td><p><strong>cd test</strong>, <strong>cd..</strong> (Windows) or <strong>cd ..</strong> (Mac)</p></td>
+</tr>
+<tr class="row-even"><td><p>cd</p></td>
+<td><p>pwd</p></td>
+<td><p>show the current directory</p></td>
+<td><p><strong>cd</strong> (Windows) or <strong>pwd</strong> (Mac OS / Linux)</p></td>
+</tr>
+<tr class="row-odd"><td><p>dir</p></td>
+<td><p>ls</p></td>
+<td><p>list directories/files</p></td>
+<td><p><strong>dir</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>copy</p></td>
+<td><p>cp</p></td>
+<td><p>copy file</p></td>
+<td><p><strong>copy c:\test\test.txt c:\windows\test.txt</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>move</p></td>
+<td><p>mv</p></td>
+<td><p>move file</p></td>
+<td><p><strong>move c:\test\test.txt c:\windows\test.txt</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>mkdir</p></td>
+<td><p>mkdir</p></td>
+<td><p>create a new directory</p></td>
+<td><p><strong>mkdir testdirectory</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>rmdir (or del)</p></td>
+<td><p>rm</p></td>
+<td><p>delete a file</p></td>
+<td><p><strong>del c:\test\test.txt</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>rmdir /S</p></td>
+<td><p>rm -r</p></td>
+<td><p>delete a directory</p></td>
+<td><p><strong>rm -r testdirectory</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>[CMD] /?</p></td>
+<td><p>man [CMD]</p></td>
+<td><p>get help for a command</p></td>
+<td><p><strong>cd /?</strong> (Windows) or <strong>man cd</strong> (Mac OS / Linux)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="git-and-github">
+<h2>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Git is a version control system – like the “Track Changes” features from Microsoft Word with many more additional features.</p>
+</div>
+<p><a class="reference external" href="https://github.com/">GitHub</a> is a provider of internet hosting for software development and version control using Git. We will use GitHub as a platform for web hosting and collaboration and as our course management system.</p>
+<ul class="simple">
+<li><p>Git can be used to store content</p></li>
+<li><p>Code can be changed and other developers can add code in parallel.</p></li>
+<li><p>Git has a remote repository which is stored in a server and a local repository which is stored in the computer of each developer.</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w3jLJU7DT5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+<p>You need a free GitHub-account for our course. Please follow the instructions below (<em>in case you already have a GitHub account: please add your HdM-email address to your account</em>):</p>
+<div class="tip admonition">
+<p class="admonition-title">To do</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/join">Create a GitHub account with your HdM-email</a></p></li>
+<li><p>Verify your GitHub email</p></li>
+<li><p>Adjust your GitHub settings</p>
+<ul>
+<li><p>Settings &gt; Emails &gt; Uncheck “Keep my email address private”</p></li>
+<li><p>Settings &gt; Emails &gt; Update name and photo</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://desktop.github.com/">Install GitHub desktop</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jan Kirenz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
