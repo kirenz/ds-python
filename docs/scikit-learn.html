@@ -268,6 +268,17 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="scikit-learn">
 <h1>Scikit learn<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h1>
 <p>Most algorithms in scikit-learn need data to be stored in a two-dimensional array or matrix. The arrays are usually numpy arrays.</p>
+<p>Scikit-learn strives to have a uniform interface across all methods, and we’ll see examples of these below. Given a scikit-learn estimator object named model, the following methods are available:</p>
+<p>Available in all estimators</p>
+<p>model.fit() : fit training data. For supervised learning applications, this accepts two arguments: the data X and the labels y (e.g. model.fit(X, y)). For unsupervised learning applications, this accepts only a single argument, the data X (e.g. model.fit(X)).</p>
+<p>Available in supervised estimators</p>
+<p>model.predict() : given a trained model, predict the label of a new set of data. This method accepts one argument, the new data X_new (e.g. model.predict(X_new)), and returns the learned label for each object in the array.</p>
+<p>model.predict_proba() : For classification problems, some estimators also provide this method, which returns the probability that a new observation has each categorical label. In this case, the label with the highest probability is returned by model.predict().</p>
+<p>model.score() : for classification or regression problems, most (all?) estimators implement a score method. Scores are between 0 and 1, with a larger score indicating a better fit.</p>
+<p>Available in unsupervised estimators</p>
+<p>model.predict() : predict labels in clustering algorithms.</p>
+<p>model.transform() : given an unsupervised model, transform new data into the new basis. This also accepts one argument X_new, and returns the new representation of the data based on the unsupervised model.
+model.fit_transform() : some estimators implement this method, which more efficiently performs a fit and a transform on the same input data.</p>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p>Python is an object-oriented language (an object is an entity that contains data along with associated metadata and/or functionality). One thing that distinguishes Python from other programming languages is that it is interpreted rather than compiled. This means that it is executed line by line which is particular useful for data analysis, as well as the creation of interactive, executable documents like Jupyter Notebooks.</p>
