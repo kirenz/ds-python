@@ -209,14 +209,17 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Programming process</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Programming process</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
             </div>
             
               <div>
@@ -266,61 +269,8 @@ common tasks, and solve new problems with greater ease.</p>
 
               </div>
               
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
-  <div class="tex2jax_ignore mathjax_ignore section" id="programming-process">
-<h1>Programming process<a class="headerlink" href="#programming-process" title="Permalink to this headline">¶</a></h1>
-<p>A typical data science project looks something like this <span id="id1">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>:</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/process.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/process.png" style="width: 600px;" /></a>
-<p>First you must <strong>import</strong> your data into Python. This typically means that you take data stored in a file, cloud database, or web API, and load it into Python.
-Once you’ve imported your data, it is a good idea to tidy it.</p>
-<p><strong>Tidying</strong> your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored (we usually work with tabular data in the form of excel spreadsheets). In brief, when your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data.</p>
-<p>Once you have tidy data, a common first step is to transform it. <strong>Transformation</strong> includes narrowing in on observations of interest (like all people in one city, or all data from the last year), creating new variables that are functions of existing variables (like computing velocity from speed and time), and calculating a set of summary statistics (like counts or means). Together, tidying and transforming are called <em>wrangling</em>, because getting your data in a form that’s natural to work with often feels like a fight! Once you have tidy data with the variables you need, there are two main engines of knowledge generation: visualisation and modelling. These have complementary strengths and weaknesses so any real analysis will iterate between them many times.</p>
-<p><strong>Visualisation</strong> is a fundamentally human activity. A good visualisation will show you things that you did not expect, or raise new questions about the data. A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Visualisations can surprise you, but don’t scale particularly well because they require a human to interpret them.</p>
-<p><strong>Models</strong> are complementary tools to visualisation. Once you have made your questions sufficiently precise, you can use a model to answer them.</p>
-<p>Note that the cycle of analysis, modeling, and visualization often requires multiple iterations. This iterative process is especially true for modeling. The general phases are <span id="id2">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
-<p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
-<ul class="simple">
-<li><p>Exploratory data analysis (EDA): Initially there is a back and forth between numerical analysis and visualization of the data  where different discoveries lead to more questions and data analysis “side-quests” to gain more understanding.</p></li>
-<li><p>Feature engineering: The understanding gained from EDA results in the creation of specific model terms that make it easier to accurately model the observed data. This can include complex methodologies (e.g., PCA) or simpler features (using the ratio of two predictors).</p></li>
-<li><p>Model tuning and selection (circles with blue and yellow segments): A variety of models are generated and their performance is compared. Some models require parameter tuning where some structural parameters are required to be specified or optimized. The colored segments within the circles signify the repeated data splitting used during resampling.</p></li>
-<li><p>Model evaluation: During this phase of model development, we assess the model’s performance metrics, examine residual plots, and conduct other EDA-like analyses to understand how well the models work.</p></li>
-</ul>
-<p>The last step is <strong>communication</strong>, an absolutely critical part of any data analysis project. It doesn’t matter how well your models and visualisation have led you to understand the data unless you can also communicate your results to others.</p>
-<p>Surrounding all the data science steps covered above is <strong>programming</strong>. Programming is a cross-cutting tool that you use in every part of the project. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate
-common tasks, and solve new problems with greater ease.</p>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./docs"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="programming-toolkit.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -337,7 +287,7 @@ common tasks, and solve new problems with greater ease.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
