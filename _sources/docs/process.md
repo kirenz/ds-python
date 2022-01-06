@@ -1,6 +1,6 @@
 # Programming process
 
- A typical data science project looks something like this {cite:p}`Wickham2016`:
+ From a high-level perspective, a typical data science project looks something like this {cite:p}`Wickham2016`:
 
 ```{image} ../_static/img/process.png
 :alt: datascience
@@ -9,10 +9,15 @@
 :align: center
 ```
 
-First you must **import** your data into Python. This typically means that you take data stored in a file, cloud database, or web API, and load it into Python.
-Once you’ve imported your data, it is a good idea to tidy it.
+<br>
 
-**Tidying** your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored (we usually work with tabular data in the form of excel spreadsheets). In brief, when your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data.
+First you must **import** your data into Python. This typically means that you take data stored in a file, cloud database, or web API, and load it into Python. 
+
+:::{note}
+In our examples, we usually use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data)
+:::
+
+Once you’ve imported your data, it is a good idea to tidy it. **Tidying** your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored (we usually work with tabular data in the form of excel spreadsheets). In brief, when your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data.
 
 Once you have tidy data, a common first step is to transform it. **Transformation** includes narrowing in on observations of interest (like all people in one city, or all data from the last year), creating new variables that are functions of existing variables (like computing velocity from speed and time), and calculating a set of summary statistics (like counts or means). Together, tidying and transforming are called *wrangling*, because getting your data in a form that’s natural to work with often feels like a fight! Once you have tidy data with the variables you need, there are two main engines of knowledge generation: visualisation and modelling. These have complementary strengths and weaknesses so any real analysis will iterate between them many times. 
 
