@@ -1,8 +1,8 @@
-# Programming process
+# Data Science Lifecycle
 
- From a high-level perspective, a typical data science project looks something like this {cite:p}`Wickham2016`:
+ From a high-level perspective, a typical data science project looks something like this :
 
-```{image} ../_static/img/process.png
+```{image} ../_static/img/lifecycle-data.png
 :alt: datascience
 :class: bg-primary mb-1
 :width: 600px
@@ -11,11 +11,31 @@
 
 <br>
 
-First you must **import** your data into Python. This typically means that you take data stored in a file, cloud database, or web API, and load it into Python. 
+## Plan
+
+First, you have to define a plan of what you want to achive with your data science project. To do this, we start with the business model, which describes the rationale of how your organization creates, delivers and captures value. The complete process looks something like this:
+
+:::{note}
+
+1. Identify use case: Use the business model canvas.
+2. Frame the problem: Provide a statement of what is to be learned and how decisions should be made.
+3. Identify variables or labels: for structured data problems, we need to identify potentially relevant variables; for unstructured problems, we need to define labels.
+4. Define success metrics: Write down your metrics for success and failure with the data science project. 
+:::
+
+To learn more about the data science planning phase, review this presentation: 
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR3mAfcepfacMwk7_ob-uPjSX6aMLISTxC2C1DEOyMS5HdO1RSY8fSbBdPP21JjKP0fHKoE46719xjJ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+## Data
+
+Typically, you first have to import your data. This means that you take data stored in a file, cloud database, or web API, and load it into Python. 
 
 :::{note}
 In our examples, we usually use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data)
 :::
+
+
 
 Once you’ve imported your data, it is a good idea to tidy it. **Tidying** your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored (we usually work with tabular data in the form of excel spreadsheets). In brief, when your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data.
 
@@ -42,3 +62,6 @@ The last step is **communication**, an absolutely critical part of any data anal
 
 Surrounding all the data science steps covered above is **programming**. Programming is a cross-cutting tool that you use in every part of the project. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate
 common tasks, and solve new problems with greater ease.
+
+
+{cite:p}`Wickham2016`
