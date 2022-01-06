@@ -1,0 +1,66 @@
+Traceback (most recent call last):
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/jankirenz/opt/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas
+from pyspark.sql.functions import pandas_udf
+
+@pandas_udf('long')
+def pandas_plus_one(series: pd.Series) -> pd.Series:
+    # Simply plus one by using pandas Series.
+    return series + 1
+
+df.select(pandas_plus_one(df.a)).show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m~/opt/anaconda3/lib/python3.8/site-packages/pyspark/sql/pandas/utils.py[0m in [0;36mrequire_minimum_pyarrow_version[0;34m()[0m
+[1;32m     48[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m         [0;32mimport[0m [0mpyarrow[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     50[0m         [0mhave_arrow[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pyarrow'
+
+The above exception was the direct cause of the following exception:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m/var/folders/9c/_3s5jt3n60j__flsgl0t72340000gn/T/ipykernel_5047/3125641754.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;32mfrom[0m [0mpyspark[0m[0;34m.[0m[0msql[0m[0;34m.[0m[0mfunctions[0m [0;32mimport[0m [0mpandas_udf[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m [0;34m@[0m[0mpandas_udf[0m[0;34m([0m[0;34m'long'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;32mdef[0m [0mpandas_plus_one[0m[0;34m([0m[0mseries[0m[0;34m:[0m [0mpd[0m[0;34m.[0m[0mSeries[0m[0;34m)[0m [0;34m->[0m [0mpd[0m[0;34m.[0m[0mSeries[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m     [0;31m# Simply plus one by using pandas Series.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/lib/python3.8/site-packages/pyspark/sql/pandas/functions.py[0m in [0;36mpandas_udf[0;34m(f, returnType, functionType)[0m
+[1;32m    330[0m     [0;31m# Note: 'X' means it throws an exception during the conversion.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    331[0m     [0mrequire_minimum_pandas_version[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 332[0;31m     [0mrequire_minimum_pyarrow_version[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    333[0m [0;34m[0m[0m
+[1;32m    334[0m     [0;31m# decorator @pandas_udf(returnType, functionType)[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/anaconda3/lib/python3.8/site-packages/pyspark/sql/pandas/utils.py[0m in [0;36mrequire_minimum_pyarrow_version[0;34m()[0m
+[1;32m     53[0m         [0mraised_error[0m [0;34m=[0m [0merror[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     54[0m     [0;32mif[0m [0;32mnot[0m [0mhave_arrow[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 55[0;31m         raise ImportError("PyArrow >= %s must be installed; however, "
+[0m[1;32m     56[0m                           "it was not found." % minimum_pyarrow_version) from raised_error
+[1;32m     57[0m     [0;32mif[0m [0mLooseVersion[0m[0;34m([0m[0mpyarrow[0m[0;34m.[0m[0m__version__[0m[0;34m)[0m [0;34m<[0m [0mLooseVersion[0m[0;34m([0m[0mminimum_pyarrow_version[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: PyArrow >= 1.0.0 must be installed; however, it was not found.
+ImportError: PyArrow >= 1.0.0 must be installed; however, it was not found.
+

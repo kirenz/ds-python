@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programming process &#8212; Data Science with Python</title>
+    <title>Scikit learn &#8212; Data Science with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="reference.html" />
-    <link rel="prev" title="Programming toolkit" href="programming-toolkit.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,14 +97,14 @@
   Toolkit
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="programming-toolkit.html">
    Programming toolkit
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="process.html">
    Programming process
   </a>
  </li>
@@ -163,7 +161,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/process.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/docs/scikit-learn.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -183,7 +181,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/process.html&body=Your%20issue%20content%20here."><button
+            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/scikit-learn.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -212,31 +210,20 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="programming-process">
-<h1>Programming process<a class="headerlink" href="#programming-process" title="Permalink to this headline">¶</a></h1>
-<p>From a high-level perspective, a typical data science project looks something like this <span id="id1">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>:</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/process.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/process.png" style="width: 600px;" /></a>
-<br>
-<p>First you must <strong>import</strong> your data into Python. This typically means that you take data stored in a file, cloud database, or web API, and load it into Python.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In our examples, we usually use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a></p>
-</div>
-<p>Once you’ve imported your data, it is a good idea to tidy it. <strong>Tidying</strong> your data means storing it in a consistent form that matches the semantics of the dataset with the way it is stored (we usually work with tabular data in the form of excel spreadsheets). In brief, when your data is tidy, each column is a variable, and each row is an observation. Tidy data is important because the consistent structure lets you focus your struggle on questions about the data.</p>
-<p>Once you have tidy data, a common first step is to transform it. <strong>Transformation</strong> includes narrowing in on observations of interest (like all people in one city, or all data from the last year), creating new variables that are functions of existing variables (like computing velocity from speed and time), and calculating a set of summary statistics (like counts or means). Together, tidying and transforming are called <em>wrangling</em>, because getting your data in a form that’s natural to work with often feels like a fight! Once you have tidy data with the variables you need, there are two main engines of knowledge generation: visualisation and modelling. These have complementary strengths and weaknesses so any real analysis will iterate between them many times.</p>
-<p><strong>Visualisation</strong> is a fundamentally human activity. A good visualisation will show you things that you did not expect, or raise new questions about the data. A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Visualisations can surprise you, but don’t scale particularly well because they require a human to interpret them.</p>
-<p><strong>Models</strong> are complementary tools to visualisation. Once you have made your questions sufficiently precise, you can use a model to answer them.</p>
-<p>Note that the cycle of analysis, modeling, and visualization often requires multiple iterations. This iterative process is especially true for modeling. The general phases are <span id="id2">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
-<p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
-<ul class="simple">
-<li><p>Exploratory data analysis (EDA): Initially there is a back and forth between numerical analysis and visualization of the data  where different discoveries lead to more questions and data analysis “side-quests” to gain more understanding.</p></li>
-<li><p>Feature engineering: The understanding gained from EDA results in the creation of specific model terms that make it easier to accurately model the observed data. This can include complex methodologies (e.g., PCA) or simpler features (using the ratio of two predictors).</p></li>
-<li><p>Model tuning and selection (circles with blue and yellow segments): A variety of models are generated and their performance is compared. Some models require parameter tuning where some structural parameters are required to be specified or optimized. The colored segments within the circles signify the repeated data splitting used during resampling.</p></li>
-<li><p>Model evaluation: During this phase of model development, we assess the model’s performance metrics, examine residual plots, and conduct other EDA-like analyses to understand how well the models work.</p></li>
-</ul>
-<p>The last step is <strong>communication</strong>, an absolutely critical part of any data analysis project. It doesn’t matter how well your models and visualisation have led you to understand the data unless you can also communicate your results to others.</p>
-<p>Surrounding all the data science steps covered above is <strong>programming</strong>. Programming is a cross-cutting tool that you use in every part of the project. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate
-common tasks, and solve new problems with greater ease.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="scikit-learn">
+<h1>Scikit learn<a class="headerlink" href="#scikit-learn" title="Permalink to this headline">¶</a></h1>
+<p>Most algorithms in scikit-learn need data to be stored in a two-dimensional array or matrix. The arrays are usually numpy arrays.</p>
+<p>Scikit-learn strives to have a uniform interface across all methods, and we’ll see examples of these below. Given a scikit-learn estimator object named model, the following methods are available:</p>
+<p>Available in all estimators</p>
+<p>model.fit() : fit training data. For supervised learning applications, this accepts two arguments: the data X and the labels y (e.g. model.fit(X, y)). For unsupervised learning applications, this accepts only a single argument, the data X (e.g. model.fit(X)).</p>
+<p>Available in supervised estimators</p>
+<p>model.predict() : given a trained model, predict the label of a new set of data. This method accepts one argument, the new data X_new (e.g. model.predict(X_new)), and returns the learned label for each object in the array.</p>
+<p>model.predict_proba() : For classification problems, some estimators also provide this method, which returns the probability that a new observation has each categorical label. In this case, the label with the highest probability is returned by model.predict().</p>
+<p>model.score() : for classification or regression problems, most (all?) estimators implement a score method. Scores are between 0 and 1, with a larger score indicating a better fit.</p>
+<p>Available in unsupervised estimators</p>
+<p>model.predict() : predict labels in clustering algorithms.</p>
+<p>model.transform() : given an unsupervised model, transform new data into the new basis. This also accepts one argument X_new, and returns the new representation of the data based on the unsupervised model.
+model.fit_transform() : some estimators implement this method, which more efficiently performs a fit and a transform on the same input data.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -268,24 +255,6 @@ common tasks, and solve new problems with greater ease.</p>
 
 <div class='prev-next-bottom'>
     
-    <div id="prev">
-        <a class="left-prev" href="programming-toolkit.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Programming toolkit</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="reference.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Bibliography</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
 
 </div>
         
