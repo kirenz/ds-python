@@ -19,7 +19,7 @@ First, you have to define a plan of what you want to achive with your data scien
 
 1. Identify use case: Use the business model canvas.
 2. Frame the problem: Provide a statement of what is to be learned and how decisions should be made.
-3. Identify variables or labels: for structured data problems, we need to identify potentially relevant variables; for unstructured problems, we need to define labels.
+3. Identify variables or labels: for structured data problems, we need to identify potentially relevant variables; for unstructured data problems, we need to define labels.
 4. Define success metrics: Write down your metrics for success and failure with the data science project. 
 :::
 
