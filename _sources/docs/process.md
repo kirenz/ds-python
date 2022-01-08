@@ -29,7 +29,18 @@ To learn more about the data science planning phase, review this presentation:
 
 ## Data
 
-Typically, you first have to import your data. This means that you take data stored in a file, cloud database, or web API, and load it into Python. 
+Typically, you first have to import your data. This means that you take data stored in a file, a relational database, NO-SQL database, data lakehouse or web API, and load it into Python. 
+
+If you want to learn more about the basics of data engineering, review this resource: 
+
+- Big data (Hadoop ecosystem, )
+- Databases
+- Architectures
+- Machine Learning Operations MLOPS
+
+- [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
+
+
 
 :::{note}
 In our examples, we usually use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data)
