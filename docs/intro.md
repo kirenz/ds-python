@@ -1,8 +1,8 @@
 # Welcome
 
-The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this {cite:p}`Wickham2016`: 
+The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this: 
 
-```{image} ../_static/img/process.png
+```{image} ../_static/img/lifecycle.png
 :alt: datascience
 :class: bg-primary mb-1
 :width: 600px
