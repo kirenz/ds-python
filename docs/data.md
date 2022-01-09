@@ -58,12 +58,11 @@ In particular, exploratory data analysis (EDA) is used to understand if there ar
  ```{admonition} Exploratory data analysis 
 :class: tip
 
-- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
+- [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
+- [Data exploration with seaborn](https://seaborn.pydata.org/) 
+- [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 
-- Review {cite:p}`Kuhn2019` for a detailed discusson of feature engineering methods.
-:::
-
-https://seaborn.pydata.org/
+```
 
 ## Feature engineering
 
@@ -90,16 +89,15 @@ Feature extraction can be achieved by simply using the ratio of two predictors o
 - [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
 
 - Review {cite:p}`Kuhn2019` for a detailed discusson of feature engineering methods.
-:::
-
+```
 
 ## Pipelines in scikit-learn
 
 scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may 
 
-- clean (see [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing)), 
-- reduce (see [Unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
-- generate (see [Feature extraction](Feature extraction)) feature representations.
+- clean data (see [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing)), 
+- reduce features (see [Unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
+- extract features (see [Feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
 
 Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. Here, **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation).
 
@@ -110,4 +108,5 @@ Just as it is important to test a model on data held-out from training, data pre
 - [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
 
 - scikit-learn's [Pipelines documentation](https://scikit-learn.org/stable/modules/compose.html#pipeline)
-:::
+
+```
