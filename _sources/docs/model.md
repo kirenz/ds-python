@@ -12,7 +12,7 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <br>
 
-![](https://www.tmwr.org/premade/algorithms.png)
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="560" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
@@ -32,13 +32,7 @@ The following flowchart was provided by scikit-learn developers to give users a 
 
 <br>
 
-<div>
-  <iframe id="scikit-learn"
-      title="Choosing the right estimator"
-      width="840"
-      height="560"
-      src="https://scikit-learn.org/stable/_static/ml_map.png">
-  </iframe
+![](https://www.tmwr.org/premade/algorithms.png)
 
 <br>
 
