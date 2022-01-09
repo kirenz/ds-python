@@ -11,7 +11,7 @@ If you want to learn more about the complete data science lifecycle - including 
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRmBRxASJDpaFKZ9Y0M1Pgnr1R7nTz_Vg-H_mHkxhGKpw1Gb7Ca-oy8-mHZH1Rl9mqngc1rdEGgwNXo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="560" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRmBRxASJDpaFKZ9Y0M1Pgnr1R7nTz_Vg-H_mHkxhGKpw1Gb7Ca-oy8-mHZH1Rl9mqngc1rdEGgwNXo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="530" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
