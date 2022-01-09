@@ -12,4 +12,4 @@ First, you have to define a plan of what you want to achive with your data scien
 
 To learn more about the data science planning phase, review this presentation: 
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR3mAfcepfacMwk7_ob-uPjSX6aMLISTxC2C1DEOyMS5HdO1RSY8fSbBdPP21JjKP0fHKoE46719xjJ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="560" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR3mAfcepfacMwk7_ob-uPjSX6aMLISTxC2C1DEOyMS5HdO1RSY8fSbBdPP21JjKP0fHKoE46719xjJ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="540" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
