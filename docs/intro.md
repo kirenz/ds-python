@@ -2,14 +2,14 @@
 
 The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this: 
 
-```{image} ../_static/img/lifecycle.png
+```{image} ../_static/img/lifecycle-data.png
 :alt: datascience
 :class: bg-primary mb-1
 :width: 600px
 :align: center
 ```
 
-Surrounding all these steps is programming (e.g. with Python or R) and the usage of different tools like Git and Anaconda. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important basics. 
+Surrounding all these steps is programming (e.g. with Python or R) and the usage of different tools like Git, Visual Studio Code and Anaconda. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important basics. 
 
 ---
 
