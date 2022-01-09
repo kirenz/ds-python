@@ -16,6 +16,7 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <br>
 
+
 Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). 
 
 A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are: 
@@ -35,7 +36,7 @@ The following flowchart was provided by scikit-learn developers to give users a 
 ```{image} ../_static/img/algorithms.png
 :alt: datascience
 :class: bg-primary mb-1
-:width: 600px
+:width: 800px
 :align: center
 ```
 
