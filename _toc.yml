@@ -4,7 +4,7 @@ parts:
   - caption: Toolkit
     chapters:
     - file: docs/programming-toolkit.md
-- caption: Data Science Lifecycle
+  - caption: Data Science Lifecycle
     chapters:
     - file: docs/lifecycle.md
     - file: docs/plan.md    

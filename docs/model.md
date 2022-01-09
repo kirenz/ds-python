@@ -10,7 +10,13 @@ The colored segments within the circles signify the repeated data splitting and 
 
 One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the "No Free Lunch (NFL) theorem" {cite:p}`Wolperet1996`.
 
-Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models are bagging (Breiman, 1996), random forest (Ho 1995; Breiman 2001), and boosting (Freund and Schapire 1997). Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).
+Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models are 
+
+- Bagging, https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator
+- random forest 
+- Boosting
+
+Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).
 
 The only way to know for sure which model is best would be to evaluate them all {cite:p}`Geron2019`. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.
 
@@ -35,32 +41,42 @@ Our first goal in this process is to shortlist a few (two to five) promising mod
 
 ## Tuning
 
-After we identified a shortlist of promising models, it usually makes sense to tune the hyper-paramters of our models. Hyper-parameters are parameters that are not directly learnt within the modeling process. In scikit-learn they are passed as arguments to the algorithm (like alpha for Lasso or K for the number of neighbors) in a K-nearest neighbors model). 
+After we identified a shortlist of promising models, it usually makes sense to tune the hyper-paramters of our models. Hyper-parameters are parameters that are not directly learnt within the modeling process. In scikit-learn they are passed as arguments to the algorithm like alpha for Lasso or K for the number of neighbors in a K-nearest neighbors model. 
 
-Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using methods from scikit-learn. Two generic approaches to parameter search are provided in scikit-learn: 
+Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn: 
 
 - [Tuning the hyper-parameters of an estimator](https://scikit-learn.org/stable/modules/grid_search.html)
 
   - for given values, `GridSearchCV` exhaustively considers all parameter combinations
   - `RandomizedSearchCV` can sample a given number of candidates from a parameter space with a specified distribution
 
-The grid search approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use RandomizedSearchCV instead {cite:p}`Geron2019`. Both methods use cross-validation to evaluate combinations of hyperparameter values. 
+The *GridSearchCV* approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use *RandomizedSearchCV* instead {cite:p}`Geron2019`. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values. 
 
- and/or try to combine the models that perform best. Note that it often makes sense to combine different models since the group (or “ensemble”) will often perform better than the best individual model, especially if the individual models make very different types of errors. The goal of ensemble methods is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability / robustness over a single estimator.
+## Voting and stacking
 
-## Stacking
+Note that it often makes sense to combine different models since the group will often perform better than the best individual model, especially if the individual models make very different types of errors. 
 
-Model stacking combines the predictions for multiple models of any type. For example, a logistic regression, classification tree, and support vector machine can be included in a stacking ensemble.
+Model **voting** simply combines the predictions for multiple models of any type. scikit-learn provides voting methods for both classification ([VotingClassifier](https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier)) and regression ([VotingRegressor](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor)). 
 
-Scikit-learn provides stacking methods for both classification (VotingClassifier) and regression (VotingRegressor):
+:::{note}
+Voting can be useful for a set of equally well performing models in order to balance out their individual weaknesses.
+:::
 
-In classification settings, The idea behind the VotingClassifier is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. Such a classifier can be useful for a set of equally well performing model in order to balance out their individual weaknesses.
+In *classification* problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. In *regression* problems, we combine different machine learning regressors and return the average predicted values. 
 
+**Stacked** generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.
 
+In scikit-learn, the [StackingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier) and [StackingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor) provide such strategies which can be applied to classification and regression problems.
 
-### Analyze best models
+:::{note}
+Model stacking is an ensembling method that takes the outputs of many models and combines them to generate a new model that generates predictions informed by each of its members.
+:::
 
-After we tuned the hyperparameter, we analyze the best models and their errors.
+Like in the case of ensemble methods, the goal of stacking is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability / robustness over a single estimator.
+
+### Analyze best model
+
+After we tuned the hyperparameter and/or performed stacking, we analyze the best model and their errors.
 
 Let’s display these importance scores next to their corresponding attribute names:
 
