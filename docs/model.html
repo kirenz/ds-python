@@ -336,9 +336,10 @@
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
 <br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="860" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p><img alt="" src="https://www.tmwr.org/premade/algorithms.png" /></p>
 <br>
-<p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are:</p>
+<p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT).</p>
+<p>A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator">Bootstrap aggregating</a>, also called bagging (from bootstrap aggregating)</p></li>
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees">random forest</a></p></li>
@@ -351,8 +352,8 @@
 <div>
   <iframe id="scikit-learn"
       title="Choosing the right estimator"
-      width="860"
-      height="569"
+      width="840"
+      height="560"
       src="https://scikit-learn.org/stable/_static/ml_map.png">
   </iframe
 <br>
@@ -361,10 +362,13 @@
 <div class="section" id="train-and-evaluate">
 <h2>Train and evaluate<a class="headerlink" href="#train-and-evaluate" title="Permalink to this headline">¶</a></h2>
 <p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
+<div class="tip admonition">
+<p class="admonition-title">Metrics</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html">Metrics and scoring: quantifying the quality of predictions</a></p></li>
 </ul>
-<p>Our first goal in this process is to shortlist a few (two to five) promising models <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+</div>
+<p>Our first goal in this process is to shortlist a few (two to five) promising models.</p>
 </div>
 <div class="section" id="tuning">
 <h2>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h2>
@@ -374,12 +378,18 @@
 <p>Hyper-parameters are parameters that are not directly learnt within algorithms.</p>
 </div>
 <p>In scikit-learn, hyper-paramters are passed as arguments to the algorithm like “alpha” for Lasso or “K” for the number of neighbors in a K-nearest neighbors model.</p>
-<p>Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a>:</p>
+<p>Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn:</p>
 <ul class="simple">
-<li><p>for given values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> exhaustively considers all parameter combinations</p></li>
+<li><p>for given values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> exhaustively considers all parameter combinations.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> can sample a given number of candidates from a parameter space with a specified distribution.</p></li>
 </ul>
-<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tuning</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a></p></li>
+</ul>
+</div>
+<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
 </div>
 <div class="section" id="voting-and-stacking">
 <h2>Voting and stacking<a class="headerlink" href="#voting-and-stacking" title="Permalink to this headline">¶</a></h2>
@@ -401,12 +411,12 @@
 <div class="section" id="evaluate-best-model">
 <h2>Evaluate best model<a class="headerlink" href="#evaluate-best-model" title="Permalink to this headline">¶</a></h2>
 <p>After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in detail.</p>
-<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
+<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
 <p>After evaluating the model (system) for a while, we eventually have a system that performs sufficiently well.</p>
 </div>
 <div class="section" id="evaluate-on-test-set">
 <h2>Evaluate on test set<a class="headerlink" href="#evaluate-on-test-set" title="Permalink to this headline">¶</a></h2>
-<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id7">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
 <p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
 </div>
 </div>

@@ -12,11 +12,13 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="860" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+![](https://www.tmwr.org/premade/algorithms.png)
 
 <br>
 
-Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are: 
+Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). 
+
+A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are: 
 
 - [Bootstrap aggregating](https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator), also called bagging (from bootstrap aggregating) 
 - [random forest](https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees) 
@@ -33,8 +35,8 @@ The following flowchart was provided by scikit-learn developers to give users a 
 <div>
   <iframe id="scikit-learn"
       title="Choosing the right estimator"
-      width="860"
-      height="569"
+      width="840"
+      height="560"
       src="https://scikit-learn.org/stable/_static/ml_map.png">
   </iframe
 
@@ -46,9 +48,14 @@ Visit [this site](https://scikit-learn.org/stable/tutorial/machine_learning_map/
 
 In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:
 
+```{admonition} Metrics 
+:class: tip
+
 - [Metrics and scoring: quantifying the quality of predictions](https://scikit-learn.org/stable/modules/model_evaluation.html)
 
-Our first goal in this process is to shortlist a few (two to five) promising models {cite:p}`Geron2019`. 
+```
+
+Our first goal in this process is to shortlist a few (two to five) promising models. 
 
 ## Tuning
 
@@ -60,10 +67,16 @@ Hyper-parameters are parameters that are not directly learnt within algorithms.
 
 In scikit-learn, hyper-paramters are passed as arguments to the algorithm like "alpha" for Lasso or "K" for the number of neighbors in a K-nearest neighbors model. 
 
-Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn (see [Tuning the hyper-parameters of an estimator](https://scikit-learn.org/stable/modules/grid_search.html):
+Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn:
 
-- for given values, `GridSearchCV` exhaustively considers all parameter combinations
+- for given values, `GridSearchCV` exhaustively considers all parameter combinations.
 - `RandomizedSearchCV` can sample a given number of candidates from a parameter space with a specified distribution.
+
+```{admonition} Tuning 
+:class: tip
+
+- [Tuning the hyper-parameters of an estimator](https://scikit-learn.org/stable/modules/grid_search.html)
+```
 
 The *GridSearchCV* approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use *RandomizedSearchCV* instead {cite:p}`Geron2019`. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values. 
 
