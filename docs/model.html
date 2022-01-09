@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="reference.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
     <link rel="prev" title="Data" href="data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -132,6 +132,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deployment.html">
+   Deployment
   </a>
  </li>
 </ul>
@@ -329,8 +334,10 @@
 <p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.</p>
 <div class="section" id="select-algorithm">
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[]</span>.</p>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="860" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
 <p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator">Bootstrap aggregating</a>, also called bagging (from bootstrap aggregating)</p></li>
@@ -340,13 +347,15 @@
 <p>Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).</p>
 <p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
 <p>The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:</p>
+<br>
 <div>
   <iframe id="scikit-learn"
       title="Choosing the right estimator"
-      width="960"
+      width="860"
       height="569"
       src="https://scikit-learn.org/stable/_static/ml_map.png">
   </iframe
+<br>
 <p>Visit <a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">this site</a> to interact with the flowchart.</p>
 </div>
 <div class="section" id="train-and-evaluate">
@@ -434,10 +443,10 @@
             <p class="prev-next-title">Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="reference.html" title="next page">
+    <a class='right-next' id="next-link" href="deployment.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title">Deployment</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

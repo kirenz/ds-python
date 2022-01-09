@@ -134,6 +134,11 @@
    Model
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deployment.html">
+   Deployment
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -249,6 +254,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering">
+   Feature engineering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pipelines-in-scikit-learn">
    Pipelines in scikit-learn
   </a>
@@ -286,6 +296,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-analysis-and-preprocessing">
    Data analysis and preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering">
+   Feature engineering
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -352,48 +367,47 @@
 <div class="tip admonition">
 <p class="admonition-title">Exploratory data analysis </p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.html">Feature extraction in scikit-learn</a></p></li>
-<li><p>Review <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span> for a detailed discusson of feature engineering methods.</p></li>
+<li><p><a class="reference external" href="https://kirenz.github.io/pandas/intro.html">Data analysis in pandas</a></p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">Data exploration with seaborn</a></p></li>
+<li><p><a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-https://seaborn.pydata.org/
-
-## Feature engineering
-
-&gt; &quot;Applied machine learning is basically feature engineering&quot; Andrew Ng 
-
-The understanding gained from our data analysis is now used for feature engineering,  which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like
-
-- Feature transformation (encoding of categorical features; transformation of continous features)
-- Feature extraction (reduce the number of features by combining existing features)
-- Feature creation (make new features)
-
-Feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis. Typically we als need to transform continuous predictors because predictors may {cite:p}`Kuhn2019`:
-
-- be on vastly different scales.
-- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
-- contain a small number of extreme values.
-- be censored on the low and/or high end of the range.
-- have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.
-- contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.
-
-```{admonition} Feature engineering 
-:class: tip
-
-- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
-
-- Review {cite:p}`Kuhn2019` for a detailed discusson of feature engineering methods.
-</pre></div>
 </div>
+</div>
+<div class="section" id="feature-engineering">
+<h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>“Applied machine learning is basically feature engineering” Andrew Ng</p>
+</div></blockquote>
+<p>The understanding gained from our data analysis is now used for feature engineering,  which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like</p>
+<ul class="simple">
+<li><p>Feature transformation (encoding of categorical features; transformation of continous features)</p></li>
+<li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
+<li><p>Feature creation (make new features)</p></li>
+</ul>
+<p>Feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis. Typically we als need to transform continuous predictors because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<ul class="simple">
+<li><p>be on vastly different scales.</p></li>
+<li><p>follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).</p></li>
+<li><p>contain a small number of extreme values.</p></li>
+<li><p>be censored on the low and/or high end of the range.</p></li>
+<li><p>have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.</p></li>
+<li><p>contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Feature engineering </p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.html">Feature extraction in scikit-learn</a></p></li>
+<li><p>Review <span id="id5">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span> for a detailed discusson of feature engineering methods.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="pipelines-in-scikit-learn">
 <h2>Pipelines in scikit-learn<a class="headerlink" href="#pipelines-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <p>scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may</p>
 <ul class="simple">
-<li><p>clean (see <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">Preprocessing data</a>),</p></li>
-<li><p>reduce (see <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">Unsupervised dimensionality reduction</a>), or</p></li>
-<li><p>generate (see [Feature extraction](Feature extraction)) feature representations.</p></li>
+<li><p>clean data (see <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">Preprocessing data</a>),</p></li>
+<li><p>reduce features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">Unsupervised dimensionality reduction</a>), or</p></li>
+<li><p>extract features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.htmln">Feature extraction</a>).</p></li>
 </ul>
 <p>Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. Here, <strong>Pipelines</strong> are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation).</p>
 <div class="tip admonition">
@@ -402,9 +416,6 @@ Feature extraction can be achieved by simply using the ratio of two predictors o
 <li><p><a class="reference external" href="https://kirenz.github.io/regression/docs/case-duke-sklearn.html">Regression example with preprocessing pipeline</a></p></li>
 <li><p>scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html#pipeline">Pipelines documentation</a></p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>

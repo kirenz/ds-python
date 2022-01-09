@@ -8,9 +8,13 @@ The colored segments within the circles signify the repeated data splitting (cro
 
 ## Select algorithm
 
-One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the *"No Free Lunch (NFL) theorem"* {cite:p}`Wolperet1996`.
+One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the *"No Free Lunch (NFL) theorem"* {cite:p}`Wolpert1996`.
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="860" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
 
 Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are: 
 
@@ -24,14 +28,17 @@ Note that the only way to know for sure which model is best would be to evaluate
 
 The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:
 
+<br>
 
 <div>
   <iframe id="scikit-learn"
       title="Choosing the right estimator"
-      width="960"
+      width="860"
       height="569"
       src="https://scikit-learn.org/stable/_static/ml_map.png">
   </iframe
+
+<br>
 
 Visit [this site](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) to interact with the flowchart.
 
