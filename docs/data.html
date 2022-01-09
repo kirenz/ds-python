@@ -306,7 +306,12 @@
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-ingestion">
 <h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">¶</a></h2>
-<p>Typically, you first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. Note that there are various options how to manage your data and if you want to learn more about the basics of data engineering, like:</p>
+<p>Typically, you first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In our examples, we often simply use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a>.</p>
+</div>
+<p>There are various options how to manage your data and if you want to learn more about the basics of data engineering, like:</p>
 <ul class="simple">
 <li><p>basics of big data (Hadoop ecosystem and Spark),</p></li>
 <li><p>relational and NoSQL databases,</p></li>
@@ -315,18 +320,24 @@
 <li><p>components of machine learning operations (MLOPS),</p></li>
 </ul>
 <p>review this resource:</p>
+<div class="tip admonition">
+<p class="admonition-title">Data engineering </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a></p>
 </div>
 </div>
 <div class="section" id="data-splitting">
 <h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
-<p>Once you’ve imported your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>: We do this because this is the only way to know how well a model will generalize to new cases - therefore, we actually try it out on new cases (on our test data). This means we train our model using the training set, and we test it using the test set.</p>
-<p>The error rate on new cases is called the generalization error (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is overfitting the training data.</p>
+<p>Once you’ve imported your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting</p>
+</div>
+<p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
+<p>Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the alpha in Lasso, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “<strong>validation set</strong>”: training proceeds on the <em>training set</em>, after which evaluation is done on the <em>validation set</em>, and when the experiment seems to be successful, final evaluation can be done on the <em>test set</em>.</p>
+<p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets .</p>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </div>
 <div class="section" id="data-analysis-and-preprocessing">
 <h2>Data analysis and preprocessing<a class="headerlink" href="#data-analysis-and-preprocessing" title="Permalink to this headline">¶</a></h2>
@@ -336,12 +347,21 @@
 <li><p>Define schema: Generating a preliminary schema that describes the data (float; integer, …)</p></li>
 <li><p>Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema</p></li>
 </ol>
-<p>We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on <span id="id2">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id3">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
+<p>We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on <span id="id2">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>.</p>
+<p>In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id3">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
 </div>
 <div class="section" id="feature-engineering">
 <h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
-<p>The understanding gained from our data analysis is now used (in combination with domain knowledge) for feature engineering. The goal of this process is to make it easier to accurately model the data. This process may include encoding of categorical predictors and the creation of new features by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis.</p>
-<p>Typically we als need to handle continuous predictors because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<blockquote>
+<div><p>“Applied machine learning is basically feature engineering” Andrew Ng</p>
+</div></blockquote>
+<p>The understanding gained from our data analysis is now used for feature engineering,  which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like</p>
+<ul class="simple">
+<li><p>Feature transformation (encoding of categorical features; transformation of continous features)</p></li>
+<li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
+<li><p>Feature creation (make new features)</p></li>
+</ul>
+<p>Feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis. Typically we als need to transform continuous predictors because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>be on vastly different scales.</p></li>
 <li><p>follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).</p></li>
@@ -350,6 +370,7 @@
 <li><p>have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.</p></li>
 <li><p>contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.</p></li>
 </ul>
+<p>Review <span id="id5">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span> for a detailed discusson of feature engineering methods.</p>
 </div>
 </div>
 
