@@ -54,6 +54,17 @@ We analyze the training data to understand important predictor characteristics s
 
 In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
 
+
+ ```{admonition} Exploratory data analysis 
+:class: tip
+
+- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
+
+- Review {cite:p}`Kuhn2019` for a detailed discusson of feature engineering methods.
+:::
+
+https://seaborn.pydata.org/
+
 ## Feature engineering
 
 > "Applied machine learning is basically feature engineering" Andrew Ng 
