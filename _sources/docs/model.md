@@ -32,7 +32,12 @@ The following flowchart was provided by scikit-learn developers to give users a 
 
 <br>
 
-![](https://www.tmwr.org/premade/algorithms.png)
+```{image} ../_static/img/algorithms.png
+:alt: datascience
+:class: bg-primary mb-1
+:width: 600px
+:align: center
+```
 
 <br>
 

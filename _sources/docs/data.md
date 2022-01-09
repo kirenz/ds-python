@@ -88,7 +88,7 @@ Feature extraction can be achieved by simply using the ratio of two predictors o
 
 - [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
 
-- Review {cite:p}`Kuhn2019` for a detailed discusson of feature engineering methods.
+- Review {cite:t}`Kuhn2019` for a detailed discusson of feature engineering methods.
 ```
 
 ## Pipelines in scikit-learn
