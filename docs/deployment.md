@@ -5,17 +5,23 @@ If you want to learn more about the complete data science lifecycle - including 
 ```{image} ../_static/img/lifecycle-tfx.png
 :alt: datascience
 :class: bg-primary mb-1
-:width: 600px
+:width: 800px
 :align: center
 ```
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRmBRxASJDpaFKZ9Y0M1Pgnr1R7nTz_Vg-H_mHkxhGKpw1Gb7Ca-oy8-mHZH1Rl9mqngc1rdEGgwNXo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRmBRxASJDpaFKZ9Y0M1Pgnr1R7nTz_Vg-H_mHkxhGKpw1Gb7Ca-oy8-mHZH1Rl9mqngc1rdEGgwNXo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="560" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
 Here are some tutorials to get you started:
 
+```{admonition} TFX  
+:class: tip
+
 - 💻 [Local installation of TensorFlow & TensorFlow Extended](https://kirenz.github.io/codelabs/codelabs/tfx-install/#0)
+
 - 💻 [Build your first TFX pipeline](https://kirenz.github.io/codelabs/codelabs/tfx-pipeline-taxi/#0)
+
+```
