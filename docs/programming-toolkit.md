@@ -135,7 +135,6 @@ conda activate base
 conda install -c anaconda seaborn
 ```
 
-
 ## Visual Studio Code 
 
 :::{note}
