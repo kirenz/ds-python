@@ -1,6 +1,6 @@
-# Data Science Lifecycle
+# Overview
 
- From a high-level perspective, a typical data science project looks something like this :
+From a high-level perspective, a typical data science project looks something like this :
 
 ```{image} ../_static/img/lifecycle-data.png
 :alt: datascience
@@ -11,4 +11,4 @@
 
 <br>
 
-Note that in this book, we will only cover the first three stages of the data science lifecycle.
+Note that in this book, we will only cover the first three stages of the data science lifecycle: Plan, data and model. 

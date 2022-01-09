@@ -116,7 +116,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="lifecycle.html">
-   Data Science Lifecycle
+   Overview
   </a>
  </li>
  <li class="toctree-l1">
@@ -252,18 +252,16 @@
   <a class="reference internal nav-link" href="#voting-and-stacking">
    Voting and stacking
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#analyze-best-model">
-     Analyze best model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluate-final-model-on-test-set">
-     Evaluate final model on test set
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-best-model">
+   Evaluate best model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-on-test-set">
+   Evaluate on test set
+  </a>
  </li>
 </ul>
 
@@ -304,18 +302,16 @@
   <a class="reference internal nav-link" href="#voting-and-stacking">
    Voting and stacking
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#analyze-best-model">
-     Analyze best model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evaluate-final-model-on-test-set">
-     Evaluate final model on test set
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-best-model">
+   Evaluate best model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-on-test-set">
+   Evaluate on test set
+  </a>
  </li>
 </ul>
 
@@ -330,18 +326,18 @@
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
 <p>Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering and modeling often requires multiple iterations. The general phases are <span id="id1">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
 <p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
-<p>The colored segments within the circles signify the repeated data splitting and usage of crossvalidation used during resampling. We discuss the model building process in the following sections.</p>
+<p>The colored segments within the circles signify the repeated data splitting (cross validation) used during resampling. We discuss the model building process in the following sections.</p>
 <div class="section" id="select-algorithm">
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the “No Free Lunch (NFL) theorem” <span id="id2">[]</span>.</p>
-<p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models are</p>
+<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[]</span>.</p>
+<p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are:</p>
 <ul class="simple">
-<li><p>Bagging, <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator">https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator</a></p></li>
-<li><p>random forest</p></li>
-<li><p>Boosting</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator">Bootstrap aggregating</a>, also called bagging (from bootstrap aggregating)</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees">random forest</a></p></li>
+<li><p>Boosting: <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#adaboost">AdaBoost</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting">Gradient Tree Boosting</a></p></li>
 </ul>
 <p>Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).</p>
-<p>The only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
+<p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
 <p>The following interactive flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data (<a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">scikit-learn</a>):</p>
 <div>
   <iframe id="scikit-learn"
@@ -353,29 +349,30 @@
 </div>
 <div class="section" id="train-and-evaluate">
 <h2>Train and evaluate<a class="headerlink" href="#train-and-evaluate" title="Permalink to this headline">¶</a></h2>
-<p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we assess the model’s performance metrics, examine residual plots, and conduct other EDA-like analyses to understand how well the models work <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
+<p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html">Metrics and scoring: quantifying the quality of predictions</a></p></li>
 </ul>
-<p>Our first goal in this process is to shortlist a few (two to five) promising models <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+<p>Our first goal in this process is to shortlist a few (two to five) promising models <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
 </div>
 <div class="section" id="tuning">
 <h2>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h2>
-<p>After we identified a shortlist of promising models, it usually makes sense to tune the hyper-paramters of our models. Hyper-parameters are parameters that are not directly learnt within the modeling process. In scikit-learn they are passed as arguments to the algorithm like alpha for Lasso or K for the number of neighbors in a K-nearest neighbors model.</p>
-<p>Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn:</p>
+<p>After we identified a shortlist of promising models, it usually makes sense to tune the hyper-paramters of our models.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hyper-parameters are parameters that are not directly learnt within algorithms.</p>
+</div>
+<p>In scikit-learn, hyper-paramters are passed as arguments to the algorithm like “alpha” for Lasso or “K” for the number of neighbors in a K-nearest neighbors model.</p>
+<p>Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a>:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a></p>
-<ul>
 <li><p>for given values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> exhaustively considers all parameter combinations</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> can sample a given number of candidates from a parameter space with a specified distribution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> can sample a given number of candidates from a parameter space with a specified distribution.</p></li>
 </ul>
-</li>
-</ul>
-<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
+<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
 </div>
 <div class="section" id="voting-and-stacking">
 <h2>Voting and stacking<a class="headerlink" href="#voting-and-stacking" title="Permalink to this headline">¶</a></h2>
-<p>Note that it often makes sense to combine different models since the group will often perform better than the best individual model, especially if the individual models make very different types of errors.</p>
+<p>Note that it often makes sense to combine different models since the group will usually perform better than the best individual model, especially if the individual models make very different types of errors.</p>
 <p>Model <strong>voting</strong> simply combines the predictions for multiple models of any type. scikit-learn provides voting methods for both classification (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier">VotingClassifier</a>) and regression (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor">VotingRegressor</a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -388,30 +385,18 @@
 <p class="admonition-title">Note</p>
 <p>Model stacking is an ensembling method that takes the outputs of many models and combines them to generate a new model that generates predictions informed by each of its members.</p>
 </div>
-<p>Like in the case of ensemble methods, the goal of stacking is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability / robustness over a single estimator.</p>
-<div class="section" id="analyze-best-model">
-<h3>Analyze best model<a class="headerlink" href="#analyze-best-model" title="Permalink to this headline">¶</a></h3>
-<p>After we tuned the hyperparameter and/or performed stacking, we analyze the best model and their errors.</p>
-<p>Let’s display these importance scores next to their corresponding attribute names:</p>
-<p>You will often gain good insights on the problem by inspecting the best models. For example, the RandomForestRegressor can indicate the relative importance of each attribute for making accurate predictions:</p>
+<p>To learn more about the concept of stacking, visit the <a class="reference external" href="https://stacks.tidymodels.org">documentation of stacks</a>, a R package for model stacking.</p>
 </div>
-<div class="section" id="evaluate-final-model-on-test-set">
-<h3>Evaluate final model on test set<a class="headerlink" href="#evaluate-final-model-on-test-set" title="Permalink to this headline">¶</a></h3>
-<p>After tweaking your models for a while, you eventually have a system that performs sufficiently well. Now is the time to evaluate the final model on the test set. There is nothing special about this process; just get the predictors and the labels from your test set, run your full_pipeline to transform the data (call transform(), not fit_transform()—you do not want to fit the test set!), and evaluate the final model on the test set:</p>
-<p>If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation (because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown datasets). It is not the case in this example, but when this happens you must resist the temptation to tweak the hyperparameters to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data.</p>
-<p>Now comes the project prelaunch phase: you need to present your solution (highlighting what you have learned, what worked and what did not, what assumptions were made, and what your system’s limitations are), document everything, and create nice presentations with clear visualizations and easy-to-remember statements (e.g., “the median income is the number one predictor of housing prices”). In this California housing example, the final performance of the system is not better than the experts’ price estimates, which were often off by about 20%, but it may still be a good idea to launch it, especially if this frees up some time for the experts so they can work on more interesting and productive tasks.</p>
-<p>XX OLD</p>
-<ul class="simple">
-<li><p>Exploratory data analysis (EDA): Initially there is a back and forth between numerical analysis and visualization of the data  where different discoveries lead to more questions and data analysis “side-quests” to gain more understanding.</p></li>
-<li><p>Feature engineering: The understanding gained from EDA results in the creation of specific model terms that make it easier to accurately model the observed data. This can include complex methodologies (e.g., PCA) or simpler features (using the ratio of two predictors).</p></li>
-<li><p>Model tuning and selection (circles with blue and yellow segments): A variety of models are generated and their performance is compared. Some models require parameter tuning where some structural parameters are required to be specified or optimized. The colored segments within the circles signify the repeated data splitting used during resampling.</p></li>
-<li><p>Model evaluation: During this phase of model development, we assess the model’s performance metrics, examine residual plots, and conduct other EDA-like analyses to understand how well the models work.</p></li>
-</ul>
-<p>The last step is <strong>communication</strong>, an absolutely critical part of any data analysis project. It doesn’t matter how well your models and visualisation have led you to understand the data unless you can also communicate your results to others.</p>
-<p>Surrounding all the data science steps covered above is <strong>programming</strong>. Programming is a cross-cutting tool that you use in every part of the project. You don’t need to be an expert programmer to be a data scientist, but learning more about programming pays off because becoming a better programmer allows you to automate
-common tasks, and solve new problems with greater ease.</p>
-<p><span id="id7">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span></p>
+<div class="section" id="evaluate-best-model">
+<h2>Evaluate best model<a class="headerlink" href="#evaluate-best-model" title="Permalink to this headline">¶</a></h2>
+<p>After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in detail.</p>
+<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
+<p>After evaluating the model (system) for a while, we eventually have a system that performs sufficiently well.</p>
 </div>
+<div class="section" id="evaluate-on-test-set">
+<h2>Evaluate on test set<a class="headerlink" href="#evaluate-on-test-set" title="Permalink to this headline">¶</a></h2>
+<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id7">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+<p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
 </div>
 </div>
 
