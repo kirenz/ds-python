@@ -2,7 +2,7 @@
 
 From a high-level perspective, a typical data science project looks something like this :
 
-```{image} ../_static/img/lifecycle-data.png
+```{image} ../_static/img/lifecycle.png
 :alt: datascience
 :class: bg-primary mb-1
 :width: 600px
