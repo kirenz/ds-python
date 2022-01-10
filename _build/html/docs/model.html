@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model &#8212; Data Science with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Data" href="data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Toolkit
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-toolkit.html">
+   Programming toolkit
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Data Science Lifecycle
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lifecycle.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plan.html">
+   Plan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deployment.html">
+   Deployment
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reference.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/model.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://kirenz.github.io/ds-python/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/model.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#select-algorithm">
+   Select algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-and-evaluate">
+   Train and evaluate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning">
+   Tuning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#voting-and-stacking">
+   Voting and stacking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-best-model">
+   Evaluate best model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate-on-test-set">
+   Evaluate on test set
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="model">
+<h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
+<p>Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id1">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
+<p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
+<p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.</p>
+</div>
+<p>Note that there are a number of different strategies for <strong>feature selection</strong> that can be applied and some of them are performed simultaneously with model building. If you want to learn more about feature selection methods, review the following content:</p>
+<div class="tip admonition">
+<p class="admonition-title">Feature selection </p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/feature-engineering/docs/feature-selection.html">Feature Selection</a></p></li>
+</ul>
+</div>
+<div class="section" id="select-algorithm">
+<h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<p>Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT).</p>
+<p>A model <strong>ensemble</strong>, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator">Bootstrap aggregating</a>, also called bagging (from bootstrap aggregating)</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees">random forest</a></p></li>
+<li><p>Boosting: <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#adaboost">AdaBoost</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting">Gradient Tree Boosting</a></p></li>
+</ul>
+<p>Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).</p>
+<p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
+<p>The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:</p>
+<br>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/algorithms.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/algorithms.png" style="width: 800px;" /></a>
+<br>
+<p>Visit <a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">this site</a> to interact with the flowchart.</p>
+</div>
+<div class="section" id="train-and-evaluate">
+<h2>Train and evaluate<a class="headerlink" href="#train-and-evaluate" title="Permalink to this headline">¶</a></h2>
+<p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
+<div class="tip admonition">
+<p class="admonition-title">Metrics</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html">Metrics and scoring: quantifying the quality of predictions</a></p></li>
+</ul>
+</div>
+<p>Our first goal in this process is to shortlist a few (two to five) promising models.</p>
+</div>
+<div class="section" id="tuning">
+<h2>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h2>
+<p>After we identified a shortlist of promising models, it usually makes sense to tune the hyper-paramters of our models.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hyper-parameters are parameters that are not directly learnt within algorithms.</p>
+</div>
+<p>In scikit-learn, hyper-paramters are passed as arguments to the algorithm like “alpha” for Lasso or “K” for the number of neighbors in a K-nearest neighbors model.</p>
+<p>Instead of trying to find good hyper-paramters manually, it is recommended to search the hyper-parameter space for the best cross validation score using one of the two generic approaches provided in scikit-learn:</p>
+<ul class="simple">
+<li><p>for given values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> exhaustively considers all parameter combinations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> can sample a given number of candidates from a parameter space with a specified distribution.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Tuning</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a></p></li>
+</ul>
+</div>
+<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
+</div>
+<div class="section" id="voting-and-stacking">
+<h2>Voting and stacking<a class="headerlink" href="#voting-and-stacking" title="Permalink to this headline">¶</a></h2>
+<p>Note that it often makes sense to combine different models since the group will usually perform better than the best individual model, especially if the individual models make very different types of errors.</p>
+<p>Model <strong>voting</strong> simply combines the predictions for multiple models of any type. scikit-learn provides voting methods for both classification (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier">VotingClassifier</a>) and regression (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor">VotingRegressor</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Voting can be useful for a set of equally well performing models in order to balance out their individual weaknesses.</p>
+</div>
+<p>In <em>classification</em> problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. In <em>regression</em> problems, we combine different machine learning regressors and return the average predicted values.</p>
+<p><strong>Stacked</strong> generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.</p>
+<p>In scikit-learn, the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier">StackingClassifier</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor">StackingRegressor</a> provide such strategies which can be applied to classification and regression problems.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Model stacking is an ensembling method that takes the outputs of many models and combines them to generate a new model that generates predictions informed by each of its members.</p>
+</div>
+<p>To learn more about the concept of stacking, visit the <a class="reference external" href="https://stacks.tidymodels.org">documentation of stacks</a>, a R package for model stacking.</p>
+</div>
+<div class="section" id="evaluate-best-model">
+<h2>Evaluate best model<a class="headerlink" href="#evaluate-best-model" title="Permalink to this headline">¶</a></h2>
+<p>After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in detail.</p>
+<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
+<p>After evaluating the model (system) for a while, we eventually have a system that performs sufficiently well.</p>
+</div>
+<div class="section" id="evaluate-on-test-set">
+<h2>Evaluate on test set<a class="headerlink" href="#evaluate-on-test-set" title="Permalink to this headline">¶</a></h2>
+<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+<p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="data.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Data</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="deployment.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Deployment</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jan Kirenz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
