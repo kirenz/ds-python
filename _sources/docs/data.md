@@ -64,7 +64,7 @@ We analyze the training data to understand important predictor characteristics s
 
 ```
 
-Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, see section [](section:data:pipeline). 
+Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section [](section:data:pipeline). 
 
 ## Feature engineering
 
@@ -72,18 +72,18 @@ Note that the usage of **data preprocessing pipelines** is considered a best pra
 
 The understanding gained from our data analysis is now used for feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like:
  
-- Feature transformation
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
+- Feature transformation (transform features)
 
-**Feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. Typically we als need to perform **feature transformation** like the encoding of categorical features and the transform of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
+Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, **feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. 
+
+Typically, we als need to perform **feature transformationa** like the encoding of categorical features and the transformation of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
 
 - be on vastly different scales.
 - follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
 - contain a small number of extreme values.
 - be censored on the low and/or high end of the range.
-- have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.
-- contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.
 
  ```{admonition} Feature engineering 
 :class: tip
@@ -93,16 +93,16 @@ The understanding gained from our data analysis is now used for feature engineer
 - Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
 ```
 
-Again, the usage of **pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, review the neext section [](section:data:pipeline). 
+Again, the usage of **pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, review the next section [](section:data:pipeline). 
 
 (section:data:pipeline)=
 ## Pipelines in scikit-learn
 
 scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may 
 
-- clean data (see [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing), 
-- reduce features (see [Unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
-- extract features (see [Feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
+- clean data (see [preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing), 
+- reduce features (see [unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
+- extract features (see [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
 
 Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):
 
@@ -142,7 +142,7 @@ preprocessor = ColumnTransformer(
 # ...
 ```
 
-Note that we also can combine data preprocessing with scikit-learn algorithms in one pipeline:
+Note that we are able to combine data preprocessing with our modeling builing in one pipeline. To learn how to create pipelines, see:
 
  ```{admonition} Pipelines 
 :class: tip

@@ -373,7 +373,7 @@
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">Handling Multicollinear Features</a></p></li>
 </ul>
 </div>
-<p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, see section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
+<p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
 </div>
 <div class="section" id="feature-engineering">
 <h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
@@ -382,35 +382,34 @@
 </div></blockquote>
 <p>The understanding gained from our data analysis is now used for feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like:</p>
 <ul class="simple">
-<li><p>Feature transformation</p></li>
 <li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
 <li><p>Feature creation (make new features)</p></li>
+<li><p>Feature transformation (transform features)</p></li>
 </ul>
-<p><strong>Feature extraction</strong> can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. Typically we als need to perform <strong>feature transformation</strong> like the encoding of categorical features and the transform of continuous predictors, because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<p>Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. In that case, <strong>feature extraction</strong> can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.</p>
+<p>Typically, we als need to perform <strong>feature transformationa</strong> like the encoding of categorical features and the transformation of continuous predictors, because predictors may <span id="id5">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>be on vastly different scales.</p></li>
 <li><p>follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).</p></li>
 <li><p>contain a small number of extreme values.</p></li>
 <li><p>be censored on the low and/or high end of the range.</p></li>
-<li><p>have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.</p></li>
-<li><p>contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.</p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Feature engineering </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.html">Feature extraction in scikit-learn</a></p></li>
-<li><p>Review <span id="id5">Kuhn and Johnson [<a class="reference internal" href="reference.html#id5">2019</a>]</span> for a detailed discussion of feature engineering methods.</p></li>
+<li><p>Review <span id="id6">Kuhn and Johnson [<a class="reference internal" href="reference.html#id5">2019</a>]</span> for a detailed discussion of feature engineering methods.</p></li>
 </ul>
 </div>
-<p>Again, the usage of <strong>pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, review the neext section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
+<p>Again, the usage of <strong>pipelines</strong> is considered best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, review the next section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
 </div>
 <div class="section" id="pipelines-in-scikit-learn">
 <span id="section-data-pipeline"></span><h2>Pipelines in scikit-learn<a class="headerlink" href="#pipelines-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <p>scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may</p>
 <ul class="simple">
-<li><p>clean data (see <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">Preprocessing data</a>,</p></li>
-<li><p>reduce features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">Unsupervised dimensionality reduction</a>), or</p></li>
-<li><p>extract features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.htmln">Feature extraction</a>).</p></li>
+<li><p>clean data (see <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">preprocessing data</a>,</p></li>
+<li><p>reduce features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">unsupervised dimensionality reduction</a>), or</p></li>
+<li><p>extract features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.htmln">feature extraction</a>).</p></li>
 </ul>
 <p>Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -446,7 +445,7 @@
 <span class="c1"># ...</span>
 </pre></div>
 </div>
-<p>Note that we also can combine data preprocessing with scikit-learn algorithms in one pipeline:</p>
+<p>Note that we are able to combine data preprocessing with our modeling builing in one pipeline. To learn how to create pipelines, see:</p>
 <div class="tip admonition">
 <p class="admonition-title">Pipelines</p>
 <ul class="simple">
