@@ -1,10 +1,23 @@
 # Model
 
-Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
+Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
 
 ![](https://www.tmwr.org/premade/modeling-process.svg)
 
 The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.
+
+:::{Note}
+Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.
+:::
+
+Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. If you want to learn more about feature selection methods, review the following content:
+
+```{admonition} Feature selection 
+:class: tip
+
+- [Feature Selection](https://kirenz.github.io/feature-engineering/docs/feature-selection.html#)
+
+```
 
 ## Select algorithm
 
@@ -15,7 +28,6 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
-
 
 Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). 
 
