@@ -64,7 +64,7 @@ We analyze the training data to understand important predictor characteristics s
 
 ```
 
-Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). See [](section:data:pipeline) 
+Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, see section [](section:data:pipeline). 
 
 ## Feature engineering
 
@@ -93,6 +93,8 @@ The understanding gained from our data analysis is now used for feature engineer
 - Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
 ```
 
+Again, the usage of **pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, review the neext section [](section:data:pipeline). 
+
 (section:data:pipeline)=
 ## Pipelines in scikit-learn
 
@@ -117,7 +119,7 @@ X_test[numerical_features] = scaler.transform(X_test[numerical_features])
 # ...
 ```
 
-Note that instead of performing data preprocessing as shown above, we instead could use a pipeline. **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
+Instead of performing data preprocessing as shown above, we should use a pipeline. **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
 
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -129,7 +131,7 @@ numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='median')),
     ('scaler', StandardScaler())])
 
-categorical_features = ['embarked', 'sex', 'pclass']
+categorical_features = ['c', 'd']
 categorical_transformer = OneHotEncoder(handle_unknown='ignore')
 
 preprocessor = ColumnTransformer(
@@ -137,30 +139,17 @@ preprocessor = ColumnTransformer(
         ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, categorical_features)])
 
-
-pipe = Pipeline([('scaler', StandardScaler()), ('svc', SVC())])
-# The pipeline can be used as any other estimator
-# and avoids leaking the test set into the train set
-pipe.fit(X_train, y_train)
-
-pipe.score(X_test, y_test)
-
-Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('linearregression', LinearRegression())])
-
-pipe.fit(X_train, y_train)
-
-pipe.score(X_test, y_test)
+# ...
 ```
 
-
-
+Note that we also can combine data preprocessing with scikit-learn algorithms in one pipeline:
 
  ```{admonition} Pipelines 
 :class: tip
 
-- [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
+- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
+html)
 
-- scikit-learn's [Pipelines documentation](https://scikit-learn.org/stable/modules/compose.html#pipeline)
+- [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
 
 ```

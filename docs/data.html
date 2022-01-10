@@ -373,7 +373,7 @@
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">Handling Multicollinear Features</a></p></li>
 </ul>
 </div>
-<p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). See <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a></p>
+<p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, see section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
 </div>
 <div class="section" id="feature-engineering">
 <h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
@@ -402,6 +402,7 @@
 <li><p>Review <span id="id5">Kuhn and Johnson [<a class="reference internal" href="reference.html#id5">2019</a>]</span> for a detailed discussion of feature engineering methods.</p></li>
 </ul>
 </div>
+<p>Again, the usage of <strong>pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). To learn more about pipelines, review the neext section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
 </div>
 <div class="section" id="pipelines-in-scikit-learn">
 <span id="section-data-pipeline"></span><h2>Pipelines in scikit-learn<a class="headerlink" href="#pipelines-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
@@ -424,7 +425,7 @@
 <span class="c1"># ...</span>
 </pre></div>
 </div>
-<p>Note that instead of performing data preprocessing as shown above, we instead could use a pipeline. <strong>Pipelines</strong> are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:</p>
+<p>Instead of performing data preprocessing as shown above, we should use a pipeline. <strong>Pipelines</strong> are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 
@@ -434,7 +435,7 @@
     <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
     <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())])</span>
 
-<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;embarked&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;pclass&#39;</span><span class="p">]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
 <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
@@ -442,27 +443,16 @@
         <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)])</span>
 
-
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())])</span>
-<span class="c1"># The pipeline can be used as any other estimator</span>
-<span class="c1"># and avoids leaking the test set into the train set</span>
-<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-
-<span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;standardscaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-                <span class="p">(</span><span class="s1">&#39;linearregression&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())])</span>
-
-<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="c1"># ...</span>
 </pre></div>
 </div>
+<p>Note that we also can combine data preprocessing with scikit-learn algorithms in one pipeline:</p>
 <div class="tip admonition">
 <p class="admonition-title">Pipelines</p>
 <ul class="simple">
+<li><p>scikit-learn’s [pipelines documentation](<a class="reference external" href="https://scikit-learn.org/stable/modules/compose">https://scikit-learn.org/stable/modules/compose</a>.
+html)</p></li>
 <li><p><a class="reference external" href="https://kirenz.github.io/regression/docs/case-duke-sklearn.html">Regression example with preprocessing pipeline</a></p></li>
-<li><p>scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html#pipeline">Pipelines documentation</a></p></li>
 </ul>
 </div>
 </div>
