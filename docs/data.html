@@ -356,35 +356,37 @@
 </div>
 <div class="section" id="data-analysis-and-preprocessing">
 <h2>Data analysis and preprocessing<a class="headerlink" href="#data-analysis-and-preprocessing" title="Permalink to this headline">¶</a></h2>
-<p>The first task in any data science or ML project is to understand and clean the (training) data, which includes (<a class="reference external" href="https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv">Google Developers, 2022</a>):</p>
+<p>The first task in any data science or ML project is to understand and preprocess the data(<a class="reference external" href="https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv">Google Developers, 2022</a>):</p>
 <ol class="simple">
-<li><p>Analyze the data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature</p></li>
-<li><p>Define schema: Generating a preliminary schema that describes the data (float; integer, …)</p></li>
+<li><p>Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature</p></li>
+<li><p>Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)</p></li>
 <li><p>Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema</p></li>
 </ol>
-<p>We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on <span id="id2">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>.</p>
-<p>In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id3">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
+<p>We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on <span id="id2">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. In particular, <strong>exploratory data analysis (EDA)</strong> is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id3">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exploratory data analysis </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/pandas/intro.html">Data analysis in pandas</a></p></li>
 <li><p><a class="reference external" href="https://seaborn.pydata.org/">Data exploration with seaborn</a></p></li>
 <li><p><a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/impute.html">Imputation of missing values</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">Handling Multicollinear Features</a></p></li>
 </ul>
 </div>
+<p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). See <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a></p>
 </div>
 <div class="section" id="feature-engineering">
 <h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>“Applied machine learning is basically feature engineering” Andrew Ng</p>
 </div></blockquote>
-<p>The understanding gained from our data analysis is now used for feature engineering,  which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like</p>
+<p>The understanding gained from our data analysis is now used for feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like:</p>
 <ul class="simple">
-<li><p>Feature transformation (encoding of categorical features; transformation of continous features)</p></li>
+<li><p>Feature transformation</p></li>
 <li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
 <li><p>Feature creation (make new features)</p></li>
 </ul>
-<p>Feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis. Typically we als need to transform continuous predictors because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<p><strong>Feature extraction</strong> can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. Typically we als need to perform <strong>feature transformation</strong> like the encoding of categorical features and the transform of continuous predictors, because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>be on vastly different scales.</p></li>
 <li><p>follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).</p></li>
@@ -397,19 +399,65 @@
 <p class="admonition-title">Feature engineering </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.html">Feature extraction in scikit-learn</a></p></li>
-<li><p>Review <span id="id5">Kuhn and Johnson [<a class="reference internal" href="reference.html#id5">2019</a>]</span> for a detailed discusson of feature engineering methods.</p></li>
+<li><p>Review <span id="id5">Kuhn and Johnson [<a class="reference internal" href="reference.html#id5">2019</a>]</span> for a detailed discussion of feature engineering methods.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="pipelines-in-scikit-learn">
-<h2>Pipelines in scikit-learn<a class="headerlink" href="#pipelines-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<span id="section-data-pipeline"></span><h2>Pipelines in scikit-learn<a class="headerlink" href="#pipelines-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <p>scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may</p>
 <ul class="simple">
 <li><p>clean data (see <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing">Preprocessing data</a>,</p></li>
 <li><p>reduce features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">Unsupervised dimensionality reduction</a>), or</p></li>
 <li><p>extract features (see <a class="reference external" href="https://scikit-learn.org/stable/modules/feature_extraction.htmln">Feature extraction</a>).</p></li>
 </ul>
-<p>Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. Here, <strong>Pipelines</strong> are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation).</p>
+<p>Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">numerical_features</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">])</span> 
+
+<span class="n">X_train</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">])</span>
+<span class="n">X_test</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">numerical_features</span><span class="p">])</span>
+
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Note that instead of performing data preprocessing as shown above, we instead could use a pipeline. <strong>Pipelines</strong> are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())])</span>
+
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;embarked&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;pclass&#39;</span><span class="p">]</span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)])</span>
+
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())])</span>
+<span class="c1"># The pipeline can be used as any other estimator</span>
+<span class="c1"># and avoids leaking the test set into the train set</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;standardscaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+                <span class="p">(</span><span class="s1">&#39;linearregression&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())])</span>
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Pipelines</p>
 <ul class="simple">
