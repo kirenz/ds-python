@@ -98,23 +98,34 @@ The *GridSearchCV* approach is fine when you are exploring relatively few combin
 
 ## Voting and stacking
 
-Note that it often makes sense to combine different models since the group will usually perform better than the best individual model, especially if the individual models make very different types of errors.
-
-Model **voting** simply combines the predictions for multiple models of any type. scikit-learn provides voting methods for both classification ([VotingClassifier](https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier)) and regression ([VotingRegressor](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor)). 
+It often makes sense to combine different models since the group ("ensemble") will usually perform better than the best individual model, especially if the individual models make very different types of errors. 
 
 :::{note}
 Voting can be useful for a set of equally well performing models in order to balance out their individual weaknesses.
 :::
 
-In *classification* problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. In *regression* problems, we combine different machine learning regressors and return the average predicted values. 
+Model **voting** combines the predictions for multiple models of any type and thereby creating an ensemble meta-estimator. scikit-learn provides voting methods for both classification ([VotingClassifier](https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier)) and regression ([VotingRegressor](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor)): 
+
+
+- In *classification* problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. 
+- In *regression* problems, we combine different machine learning regressors and return the average predicted values. 
+
+
+```{admonition} Voting regressor
+:class: tip
+
+- [Voting regressor example(https://kirenz.github.io/regression/docs/ensemble.html
+)
+```
 
 **Stacked** generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.
-
-In scikit-learn, the [StackingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier) and [StackingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor) provide such strategies which can be applied to classification and regression problems.
 
 :::{note}
 Model stacking is an ensembling method that takes the outputs of many models and combines them to generate a new model that generates predictions informed by each of its members.
 :::
+
+In scikit-learn, the [StackingClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier) and [StackingRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor) provide such strategies which can be applied to classification and regression problems.
+
 
 To learn more about the concept of stacking, visit the [documentation of stacks](https://stacks.tidymodels.org), a R package for model stacking. 
 
@@ -132,7 +143,7 @@ Now is the time to evaluate the final model on the test set. If you did a lot of
 
 It is important to note that we don't change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.
 
-## Examples
+## Modeling examples
 
 The following resources provide some model building examples for regression and classification problems:  
 
@@ -144,4 +155,3 @@ The following resources provide some model building examples for regression and 
 - [Classification](https://kirenz.github.io/classification/docs/intro.html)
 
 ```
-
