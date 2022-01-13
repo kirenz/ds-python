@@ -269,8 +269,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples">
-   Examples
+  <a class="reference internal nav-link" href="#modeling-examples">
+   Modeling examples
   </a>
  </li>
 </ul>
@@ -324,8 +324,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples">
-   Examples
+  <a class="reference internal nav-link" href="#modeling-examples">
+   Modeling examples
   </a>
  </li>
 </ul>
@@ -409,19 +409,29 @@
 </div>
 <div class="section" id="voting-and-stacking">
 <h2>Voting and stacking<a class="headerlink" href="#voting-and-stacking" title="Permalink to this headline">¶</a></h2>
-<p>Note that it often makes sense to combine different models since the group will usually perform better than the best individual model, especially if the individual models make very different types of errors.</p>
-<p>Model <strong>voting</strong> simply combines the predictions for multiple models of any type. scikit-learn provides voting methods for both classification (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier">VotingClassifier</a>) and regression (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor">VotingRegressor</a>).</p>
+<p>It often makes sense to combine different models since the group (“ensemble”) will usually perform better than the best individual model, especially if the individual models make very different types of errors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Voting can be useful for a set of equally well performing models in order to balance out their individual weaknesses.</p>
 </div>
-<p>In <em>classification</em> problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels. In <em>regression</em> problems, we combine different machine learning regressors and return the average predicted values.</p>
+<p>Model <strong>voting</strong> combines the predictions for multiple models of any type and thereby creating an ensemble meta-estimator. scikit-learn provides voting methods for both classification (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier">VotingClassifier</a>) and regression (<a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor">VotingRegressor</a>):</p>
+<ul class="simple">
+<li><p>In <em>classification</em> problems, the idea behind voting is to combine conceptually different machine learning classifiers and use a majority vote or the average predicted probabilities (soft vote) to predict the class labels.</p></li>
+<li><p>In <em>regression</em> problems, we combine different machine learning regressors and return the average predicted values.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Voting regressor</p>
+<ul class="simple">
+<li><p>[Voting regressor example(<a class="reference external" href="https://kirenz.github.io/regression/docs/ensemble.html">https://kirenz.github.io/regression/docs/ensemble.html</a>
+)</p></li>
+</ul>
+</div>
 <p><strong>Stacked</strong> generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.</p>
-<p>In scikit-learn, the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier">StackingClassifier</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor">StackingRegressor</a> provide such strategies which can be applied to classification and regression problems.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Model stacking is an ensembling method that takes the outputs of many models and combines them to generate a new model that generates predictions informed by each of its members.</p>
 </div>
+<p>In scikit-learn, the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html#sklearn.ensemble.StackingClassifier">StackingClassifier</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html#sklearn.ensemble.StackingRegressor">StackingRegressor</a> provide such strategies which can be applied to classification and regression problems.</p>
 <p>To learn more about the concept of stacking, visit the <a class="reference external" href="https://stacks.tidymodels.org">documentation of stacks</a>, a R package for model stacking.</p>
 </div>
 <div class="section" id="evaluate-best-model">
@@ -435,8 +445,8 @@
 <p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
 <p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
 </div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modeling-examples">
+<h2>Modeling examples<a class="headerlink" href="#modeling-examples" title="Permalink to this headline">¶</a></h2>
 <p>The following resources provide some model building examples for regression and classification problems:</p>
 <div class="tip admonition">
 <p class="admonition-title">Regression &amp; Classification models </p>
