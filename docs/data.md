@@ -109,7 +109,7 @@ Just as it is important to test a model on data held-out from training, data pre
 ```python
 from sklearn.preprocessing import StandardScaler
 
-numerical_features = numeric_features = ['a', 'b']
+numerical_features = ['a', 'b']
 
 scaler = StandardScaler().fit(X_train[numerical_features]) 
 
