@@ -1,6 +1,6 @@
 # Model
 
-Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
+Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. The process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
 
 ![](https://www.tmwr.org/premade/modeling-process.svg)
 
@@ -18,6 +18,9 @@ Note that there are a number of different strategies for **feature selection** t
 - [Feature Selection](https://kirenz.github.io/feature-engineering/docs/feature-selection.html#)
 
 ```
+
+In the next sections, we'll discuss the process of model building in deatil.  
+
 
 ## Select algorithm
 
@@ -68,6 +71,7 @@ In the first phase of the model building process, a variety of initial models ar
 ```
 
 Our first goal in this process is to shortlist a few (two to five) promising models. 
+
 
 ## Tuning
 
@@ -127,3 +131,17 @@ After evaluating the model (system) for a while, we eventually have a system tha
 Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset {cite:p}`Geron2019`.
 
 It is important to note that we don't change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.
+
+## Examples
+
+The following resources provide some model building examples for regression and classification problems:  
+
+
+```{admonition} Regression & Classification models 
+:class: tip
+
+- [Regression](https://kirenz.github.io/regression/docs/intro.html)
+- [Classification](https://kirenz.github.io/classification/docs/intro.html)
+
+```
+

@@ -268,6 +268,11 @@
    Evaluate on test set
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -318,6 +323,11 @@
    Evaluate on test set
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -329,7 +339,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="model">
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
-<p>Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. Note that the process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id1">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
+<p>Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. The process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id1">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
 <p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
 <p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.</p>
 <div class="admonition note">
@@ -343,6 +353,7 @@
 <li><p><a class="reference external" href="https://kirenz.github.io/feature-engineering/docs/feature-selection.html">Feature Selection</a></p></li>
 </ul>
 </div>
+<p>In the next sections, we’ll discuss the process of model building in deatil.</p>
 <div class="section" id="select-algorithm">
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
@@ -423,6 +434,17 @@
 <h2>Evaluate on test set<a class="headerlink" href="#evaluate-on-test-set" title="Permalink to this headline">¶</a></h2>
 <p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
 <p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following resources provide some model building examples for regression and classification problems:</p>
+<div class="tip admonition">
+<p class="admonition-title">Regression &amp; Classification models </p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/regression/docs/intro.html">Regression</a></p></li>
+<li><p><a class="reference external" href="https://kirenz.github.io/classification/docs/intro.html">Classification</a></p></li>
+</ul>
+</div>
 </div>
 </div>
 
