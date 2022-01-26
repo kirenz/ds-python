@@ -190,7 +190,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/archive/Gaussian-Mixturen-models.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/archive/gmm.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -210,7 +210,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Farchive/Gaussian-Mixturen-models.html&body=Your%20issue%20content%20here."><button
+            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Farchive/gmm.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -335,7 +335,7 @@ First, let’s generate some one-dimensional data in a particular distribution. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_1_0.png" src="../_images/Gaussian-Mixturen-models_1_0.png" />
+<img alt="../_images/gmm_1_0.png" src="../_images/gmm_1_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -354,7 +354,7 @@ First, let’s generate some one-dimensional data in a particular distribution. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_2_0.png" src="../_images/Gaussian-Mixturen-models_2_0.png" />
+<img alt="../_images/gmm_2_0.png" src="../_images/gmm_2_0.png" />
 </div>
 </div>
 <p>Note that this density is fit not as a single Gaussian, but using a mixture of Gaussians. Next, we will examine its individual components.</p>
@@ -398,7 +398,7 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_5_0.png" src="../_images/Gaussian-Mixturen-models_5_0.png" />
+<img alt="../_images/gmm_5_0.png" src="../_images/gmm_5_0.png" />
 </div>
 </div>
 <p>The density approximated with GMMs is a mixture of four Gaussians — let’s plot them as components of the approximated density on top of the data.</p>
@@ -434,7 +434,7 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_9_0.png" src="../_images/Gaussian-Mixturen-models_9_0.png" />
+<img alt="../_images/gmm_9_0.png" src="../_images/gmm_9_0.png" />
 </div>
 </div>
 <p>It appears that for both the AIC and BIC, 4 components is preferred.</p>
@@ -456,7 +456,7 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_12_0.png" src="../_images/Gaussian-Mixturen-models_12_0.png" />
+<img alt="../_images/gmm_12_0.png" src="../_images/gmm_12_0.png" />
 </div>
 </div>
 <p>All of these density estimators can be viewed as generative models of the data: that is, the model tells us how more data can be created which fits the model.</p>
@@ -495,7 +495,7 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_19_0.png" src="../_images/Gaussian-Mixturen-models_19_0.png" />
+<img alt="../_images/gmm_19_0.png" src="../_images/gmm_19_0.png" />
 </div>
 </div>
 <p>Now let’s evaluate the log-likelihood of each point under the model, and plot these as a function of y:</p>
@@ -507,7 +507,7 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Gaussian-Mixturen-models_21_0.png" src="../_images/Gaussian-Mixturen-models_21_0.png" />
+<img alt="../_images/gmm_21_0.png" src="../_images/gmm_21_0.png" />
 </div>
 </div>
 <p>Looks like a few points have low log-likelihood, we should be able to use this for outlier detection</p>

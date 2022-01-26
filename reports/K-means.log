@@ -17,18 +17,22 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder.getOrCreate()
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+X, y = make_blobs(n_samples=300, centers=4,
+                  random_state=0, cluster_std=0.60)
+plt.scatter(X[:, 0], X[:, 1], s=50);
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1593/1523260267.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0mpyspark[0m[0;34m.[0m[0msql[0m [0;32mimport[0m [0mSparkSession[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0mspark[0m [0;34m=[0m [0mSparkSession[0m[0;34m.[0m[0mbuilder[0m[0;34m.[0m[0mgetOrCreate[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_1700/92160340.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdatasets[0m [0;32mimport[0m [0mmake_blobs[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m X, y = make_blobs(n_samples=300, centers=4,
+[1;32m      4[0m                   random_state=0, cluster_std=0.60)
+[1;32m      5[0m [0mplt[0m[0;34m.[0m[0mscatter[0m[0;34m([0m[0mX[0m[0;34m[[0m[0;34m:[0m[0;34m,[0m [0;36m0[0m[0;34m][0m[0;34m,[0m [0mX[0m[0;34m[[0m[0;34m:[0m[0;34m,[0m [0;36m1[0m[0;34m][0m[0;34m,[0m [0ms[0m[0;34m=[0m[0;36m50[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'pyspark'
-ModuleNotFoundError: No module named 'pyspark'
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
 

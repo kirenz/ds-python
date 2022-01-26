@@ -17,18 +17,27 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder.getOrCreate()
+from sklearn.mixture import GaussianMixture as GMM
+X = x[:, np.newaxis]
+# Fit the model:
+clf = GMM(4, max_iter=500, random_state=3).fit(X)
+xpdf = np.linspace(-10, 20, 1000)
+density = np.array([np.exp(clf.score([[xp]])) for xp in xpdf])
+# Plot the data and density:
+plt.hist(x, 80, density=True, alpha=0.5)
+plt.plot(xpdf, density, '-r')
+plt.xlim(-10, 20);
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1593/1523260267.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0mpyspark[0m[0;34m.[0m[0msql[0m [0;32mimport[0m [0mSparkSession[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0mspark[0m [0;34m=[0m [0mSparkSession[0m[0;34m.[0m[0mbuilder[0m[0;34m.[0m[0mgetOrCreate[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_1679/3790497529.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmixture[0m [0;32mimport[0m [0mGaussianMixture[0m [0;32mas[0m [0mGMM[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mX[0m [0;34m=[0m [0mx[0m[0;34m[[0m[0;34m:[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mnewaxis[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;31m# Fit the model:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mclf[0m [0;34m=[0m [0mGMM[0m[0;34m([0m[0;36m4[0m[0;34m,[0m [0mmax_iter[0m[0;34m=[0m[0;36m500[0m[0;34m,[0m [0mrandom_state[0m[0;34m=[0m[0;36m3[0m[0;34m)[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mxpdf[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlinspace[0m[0;34m([0m[0;34m-[0m[0;36m10[0m[0;34m,[0m [0;36m20[0m[0;34m,[0m [0;36m1000[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'pyspark'
-ModuleNotFoundError: No module named 'pyspark'
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
 
