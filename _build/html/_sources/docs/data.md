@@ -44,15 +44,13 @@ However, by partitioning the available data into three sets, we drastically redu
 
 ## Data analysis and preprocessing
 
-The first task in any data science or ML project is to understand and clean the (training) data, which includes ([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
+The first task in any data science or ML project is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
 
-1. Analyze the data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature
-1. Define schema: Generating a preliminary schema that describes the data (float; integer, ...)
-1. Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema
+1. Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature
+2. Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)
+3. Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema
 
-We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on {cite:p}`Kuhn2019`. 
-
-In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on {cite:p}`Kuhn2019`. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
 
 
  ```{admonition} Exploratory data analysis 
@@ -61,52 +59,97 @@ In particular, exploratory data analysis (EDA) is used to understand if there ar
 - [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
 - [Data exploration with seaborn](https://seaborn.pydata.org/) 
 - [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+- [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
+- [Handling Multicollinear Features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
 
 ```
+
+Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section [](section:data:pipeline). 
 
 ## Feature engineering
 
 > "Applied machine learning is basically feature engineering" Andrew Ng 
 
-The understanding gained from our data analysis is now used for feature engineering,  which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like
+The understanding gained from our data analysis is now used for feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like:
  
-- Feature transformation (encoding of categorical features; transformation of continous features)
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
+- Feature transformation (transform features)
 
-Feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methodologies like pricipal component analysis. Typically we als need to transform continuous predictors because predictors may {cite:p}`Kuhn2019`:
+Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, **feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. 
+
+Typically, we als need to perform **feature transformationa** like the encoding of categorical features and the transformation of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
 
 - be on vastly different scales.
 - follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
 - contain a small number of extreme values.
 - be censored on the low and/or high end of the range.
-- have a complex relationship with the response and is truly predictive but cannot be adequately represented with a simple function or extracted by sophisticated models.
-- contain relevant and overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response.
 
  ```{admonition} Feature engineering 
 :class: tip
 
 - [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
 
-- Review {cite:t}`Kuhn2019` for a detailed discusson of feature engineering methods.
+- Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
 ```
 
+Again, the usage of **pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, review the next section [](section:data:pipeline). 
+
+(section:data:pipeline)=
 ## Pipelines in scikit-learn
 
 scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may 
 
-- clean data (see [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing), 
-- reduce features (see [Unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
-- extract features (see [Feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
+- clean data (see [preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing), 
+- reduce features (see [unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
+- extract features (see [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
 
-Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. Here, **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation).
+Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):
 
+```python
+from sklearn.preprocessing import StandardScaler
+
+numerical_features = ['a', 'b']
+
+scaler = StandardScaler().fit(X_train[numerical_features]) 
+
+X_train[numerical_features] = scaler.transform(X_train[numerical_features])
+X_test[numerical_features] = scaler.transform(X_test[numerical_features])
+
+# ...
+```
+
+Instead of performing data preprocessing as shown above, we should use a pipeline. **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
+
+```python
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+
+numeric_features = ['a', 'b']
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())])
+
+categorical_features = ['c', 'd']
+categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)])
+
+# ...
+```
+
+Note that we are able to combine data preprocessing with our modeling builing in one pipeline. To learn how to create pipelines, see:
 
  ```{admonition} Pipelines 
 :class: tip
 
-- [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
+- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
+html)
 
-- scikit-learn's [Pipelines documentation](https://scikit-learn.org/stable/modules/compose.html#pipeline)
+- [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
 
 ```
