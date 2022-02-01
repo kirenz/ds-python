@@ -18,15 +18,16 @@ There are various options how to manage your data but we won't go into the detai
 
 ## Data ingestion
 
-You first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store our data as `df` (short for DataFrame).
+The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:
 
-The next step is to get a first impression of the data structure:
+1. [Import data with pandas](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as df: `df = pd.read_csv(...)`
+2. Call `df` to take a look at the 5 top and bottom observations of your data
+3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
+4. Check for missing values with `print(df.isnull().sum())`  
+5. Perform data corrections to take care of data problems
+6. Prepare data lists for later steps
 
-1. Call `df` to take a look at the 5 top and bottom observations of your data
-2. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
-3. Check for missing values with `print(df.isnull().sum())`  
-
-Only Take care of problematic data errors
+### Data corrections
 
 Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons ([scikit learn developers](https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data)):
 
@@ -34,27 +35,59 @@ Despite the fact that it would be easiest to preprocess your data right away in 
 
 - You may want to include the parameters of the preprocessors in a parameter search (for hyperparameter tuning).
 
-
 Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer) helps performing different transformations for different columns of the data  within a **data preprocessing pipeline** that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.
 
-As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include in a data preprocessing pipeline. 
+As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
+
+### Data lists
+
+We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
+
+```python
+
+# list of numerical data
+list_num = df.select_dtypes(include=[np.number]).columns.tolist()
+
+# list of categorical data
+list_cat = df.select_dtypes(include=[object]).columns.tolist()
+
+```
+
+Furthermore, we can prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for your outcome variable. 
+
+```python
+
+# define outcome variable
+y_label = 'foo'
+
+# Select all variables except your y label
+X = df.drop(columns=[y_label])
+
+# Create outcome
+y = df[y_label]
+```
 
 ## Data splitting
 
-Once you’ve imported and checked your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set. 
+Before you start analyzing your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data so we don't use insights from the test data during the model building process.
 
-:::{note}
-We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting
-:::
+### Training, evaluation and test set
 
 The error rate on new cases is called the *generalization error* (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is **overfitting** the training data.
 
 Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the alpha in Lasso, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “**validation set**”: training proceeds on the *training set*, after which evaluation is done on the *validation set*, and when the experiment seems to be successful, final evaluation can be done on the *test set*.
 
-However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets .
-
+However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+### Proceedere
+
+
+
+We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting. If we start with a pandas DataFrame, the proceedere looks something like this:
+
+
 
 ## Data analysis and preprocessing
 

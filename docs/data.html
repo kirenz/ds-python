@@ -242,11 +242,35 @@
   <a class="reference internal nav-link" href="#data-ingestion">
    Data ingestion
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-corrections">
+     Data corrections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-lists">
+     Data lists
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-splitting">
    Data splitting
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-evaluation-and-test-set">
+     Training, evaluation and test set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proceedere">
+     Proceedere
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-analysis-and-preprocessing">
@@ -287,11 +311,35 @@
   <a class="reference internal nav-link" href="#data-ingestion">
    Data ingestion
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-corrections">
+     Data corrections
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-lists">
+     Data lists
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-splitting">
    Data splitting
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-evaluation-and-test-set">
+     Training, evaluation and test set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proceedere">
+     Proceedere
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-analysis-and-preprocessing">
@@ -336,33 +384,65 @@
 </div>
 <div class="section" id="data-ingestion">
 <h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">¶</a></h2>
-<p>You first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store our data as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame).</p>
-<p>The next step is to get a first impression of the data structure:</p>
+<p>The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:</p>
 <ol class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">Import data with pandas</a> and store it as df: <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(...)</span></code></p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">df</span></code> to take a look at the 5 top and bottom observations of your data</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">df.info()</span></code> to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.</p></li>
 <li><p>Check for missing values with <code class="docutils literal notranslate"><span class="pre">print(df.isnull().sum())</span></code></p></li>
+<li><p>Perform data corrections to take care of data problems</p></li>
+<li><p>Prepare data lists for later steps</p></li>
 </ol>
-<p>Only Take care of problematic data errors</p>
+<div class="section" id="data-corrections">
+<h3>Data corrections<a class="headerlink" href="#data-corrections" title="Permalink to this headline">¶</a></h3>
 <p>Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons (<a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data">scikit learn developers</a>):</p>
 <ul class="simple">
 <li><p>Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (z transformation) or imputing missing values.</p></li>
 <li><p>You may want to include the parameters of the preprocessors in a parameter search (for hyperparameter tuning).</p></li>
 </ul>
 <p>Later we will see that scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer">ColumnTransformer</a> helps performing different transformations for different columns of the data  within a <strong>data preprocessing pipeline</strong> that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.</p>
-<p>As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don’t want to include in a data preprocessing pipeline.</p>
+<p>As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don’t want to include as data preprocessing steps in a pipeline.</p>
+</div>
+<div class="section" id="data-lists">
+<h3>Data lists<a class="headerlink" href="#data-lists" title="Permalink to this headline">¶</a></h3>
+<p>We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># list of numerical data</span>
+<span class="n">list_num</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># list of categorical data</span>
+<span class="n">list_cat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p>Furthermore, we can prepare lists of variables for the following process of data splitting. Note that we use <code class="docutils literal notranslate"><span class="pre">foo</span></code> as placeholder for your outcome variable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># define outcome variable</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+
+<span class="c1"># Select all variables except your y label</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">y_label</span><span class="p">])</span>
+
+<span class="c1"># Create outcome</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="data-splitting">
 <h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
-<p>Once you’ve imported and checked your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting</p>
-</div>
+<p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
+<div class="section" id="training-evaluation-and-test-set">
+<h3>Training, evaluation and test set<a class="headerlink" href="#training-evaluation-and-test-set" title="Permalink to this headline">¶</a></h3>
 <p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
 <p>Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the alpha in Lasso, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “<strong>validation set</strong>”: training proceeds on the <em>training set</em>, after which evaluation is done on the <em>validation set</em>, and when the experiment seems to be successful, final evaluation can be done on the <em>test set</em>.</p>
-<p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets .</p>
+<p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</div>
+<div class="section" id="proceedere">
+<h3>Proceedere<a class="headerlink" href="#proceedere" title="Permalink to this headline">¶</a></h3>
+<p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting. If we start with a pandas DataFrame, the proceedere looks something like this:</p>
+</div>
 </div>
 <div class="section" id="data-analysis-and-preprocessing">
 <h2>Data analysis and preprocessing<a class="headerlink" href="#data-analysis-and-preprocessing" title="Permalink to this headline">¶</a></h2>
