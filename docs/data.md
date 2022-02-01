@@ -70,13 +70,14 @@ list_cat = df.select_dtypes(include=['category']).columns.tolist()
 Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for our outcome variable:
 
 ```python
-# define outcome variable
-y_label = 'foo'
+# define outcome variable as y_label
+y_label = 'median_house_value'
 
-# Select all variables except your y label
-X = df.drop(columns=[y_label])
+# Select features
+features = df.drop(columns=[y_label]).columns.tolist()
+X = df[features]
 
-# Create outcome
+# Create response
 y = df[y_label]
 ```
 
@@ -104,24 +105,26 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ## Data analysis and preprocessing
 
-The goal of this phase is to understand and preprocess the training data. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+The goal of this phase is to understand and preprocess the training data. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors). 
 
-We create a special DataFrame called `df_train` where we combine the training features with the corresponding y labels:
+Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+
+First, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y labels:
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
 df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
-First we analyze the training data to understand important predictor characteristics such as {cite:p}`Kuhn2019`:
+Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:
 
-- central tendency and distribution (for numerical data):
+- Numerical data: central tendency and distribution:
 
 ```Python
-df_train.describe().T
+df_train.describe().round(2).T
 ```
 
-- levels and uniqueness (for categorical data):
+- Categorical data: levels and uniqueness:
 
 ```Python
 df_train.describe(include="category").T 
@@ -132,18 +135,50 @@ for i in list_cat:
     print(df_train[i].value_counts());
 ```
 
-- the relationship between each predictor and the response: 
+- Numerical data grouped by catecorical data:
+
+```Python
+# calculate median
+for i in list_cat:
+    print(df_train.groupby(i).median().round(2).T)
+```
+
+```Python
+# calculate mean
+for i in list_cat:
+    print(df_train.groupby(i).mean().round(2).T)
+```
+
+```Python
+# calculate standard deviation
+for i in list_cat:
+    print(df_train.groupby(i).std().round(2).T)
+```
+
+- Relationship between each predictor and the response:
+
+```Python
+sns.pairplot(data=df_train, y_vars=y_label, x_vars=features);
+```
+
+or
 
 ```Python
 sns.pairplot(df_train);
 ```
 
-- relationships between predictors to detect multicollinearity.
+- Relationships between predictors to detect multicollinearity.
 
-
+```Python
+sns.pairplot(df_train);
+```
 
 
 - potentially unusual values within predictors, 
+
+
+
+
 - the degree of missingness within each predictor: 
 
 ```Python
