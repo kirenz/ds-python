@@ -319,17 +319,17 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="data">
 <h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
-<p>There are various options how to manage your data but we won’t go into the details of data engineering in this tutorial. However, if you want to learn more about the basics of data engineering, like:</p>
+<p>There are various options how to manage your data but we won’t go into the details of data engineering in this tutorial. However, if you want to learn more about topics like:</p>
 <ul class="simple">
 <li><p>the basics of big data (Hadoop ecosystem and Spark),</p></li>
 <li><p>relational and NoSQL databases,</p></li>
 <li><p>how to set up a PostgreSQL and MySQL database,</p></li>
 <li><p>examples of different data architectures and</p></li>
-<li><p>components of machine learning operations (MLOPS),</p></li>
+<li><p>components of machine learning operations (MLOps),</p></li>
 </ul>
 <p>review this online book:</p>
 <div class="tip admonition">
-<p class="admonition-title">Data engineering </p>
+<p class="admonition-title">Data engineering</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
@@ -337,17 +337,24 @@
 <div class="section" id="data-ingestion">
 <h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">¶</a></h2>
 <p>You first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store our data as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame).</p>
-<p>Once you’ve imported your data, it’s a good idea to get a get a first impression of the data structure:</p>
+<p>The next step is to get a first impression of the data structure:</p>
 <ol class="simple">
-<li><p>Call <code class="docutils literal notranslate"><span class="pre">df</span></code> to take a look at the 5 top and bottom observations of our data</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">df</span></code> to take a look at the 5 top and bottom observations of your data</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">df.info()</span></code> to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.</p></li>
 <li><p>Check for missing values with <code class="docutils literal notranslate"><span class="pre">print(df.isnull().sum())</span></code></p></li>
 </ol>
-<p>It is important to note that during this phase, we don’t perform any exploratory data analysis or data preprocessing steps.</p>
+<p>Only Take care of problematic data errors</p>
+<p>Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons (<a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data">scikit learn developers</a>):</p>
+<ul class="simple">
+<li><p>Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (z transformation) or imputing missing values.</p></li>
+<li><p>You may want to include the parameters of the preprocessors in a parameter search (for hyperparameter tuning).</p></li>
+</ul>
+<p>Later we will see that scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer">ColumnTransformer</a> helps performing different transformations for different columns of the data  within a <strong>data preprocessing pipeline</strong> that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.</p>
+<p>As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don’t want to include in a data preprocessing pipeline.</p>
 </div>
 <div class="section" id="data-splitting">
 <h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
-<p>Once you’ve imported your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set.</p>
+<p>Once you’ve imported and checked your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting</p>
@@ -359,7 +366,7 @@
 </div>
 <div class="section" id="data-analysis-and-preprocessing">
 <h2>Data analysis and preprocessing<a class="headerlink" href="#data-analysis-and-preprocessing" title="Permalink to this headline">¶</a></h2>
-<p>The first task in any data science or ML project is to understand and preprocess the data(<a class="reference external" href="https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv">Google Developers, 2022</a>):</p>
+<p>The goal of this phase is to understand and preprocess the data(<a class="reference external" href="https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv">Google Developers, 2022</a>):</p>
 <ol class="simple">
 <li><p>Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature</p></li>
 <li><p>Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)</p></li>

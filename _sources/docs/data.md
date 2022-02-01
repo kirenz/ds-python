@@ -1,16 +1,16 @@
 # Data
 
-There are various options how to manage your data but we won't go into the details of data engineering in this tutorial. However, if you want to learn more about the basics of data engineering, like:
+There are various options how to manage your data but we won't go into the details of data engineering in this tutorial. However, if you want to learn more about topics like:
 
 - the basics of big data (Hadoop ecosystem and Spark),
 - relational and NoSQL databases,
 - how to set up a PostgreSQL and MySQL database,
 - examples of different data architectures and
-- components of machine learning operations (MLOPS),
+- components of machine learning operations (MLOps),
 
  review this online book: 
 
- ```{admonition} Data engineering 
+ ```{admonition} Data engineering
 :class: tip
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
@@ -20,20 +20,28 @@ There are various options how to manage your data but we won't go into the detai
 
 You first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store our data as `df` (short for DataFrame).
 
-Once you’ve imported your data, it's a good idea to get a get a first impression of the data structure:
+The next step is to get a first impression of the data structure:
 
-1. Call `df` to take a look at the 5 top and bottom observations of our data
+1. Call `df` to take a look at the 5 top and bottom observations of your data
 2. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
 3. Check for missing values with `print(df.isnull().sum())`  
 
-It is important to note that during this phase, we don't perform any exploratory data analysis or data preprocessing steps. 
+Only Take care of problematic data errors
+
+Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons ([scikit learn developers](https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data)):
+
+- Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (z transformation) or imputing missing values.
+
+- You may want to include the parameters of the preprocessors in a parameter search (for hyperparameter tuning).
 
 
+Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer) helps performing different transformations for different columns of the data  within a **data preprocessing pipeline** that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.
 
+As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include in a data preprocessing pipeline. 
 
 ## Data splitting
 
-Once you’ve imported your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set. 
+Once you’ve imported and checked your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set. 
 
 :::{note}
 We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting
@@ -50,7 +58,7 @@ However, by partitioning the available data into three sets, we drastically redu
 
 ## Data analysis and preprocessing
 
-The first task in any data science or ML project is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
+The goal of this phase is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
 
 1. Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature
 2. Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)
