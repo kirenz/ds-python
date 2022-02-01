@@ -18,13 +18,14 @@ There are various options how to manage your data but we won't go into the detai
 
 ## Data ingestion
 
-The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:
+The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some data corrections and prepare our data for following steps: 
+
 
 1. [Import data with pandas](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as df: `df = pd.read_csv(...)`
-1. Call `df` to take a look at the 5 top and bottom observations of your data
-1. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
-1. Perform data corrections to take care of data problems (e.g. wrong data types)
-1. Prepare lists of variables for later steps
+2. Call `df` to take a look at the 5 top and bottom observations of your data
+3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
+4. Perform data corrections (e.g. wrong data types)
+5. Prepare lists of variables
 
 ### Data corrections
 
@@ -40,22 +41,19 @@ As a general rule, we only take care of data errors which can be fixed without t
 
 ### Variable lists
 
-We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
+We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
 
 ```python
-
 # list of numerical data
 list_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
 # list of categorical data
-list_cat = df.select_dtypes(include=[object]).columns.tolist()
-
+list_cat = df.select_dtypes(include=['category']).columns.tolist()
 ```
 
-Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for your outcome variable:
+Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for our outcome variable:
 
 ```python
-
 # define outcome variable
 y_label = 'foo'
 
@@ -82,8 +80,7 @@ However, by partitioning the available data into three sets, we drastically redu
 
 ### Train test split
 
-We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting: 
-
+We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting:
 
 ```Python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -91,7 +88,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ## Data analysis and preprocessing
 
-The goal of this phase is to understand and preprocess the training data. Therefore, we create a special DataFrame called `df_train` where we combine the training features with the corresponding labels:
+The goal of this phase is to understand and preprocess the training data. Therefore, we create a special DataFrame called `df_train` where we combine the training features with the corresponding y labels:
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
@@ -100,15 +97,49 @@ df_train = df_train.join(pd.DataFrame(y_train))
 
 First we analyze the training data to understand important predictor characteristics such as {cite:p}`Kuhn2019`:
 
-- central tendency and distribution (for numerical data): `df_train.describe().T`
-- levels and uniqueness (for categorical data): `df_train.describe(include="category").T`
-- the degree of missingness within each predictor: `print(df.isnull().sum())`  
+- central tendency and distribution (for numerical data):
 
-- potentially unusual values within predictors, 
-- the relationship between each predictor and the response, 
+```Python
+df_train.describe().T
+```
+
+- levels and uniqueness (for categorical data):
+
+`df_train.describe(include="category").T `
+
+and
+
+```Python
+for i in list_cat:
+    print(df_train[i].value_counts());
+```
+
+- the degree of missingness within each predictor: 
+
+```Python
+# missing values will be displayed in yellow
+sns.heatmap(df.isnull(), yticklabels=False, cbar=False, cmap='viridis');
+```
+
+```Python
+# absolute number of missing values
+print(df.isnull().sum())
+```
+
+```Python
+# percentage of missing values
+df.isnull().sum() * 100 / len(df)
+```
+
+- the relationship between each predictor and the response: 
+
+```Python
+sns.pairplot(df_train);
+```
+
+
 - relationships between predictors to detect multicollinearity.
-
-
+- potentially unusual values within predictors, 
 
 
 
