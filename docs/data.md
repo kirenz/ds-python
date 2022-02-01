@@ -39,6 +39,23 @@ Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.o
 
 As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
 
+Example of data type transformation of one variable:
+
+```Python
+df['foo'] = df['foo'].astype('float')
+```
+
+Example of data type transformation for multiple variables:
+
+```Python
+# Convert to categorical
+cat_convert = ['foo1', 'foo2', 'foo3']
+
+for i in cat_convert:
+    df[i] = df[i].astype("category")
+```
+
+
 ### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
@@ -88,7 +105,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ## Data analysis and preprocessing
 
-The goal of this phase is to understand and preprocess the training data. Therefore, we create a special DataFrame called `df_train` where we combine the training features with the corresponding y labels:
+The goal of this phase is to understand and preprocess the training data. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+
+We create a special DataFrame called `df_train` where we combine the training features with the corresponding y labels:
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
@@ -105,15 +124,27 @@ df_train.describe().T
 
 - levels and uniqueness (for categorical data):
 
-`df_train.describe(include="category").T `
-
-and
+```Python
+df_train.describe(include="category").T 
+```
 
 ```Python
 for i in list_cat:
     print(df_train[i].value_counts());
 ```
 
+- the relationship between each predictor and the response: 
+
+```Python
+sns.pairplot(df_train);
+```
+
+- relationships between predictors to detect multicollinearity.
+
+
+
+
+- potentially unusual values within predictors, 
 - the degree of missingness within each predictor: 
 
 ```Python
@@ -131,19 +162,7 @@ print(df.isnull().sum())
 df.isnull().sum() * 100 / len(df)
 ```
 
-- the relationship between each predictor and the response: 
 
-```Python
-sns.pairplot(df_train);
-```
-
-
-- relationships between predictors to detect multicollinearity.
-- potentially unusual values within predictors, 
-
-
-
-In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
 
 Soemetimes it is also a good idea to defina a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
 
