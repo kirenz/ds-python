@@ -1,29 +1,35 @@
 # Data
 
-## Data ingestion
+There are various options how to manage your data but we won't go into the details of data engineering in this tutorial. However, if you want to learn more about the basics of data engineering, like:
 
-Typically, you first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. 
-
-:::{Note}
-In our examples, we often simply use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data).
-:::
-
-There are various options how to manage your data and if you want to learn more about the basics of data engineering, like:
-
-- basics of big data (Hadoop ecosystem and Spark),
+- the basics of big data (Hadoop ecosystem and Spark),
 - relational and NoSQL databases,
 - how to set up a PostgreSQL and MySQL database,
 - examples of different data architectures and
 - components of machine learning operations (MLOPS),
 
- review this resource: 
+ review this online book: 
 
  ```{admonition} Data engineering 
 :class: tip
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
-
 ```
+
+## Data ingestion
+
+You first have to ingest your data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store our data as `df` (short for DataFrame).
+
+Once you’ve imported your data, it's a good idea to get a get a first impression of the data structure:
+
+1. Call `df` to take a look at the 5 top and bottom observations of our data
+2. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
+3. Check for missing values with `print(df.isnull().sum())`  
+
+It is important to note that during this phase, we don't perform any exploratory data analysis or data preprocessing steps. 
+
+
+
 
 ## Data splitting
 
