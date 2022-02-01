@@ -21,11 +21,10 @@ There are various options how to manage your data but we won't go into the detai
 The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:
 
 1. [Import data with pandas](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as df: `df = pd.read_csv(...)`
-2. Call `df` to take a look at the 5 top and bottom observations of your data
-3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
-4. Check for missing values with `print(df.isnull().sum())`  
-5. Perform data corrections to take care of data problems
-6. Prepare lists of variables for later steps
+1. Call `df` to take a look at the 5 top and bottom observations of your data
+1. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
+1. Perform data corrections to take care of data problems (e.g. wrong data types)
+1. Prepare lists of variables for later steps
 
 ### Data corrections
 
@@ -39,7 +38,7 @@ Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.o
 
 As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
 
-### Variables
+### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
 
@@ -92,13 +91,32 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ## Data analysis and preprocessing
 
-The goal of this phase is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
+The goal of this phase is to understand and preprocess the training data. Therefore, we create a special DataFrame called `df_train` where we combine the training features with the corresponding labels:
 
-1. Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature)
-2. Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)
-3. Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema
+```Python
+df_train = pd.DataFrame(X_train.copy())
+df_train = df_train.join(pd.DataFrame(y_train))
+```
 
-First we analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on {cite:p}`Kuhn2019`. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+First we analyze the training data to understand important predictor characteristics such as {cite:p}`Kuhn2019`:
+
+- central tendency and distribution (for numerical data): `df_train.describe().T`
+- levels and uniqueness (for categorical data): `df_train.describe(include="category").T`
+- the degree of missingness within each predictor: `print(df.isnull().sum())`  
+
+- potentially unusual values within predictors, 
+- the relationship between each predictor and the response, 
+- relationships between predictors to detect multicollinearity.
+
+
+
+
+
+In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+
+Soemetimes it is also a good idea to defina a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
+
+Finally,  Identifying anomalies and missing values in the data with respect to given schema.
 
 
  ```{admonition} Exploratory data analysis 
