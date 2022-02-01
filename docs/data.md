@@ -37,8 +37,8 @@ Despite the fact that it would be easiest to preprocess your data right away in 
 
 Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer) helps performing different transformations for different columns of the data  within a **data preprocessing pipeline** that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.
 
-As a gerneral rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include in a pipeline. 
- 
+As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include in a data preprocessing pipeline. 
+
 ## Data splitting
 
 Once you’ve imported and checked your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`: We do this because this is the only way to know how well a model will generalize to new cases. This means we train our model only on the training set, and we test it using the test set. 
@@ -58,7 +58,7 @@ However, by partitioning the available data into three sets, we drastically redu
 
 ## Data analysis and preprocessing
 
-The first task in any data science or ML project is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
+The goal of this phase is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
 
 1. Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature
 2. Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)
