@@ -25,7 +25,7 @@ The first step is to ingest the data. This means that you take data stored in a 
 3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
 4. Check for missing values with `print(df.isnull().sum())`  
 5. Perform data corrections to take care of data problems
-6. Create lists of columns for later steps
+6. Prepare data lists for later steps
 
 ### Data corrections
 
@@ -39,22 +39,37 @@ Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.o
 
 As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
 
-### Column lists
+### Data lists
 
-We often need lists of numerical and categorical data for exploratory data analysis and data preprocessing steps within a pipeline. We can use pandas functions to perform this tasks (provided all columns are stored in the correct data format):
+We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
 
 ```python
+
 # list of numerical data
 list_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
 # list of categorical data
 list_cat = df.select_dtypes(include=[object]).columns.tolist()
+
+```
+
+Furthermore, we can prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for your outcome variable. 
+
+```python
+
+# define outcome variable
+y_label = 'foo'
+
+# Select all variables except your y label
+X = df.drop(columns=[y_label])
+
+# Create outcome
+y = df[y_label]
 ```
 
 ## Data splitting
 
-Once you’ve imported and checked your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`: 
-We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data.
+Before you start analyzing your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data so we don't use insights from the test data during the model building process.
 
 ### Training, evaluation and test set
 
