@@ -18,14 +18,14 @@ There are various options how to manage your data but we won't go into the detai
 
 ## Data ingestion
 
-The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:
+The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some data corrections and prepare our data for following steps: 
+
 
 1. [Import data with pandas](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as df: `df = pd.read_csv(...)`
 2. Call `df` to take a look at the 5 top and bottom observations of your data
 3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
-4. Check for missing values with `print(df.isnull().sum())`  
-5. Perform data corrections to take care of data problems
-6. Prepare data lists for later steps
+4. Perform data corrections (e.g. wrong data types)
+5. Prepare lists of variables
 
 ### Data corrections
 
@@ -39,37 +39,51 @@ Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.o
 
 As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
 
-### Data lists
+Example of data type transformation of one variable:
 
-We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
+```Python
+df['foo'] = df['foo'].astype('float')
+```
+
+Example of data type transformation for multiple variables:
+
+```Python
+# Convert to categorical
+cat_convert = ['foo1', 'foo2', 'foo3']
+
+for i in cat_convert:
+    df[i] = df[i].astype("category")
+```
+
+### Variable lists
+
+We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
 
 ```python
-
 # list of numerical data
 list_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
 # list of categorical data
-list_cat = df.select_dtypes(include=[object]).columns.tolist()
-
+list_cat = df.select_dtypes(include=['category']).columns.tolist()
 ```
 
-Furthermore, we can prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for your outcome variable. 
+Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for our outcome variable:
 
 ```python
+# define outcome variable as y_label
+y_label = 'median_house_value'
 
-# define outcome variable
-y_label = 'foo'
+# Select features
+features = df.drop(columns=[y_label]).columns.tolist()
+X = df[features]
 
-# Select all variables except your y label
-X = df.drop(columns=[y_label])
-
-# Create outcome
+# Create response
 y = df[y_label]
 ```
 
 ## Data splitting
 
-Before you start analyzing your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data so we don't use insights from the test data during the model building process.
+Before you start analyzing your data, it is a good idea to split your data into a *training* and *test set* {cite:p}`Geron2019`. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we will perform exploratory data analysis only on the training data so we don't use insights from the test data during the model building process.
 
 ### Training, evaluation and test set
 
@@ -81,23 +95,112 @@ However, by partitioning the available data into three sets, we drastically redu
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-### Proceedere
+### Train test split
 
+We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting:
 
-
-We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting. If we start with a pandas DataFrame, the proceedere looks something like this:
-
-
+```Python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
 
 ## Data analysis and preprocessing
 
-The goal of this phase is to understand and preprocess the data([Google Developers, 2022](https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv)):
+The goal of this phase is to understand and preprocess the training data. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors). 
 
-1. Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature
-2. Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)
-3. Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema
+Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
 
-We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on {cite:p}`Kuhn2019`. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+First, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y labels:
+
+```Python
+df_train = pd.DataFrame(X_train.copy())
+df_train = df_train.join(pd.DataFrame(y_train))
+```
+
+Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:
+
+- Numerical data: central tendency and distribution:
+
+```Python
+df_train.describe().round(2).T
+```
+
+- Categorical data: levels and uniqueness:
+
+```Python
+df_train.describe(include="category").T 
+```
+
+```Python
+for i in list_cat:
+    print(df_train[i].value_counts());
+```
+
+- Numerical data grouped by catecorical data:
+
+```Python
+# calculate median
+for i in list_cat:
+    print(df_train.groupby(i).median().round(2).T)
+```
+
+```Python
+# calculate mean
+for i in list_cat:
+    print(df_train.groupby(i).mean().round(2).T)
+```
+
+```Python
+# calculate standard deviation
+for i in list_cat:
+    print(df_train.groupby(i).std().round(2).T)
+```
+
+- Relationship between each predictor and the response:
+
+```Python
+sns.pairplot(data=df_train, y_vars=y_label, x_vars=features);
+```
+
+or
+
+```Python
+sns.pairplot(df_train);
+```
+
+- Relationships between predictors to detect multicollinearity.
+
+```Python
+sns.pairplot(df_train);
+```
+
+
+- potentially unusual values within predictors, 
+
+
+
+
+- the degree of missingness within each predictor: 
+
+```Python
+# missing values will be displayed in yellow
+sns.heatmap(df.isnull(), yticklabels=False, cbar=False, cmap='viridis');
+```
+
+```Python
+# absolute number of missing values
+print(df.isnull().sum())
+```
+
+```Python
+# percentage of missing values
+df.isnull().sum() * 100 / len(df)
+```
+
+
+
+Soemetimes it is also a good idea to defina a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
+
+Finally,  Identifying anomalies and missing values in the data with respect to given schema.
 
 
  ```{admonition} Exploratory data analysis 
@@ -107,7 +210,7 @@ We analyze the training data to understand important predictor characteristics s
 - [Data exploration with seaborn](https://seaborn.pydata.org/) 
 - [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 - [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
-- [Handling Multicollinear Features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
+- [Handling multicollinear features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
 
 ```
 

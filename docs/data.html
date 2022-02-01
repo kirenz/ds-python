@@ -249,8 +249,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-lists">
-     Data lists
+    <a class="reference internal nav-link" href="#variable-lists">
+     Variable lists
     </a>
    </li>
   </ul>
@@ -266,8 +266,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#proceedere">
-     Proceedere
+    <a class="reference internal nav-link" href="#train-test-split">
+     Train test split
     </a>
    </li>
   </ul>
@@ -318,8 +318,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-lists">
-     Data lists
+    <a class="reference internal nav-link" href="#variable-lists">
+     Variable lists
     </a>
    </li>
   </ul>
@@ -335,8 +335,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#proceedere">
-     Proceedere
+    <a class="reference internal nav-link" href="#train-test-split">
+     Train test split
     </a>
    </li>
   </ul>
@@ -384,14 +384,13 @@
 </div>
 <div class="section" id="data-ingestion">
 <h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">¶</a></h2>
-<p>The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame). Next, we get a first impression of the data structure, perform some initial data error corrections and prepare our data for following steps. The process looks like follows:</p>
+<p>The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame). Next, we get a first impression of the data structure, perform some data corrections and prepare our data for following steps:</p>
 <ol class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">Import data with pandas</a> and store it as df: <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(...)</span></code></p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">df</span></code> to take a look at the 5 top and bottom observations of your data</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">df.info()</span></code> to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.</p></li>
-<li><p>Check for missing values with <code class="docutils literal notranslate"><span class="pre">print(df.isnull().sum())</span></code></p></li>
-<li><p>Perform data corrections to take care of data problems</p></li>
-<li><p>Prepare data lists for later steps</p></li>
+<li><p>Perform data corrections (e.g. wrong data types)</p></li>
+<li><p>Prepare lists of variables</p></li>
 </ol>
 <div class="section" id="data-corrections">
 <h3>Data corrections<a class="headerlink" href="#data-corrections" title="Permalink to this headline">¶</a></h3>
@@ -402,28 +401,38 @@
 </ul>
 <p>Later we will see that scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer">ColumnTransformer</a> helps performing different transformations for different columns of the data  within a <strong>data preprocessing pipeline</strong> that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.</p>
 <p>As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don’t want to include as data preprocessing steps in a pipeline.</p>
+<p>Example of data type transformation of one variable:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="data-lists">
-<h3>Data lists<a class="headerlink" href="#data-lists" title="Permalink to this headline">¶</a></h3>
-<p>We often need specific variables for exploratory data analysis as well as data preprocessing steps within a pipeline. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># list of numerical data</span>
+<p>Example of data type transformation for multiple variables:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to categorical</span>
+<span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo1&#39;</span><span class="p">,</span> <span class="s1">&#39;foo2&#39;</span><span class="p">,</span> <span class="s1">&#39;foo3&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_convert</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variable-lists">
+<h3>Variable lists<a class="headerlink" href="#variable-lists" title="Permalink to this headline">¶</a></h3>
+<p>We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of numerical data</span>
 <span class="n">list_num</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="c1"># list of categorical data</span>
-<span class="n">list_cat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-
+<span class="n">list_cat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Furthermore, we can prepare lists of variables for the following process of data splitting. Note that we use <code class="docutils literal notranslate"><span class="pre">foo</span></code> as placeholder for your outcome variable.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="c1"># define outcome variable</span>
-<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
+<p>Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use <code class="docutils literal notranslate"><span class="pre">foo</span></code> as placeholder for our outcome variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define outcome variable as y_label</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;median_house_value&#39;</span>
 
-<span class="c1"># Select all variables except your y label</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">y_label</span><span class="p">])</span>
+<span class="c1"># Select features</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">y_label</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 
-<span class="c1"># Create outcome</span>
+<span class="c1"># Create response</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -431,7 +440,7 @@
 </div>
 <div class="section" id="data-splitting">
 <h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
-<p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
+<p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we will perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
 <div class="section" id="training-evaluation-and-test-set">
 <h3>Training, evaluation and test set<a class="headerlink" href="#training-evaluation-and-test-set" title="Permalink to this headline">¶</a></h3>
 <p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
@@ -439,20 +448,92 @@
 <p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </div>
-<div class="section" id="proceedere">
-<h3>Proceedere<a class="headerlink" href="#proceedere" title="Permalink to this headline">¶</a></h3>
-<p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting. If we start with a pandas DataFrame, the proceedere looks something like this:</p>
+<div class="section" id="train-test-split">
+<h3>Train test split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">¶</a></h3>
+<p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="data-analysis-and-preprocessing">
 <h2>Data analysis and preprocessing<a class="headerlink" href="#data-analysis-and-preprocessing" title="Permalink to this headline">¶</a></h2>
-<p>The goal of this phase is to understand and preprocess the data(<a class="reference external" href="https://www.tensorflow.org/tfx/tutorials/tfx/penguin_tfdv">Google Developers, 2022</a>):</p>
-<ol class="simple">
-<li><p>Analyze the training data: Understanding the data types, distributions, and other information (e.g., mean value, or number of uniques) about each feature</p></li>
-<li><p>Define schema: Generating a preliminary schema that describes the data (e.g., data types for feature values, whether a feature has to be present in all examples, allowed value ranges, and other properties)</p></li>
-<li><p>Anomaly detection: Identifying anomalies and missing values in the data with respect to given schema</p></li>
-</ol>
-<p>We analyze the training data to understand important predictor characteristics such as their individual distributions, the degree of missingness within each predictor, potentially unusual values within predictors, relationships between predictors, and the relationship between each predictor and the response and so on <span id="id2">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. In particular, <strong>exploratory data analysis (EDA)</strong> is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like multicollinearity). Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id3">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
+<p>The goal of this phase is to understand and preprocess the training data. In particular, <strong>exploratory data analysis (EDA)</strong> is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors).</p>
+<p>Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
+<p>First, we create a new DataFrame called <code class="docutils literal notranslate"><span class="pre">df_train</span></code> where we combine the training features with the corresponding y labels:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Next, we analyze the training data to understand important predictor characteristics <span id="id3">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<ul class="simple">
+<li><p>Numerical data: central tendency and distribution:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Categorical data: levels and uniqueness:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> 
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Numerical data grouped by catecorical data:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate median</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate mean</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate standard deviation</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Relationship between each predictor and the response:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_train</span><span class="p">,</span> <span class="n">y_vars</span><span class="o">=</span><span class="n">y_label</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">features</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Relationships between predictors to detect multicollinearity.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>potentially unusual values within predictors,</p></li>
+<li><p>the degree of missingness within each predictor:</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># missing values will be displayed in yellow</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">(),</span> <span class="n">yticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># absolute number of missing values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># percentage of missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Soemetimes it is also a good idea to defina a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)</p>
+<p>Finally,  Identifying anomalies and missing values in the data with respect to given schema.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exploratory data analysis </p>
 <ul class="simple">
@@ -460,7 +541,7 @@
 <li><p><a class="reference external" href="https://seaborn.pydata.org/">Data exploration with seaborn</a></p></li>
 <li><p><a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p></li>
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/impute.html">Imputation of missing values</a></p></li>
-<li><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">Handling Multicollinear Features</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">Handling multicollinear features</a></p></li>
 </ul>
 </div>
 <p>Note that the usage of <strong>data preprocessing pipelines</strong> is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section <a class="reference internal" href="#section-data-pipeline"><span class="std std-ref">Pipelines in scikit-learn</span></a>.</p>
