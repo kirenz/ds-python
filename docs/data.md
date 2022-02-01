@@ -55,7 +55,6 @@ for i in cat_convert:
     df[i] = df[i].astype("category")
 ```
 
-
 ### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
