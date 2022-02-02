@@ -18,14 +18,37 @@ There are various options how to manage your data but we won't go into the detai
 
 ## Data ingestion
 
-The first step is to ingest the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use pandas to import CSV files and store it as `df` (short for DataFrame). Next, we get a first impression of the data structure, perform some data corrections and prepare our data for following steps: 
+### Import data
 
+The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
 
-1. [Import data with pandas](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as df: `df = pd.read_csv(...)`
-2. Call `df` to take a look at the 5 top and bottom observations of your data
-3. Use `df.info()` to get a quick description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values.
-4. Perform data corrections (e.g. wrong data types)
-5. Prepare lists of variables
+```Python
+path_to_file = "my-file.csv"
+
+df = pd.read_csv(path_to_file)
+```
+
+### Data structure
+
+Next, we get a first impression of the data structure: 
+
+- Take a look at the 5 top and bottom observations of your data:
+
+```Python
+df
+```
+
+- Print the number of observations and columns:
+
+```Python
+print(f"We have {len(df.index):,} observations and {len(df.columns)} columns in our dataset.")
+```
+
+- View a description of the data, in particular the total number of rows, each attribute’s type, and the number of nonnull values:
+
+```Python
+df.info()
+```
 
 ### Data corrections
 
@@ -55,6 +78,7 @@ for i in cat_convert:
     df[i] = df[i].astype("category")
 ```
 
+(variable-lists)=
 ### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
@@ -116,43 +140,65 @@ df_train = pd.DataFrame(X_train.copy())
 df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
-Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:
+### Predictor characteristics
 
-- Numerical data: central tendency and distribution:
+Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:  
+
+:::{Note}
+We use the lists created in [](variable-lists) for some of the steps shown below
+:::  
+
+- A) Numerical data: central tendency and distribution:
 
 ```Python
+# summary of numerical attributes
 df_train.describe().round(2).T
 ```
 
-- Categorical data: levels and uniqueness:
+```Python
+# histograms
+df_train.hist(figsize=(20, 15));
+```
+
+- B) Categorical data: levels and uniqueness:
 
 ```Python
 df_train.describe(include="category").T 
-```
+```  
 
 ```Python
 for i in list_cat:
-    print(df_train[i].value_counts());
-```
-
-- Numerical data grouped by catecorical data:
+    print(i, "\n", df_train[i].value_counts())
+```  
 
 ```Python
-# calculate median
+for i in list_cat:
+    print(df_train[i].value_counts().plot(kind='barh', title=i));
+```  
+
+- C) Numerical data grouped by categorical data:
+
+```Python
+# median
 for i in list_cat:
     print(df_train.groupby(i).median().round(2).T)
 ```
 
 ```Python
-# calculate mean
+# mean
 for i in list_cat:
     print(df_train.groupby(i).mean().round(2).T)
 ```
 
 ```Python
-# calculate standard deviation
+# standard deviation
 for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
+```
+
+```Python
+# pairplot with categorical variable
+sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical");
 ```
 
 - Relationship between each predictor and the response:
@@ -173,9 +219,7 @@ sns.pairplot(df_train);
 sns.pairplot(df_train);
 ```
 
-
 - potentially unusual values within predictors, 
-
 
 
 
@@ -196,9 +240,13 @@ print(df.isnull().sum())
 df.isnull().sum() * 100 / len(df)
 ```
 
+### Schema
+
+Soemetimes it is also a good idea to define a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
 
 
-Soemetimes it is also a good idea to defina a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
+
+### Anomalies
 
 Finally,  Identifying anomalies and missing values in the data with respect to given schema.
 
