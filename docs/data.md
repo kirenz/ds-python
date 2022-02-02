@@ -208,12 +208,12 @@ for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
 ```
 
-```Python
-# pairplot with categorical variable
-sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical");
-```
+
 
 ### Relationships
+
+
+#### Correlation with response
 
 - Relationship between each predictor and the response:
 
@@ -221,11 +221,19 @@ sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical"
 sns.pairplot(data=df_train, y_vars=y_label, x_vars=features);
 ```
 
-or
+```Python
+# pairplot with one categorical variable
+sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical_variable");
+```
 
 ```Python
-sns.pairplot(df_train);
+# inspect correlation
+corr = df_train.corr()
+corr_matrix[y_label].sort_values(ascending=False)
+
 ```
+
+#### Correlation between predictors
 
 - Relationships between predictors to detect multicollinearity.
 
@@ -236,13 +244,11 @@ sns.pairplot(df_train);
 ```Python
 # inspect correlation
 corr = df_train.corr()
-
-print(corr_matrix[y_label].sort_values(ascending=False))
-
 mask = np.zeros_like(corr, dtype=bool)
 mask[np.triu_indices_from(mask)] = True
 cmap = sns.diverging_palette(220, 10, as_cmap=True)
 
+fig, ax = plt.subplots(figsize=(10,10)) 
 sns.heatmap(corr, mask=mask, cmap=cmap, annot=True,  
             square=True, annot_kws={"size": 12});
 
@@ -253,7 +259,7 @@ Instead of inspecting the correlation matrix, a better way to assess multicollin
 ```Python
 # calculate variance inflation factor
 
-# create new dataframe X_ and add constant
+# create new dataframe X_ and add a constant
 X_ = df_train[list_num]
 X_ = X_.drop(columns=y_label)
 X_ = add_constant(X_)
@@ -268,7 +274,7 @@ vif.round(2)
 
 ## Define schema
 
-Usually it is also a good idea to define a preliminary schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
+Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
 
 - which features are expected to be present
 - their type
@@ -276,7 +282,7 @@ Usually it is also a good idea to define a preliminary schema that describes the
 - the presence of each feature across all examples
 - the expected domains of features.
 
-We don't cover this topic in detail here. If you want to learn more about schemas, check out the following resources:
+We don't cover this topic in detail here but if you want to learn more about schemas, check out the following resources:
 
 - [The SchemaGen TFX Pipeline Component](https://www.tensorflow.org/tfx/guide/schemagen)
 - [List of schema anomalies provided by TFX](https://github.com/tensorflow/data-validation/blob/master/g3doc/anomalies.md)
@@ -285,36 +291,44 @@ We don't cover this topic in detail here. If you want to learn more about schema
 
 ## Anomaly detection
 
-Next, we need to identify  missing values and anomalies in the data (with respect to a given schema).
+Next, we need to identify  missing values and anomalies in the data (with respect to a given schema). 
+
+Note that we just gain insights and don't perform any data preprocessing during this phase. All data transformations will be performed during feature engineering with the help of pipelines.
 
 ### Missing values
 
-First we check the degree of missingness within each predictor: 
+We check the degree of missingness within each predictor in the original dataframe to avoid code duplication (otherwise we first would perform all checks on `df_train` and afterwards on `df_test`).
+
+:::{Note}
+We use the original dataframe `df` to check for missing values
+:::
+
+Note that we don't perform any data preprocessing in this phase. We just collect insights. 
 
 ```Python
 # missing values will be displayed in yellow
-sns.heatmap(df_train.isnull(), yticklabels=False, cbar=False, cmap='viridis');
+sns.heatmap(df.isnull(), yticklabels=False, cbar=False, cmap='viridis');
 ```
 
 ```Python
 # absolute number of missing values
-print(df_train.isnull().sum())
+print(df.isnull().sum())
 ```
 
 ```Python
 # percentage of missing values
-df_train.isnull().sum() * 100 / len(df)
+df.isnull().sum() * 100 / len(df)
 ```
-
-
 
 ### Outlier and novelty detection
 
-Many applications require being able to decide whether a new observation belongs to the same distribution as existing observations (it is an inlier), or should be considered as different (it is an outlier). Often, this ability is used to clean real data sets. Two important distinctions must be made ([scikit-learn developers](https://scikit-learn.org/stable/modules/outlier_detection.html)):
+Many applications require being able to decide whether a new observation belongs to the same distribution as existing observations (it is an inlier), or should be considered as different (it is an outlier). Two important distinctions must be made ([scikit-learn developers](https://scikit-learn.org/stable/modules/outlier_detection.html)):
 
 - **outlier detection**: The training data contains outliers which are defined as observations that are far from the others. Outlier detection estimators thus try to fit the regions where the training data is the most concentrated, ignoring the deviant observations.
 
 - **novelty detection**: The training data is not polluted by outliers and we are interested in detecting whether a new observation is an outlier. In this context an outlier is also called a novelty.
+
+Here, we just need to decide which strategy to use. 
 
 One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
