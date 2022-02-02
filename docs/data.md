@@ -91,7 +91,7 @@ df[my_new_feature] = df[feature_1] / df[feature_2]
 df[my_newest_feature] = (df[feature_1] + df[feature_2])/2
 ```
 
-(variable-lists)=
+(section:data:variable-lists)=
 ### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
@@ -149,13 +149,14 @@ df_train = pd.DataFrame(X_train.copy())
 df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
+(section:data:analyze)=
 ## Aanalyze data
 
-The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors). 
+The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors).  
 
-Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.  
 
- ```{admonition} Exploratory data analysis 
+ ```{admonition} Exploratory data analysis  
 :class: tip
 - [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
 - [Data exploration with seaborn](https://seaborn.pydata.org/) 
@@ -165,7 +166,7 @@ Furthermore, good visualisations will show you things that you did not expect, o
 Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:  
 
 :::{Note}
-We use some lists created in [](variable-lists) for some of the steps shown below
+We use some lists created in [](section:data:variable-lists) for some of the steps shown below
 :::  
 
 ### Numerical data
@@ -220,10 +221,7 @@ for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
 ```
 
-
-
 ### Relationships
-
 
 #### Correlation with response
 
@@ -263,7 +261,6 @@ cmap = sns.diverging_palette(220, 10, as_cmap=True)
 fig, ax = plt.subplots(figsize=(10,10)) 
 sns.heatmap(corr, mask=mask, cmap=cmap, annot=True,  
             square=True, annot_kws={"size": 12});
-
 ```
 
 Instead of inspecting the correlation matrix, a better way to assess multicollinearity is to compute the variance inflation factor (VIF). The smallest possible value for VIF is 1, which indicates the complete absence of collinearity. Typically in practice there is a small amount of collinearity among the predictors. As a rule of thumb, a VIF value that exceeds 5 or 10 indicates a problematic amount of collinearity.
@@ -303,9 +300,9 @@ We don't cover this topic in detail here but if you want to learn more about sch
 
 ## Anomaly detection
 
-Next, we need to identify  missing values and anomalies in the data (with respect to a given schema). 
+Next, we need to identify missing values and anomalies in the data (with respect to a given schema).  
 
-Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. However, all data transformations will be performed during feature engineering.  
+Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering.  
 
 ### Missing values
 
@@ -314,7 +311,6 @@ We check the degree of missingness within each predictor in the original datafra
 :::{Note}
 We use the original dataframe `df` to check for missing values
 :::
-
 
 ```Python
 # missing values will be displayed in yellow
@@ -331,7 +327,13 @@ print(df.isnull().sum())
 df.isnull().sum() * 100 / len(df)
 ```
 
-If we find missing cases in our data, we need to decide how to deal with them. We cover this topic in the section feature engineering.
+If we find missing cases in our data, we need to decide how to deal with them. For example, we could:
+
+1. Get rid of the corresponding observations.
+1. Get rid of the whole attribute.
+1. Set the values to some value (zero, the mean, the median, etc.).
+
+We cover this topic in more detail in the section about [fixing missing values](section:data:fix-missing).
 
 ### Outlier and novelty detection
 
@@ -341,89 +343,41 @@ Many applications require being able to decide whether a new observation belongs
 
 - **novelty detection**: The training data is not polluted by outliers and we are interested in detecting whether a new observation is an outlier. In this context an outlier is also called a novelty.
 
-There are various str
-
-Here, we just need to decide which strategy to use. 
-
-One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
-
-
-```Python
-from sklearn.ensemble import IsolationForest
-
-list_detect = df_train.drop(y_label).columns.tolist()
-
-clf = IsolationForest(random_state=42)
-
-clf.fit(X_train[list_detect])
-y_pred_train = clf.predict(X_train[list_detect])
-y_pred_test = clf.predict(X_test[list_detect])
-
-```
-
-
-
-- [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
-- [Handling multicollinear features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
-
-
-Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section [](section:data:pipeline). 
-
+There are various strategies to deal with unusual cases which we will cover in the section [data preprocessing](section:data:fix-outliers).
 
 ## Feature engineering
 
 > "Applied machine learning is basically feature engineering" Andrew Ng 
 
-The understanding gained from our data analysis is now used for feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like:
+The understanding gained in [data analysis](section:data:analyze) is now used for data preprocessing and feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to clean our data and to create new features which improve the predictions from our model and my include steps like:
  
+- Data preprocessing (encode categorical data, fix missing values and outliers) 
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
 - Feature transformation (transform features)
 
-Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, **feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. 
-
-Typically, we als need to perform **feature transformationa** like the encoding of categorical features and the transformation of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
-
-- be on vastly different scales.
-- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
-- contain a small number of extreme values.
-- be censored on the low and/or high end of the range.
-
- ```{admonition} Feature engineering 
-:class: tip
-
-- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
-
-- Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
-```
-
-Again, the usage of **pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, review the next section [](section:data:pipeline). 
+Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.
 
 (section:data:pipeline)=
-## Pipelines in scikit-learn
+### Pipelines
 
-scikit-learn provides a library of transformers for data preprocessing and feature engineering, which may 
+Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. 
 
-- clean data (see [preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing), 
-- reduce features (see [unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
-- extract features (see [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
+scikit-learn provides a library of transformers for data preprocessing and feature engineering. Note that we are able to combine data preprocessing with our modeling builing in one pipeline. 
 
-Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and similar data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):
+ ```{admonition} Pipelines 
+:class: tip
+- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
+html)
 
-```python
-from sklearn.preprocessing import StandardScaler
-
-numerical_features = ['a', 'b']
-
-scaler = StandardScaler().fit(X_train[numerical_features]) 
-
-X_train[numerical_features] = scaler.transform(X_train[numerical_features])
-X_test[numerical_features] = scaler.transform(X_test[numerical_features])
-
-# ...
 ```
 
-Instead of performing data preprocessing as shown above, we should use a pipeline. **Pipelines** are a best practice to help avoid leaking statistics from your test data into the trained model (e.g. during cross-validation). Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
+### Data preprocessing
+
+<!--
+Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):
+
+ Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
 
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -442,18 +396,105 @@ preprocessor = ColumnTransformer(
     transformers=[
         ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, categorical_features)])
-
-# ...
 ```
 
-Note that we are able to combine data preprocessing with our modeling builing in one pipeline. To learn how to create pipelines, see:
+(section:data:categorical)=
+#### Encode categorical data
 
- ```{admonition} Pipelines 
+```Python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+
+categorical_features = ['c', 'd']
+
+categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
+```
+-->
+
+(section:data:fix-missing)=
+#### Fix missing values
+
+Here an example of a data preprocessing pipeline to fix missing values: 
+
+A) We start with the imputation of missing data for numerical data:
+
+```Python
+from sklearn.pipeline import Pipeline
+
+numeric_features = ['a', 'b']
+
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median'))]
+```
+
+B) Next, we impute missing values in categorical values:
+
+```Python
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
+```
+
+C) Now we combine the two with each other:
+
+```Python
+from sklearn.compose import ColumnTransformer
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)])
+
+data_prepared = preprocessor.fit_transform(housing)        
+```
+
+
+
+(section:data:fix-outliers)=
+#### Fix outliers
+
+One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
+
+
+```Python
+from sklearn.ensemble import IsolationForest
+
+list_detect = df_train.drop(y_label).columns.tolist()
+
+clf = IsolationForest(random_state=42)
+
+clf.fit(X_train[list_detect])
+y_pred_train = clf.predict(X_train[list_detect])
+y_pred_test = clf.predict(X_test[list_detect])
+
+```
+
+- [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
+- [Handling multicollinear features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
+
+### Feature extraction
+
+For example, features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, **feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. 
+
+- reduce features (see [unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
+
+### Feature creation
+
+- extract features (see [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
+
+### Feature transformation
+
+Typically, we als need to perform feature transformations like the encoding of categorical features and the transformation of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
+
+- be on vastly different scales.
+- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
+- contain a small number of extreme values.
+- be censored on the low and/or high end of the range.
+
+ ```{admonition} Feature engineering 
 :class: tip
 
-- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
-html)
+- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
 
-- [Regression example with preprocessing pipeline](https://kirenz.github.io/regression/docs/case-duke-sklearn.html)
-
+- Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
 ```
