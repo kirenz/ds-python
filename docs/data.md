@@ -72,6 +72,7 @@ Example of data type transformation for multiple variables:
 
 ```Python
 # Convert to categorical
+
 cat_convert = ['foo1', 'foo2', 'foo3']
 
 for i in cat_convert:
@@ -95,7 +96,7 @@ Furthermore, we prepare lists of variables for the following process of data spl
 
 ```python
 # define outcome variable as y_label
-y_label = 'median_house_value'
+y_label = 'foo'
 
 # Select features
 features = df.drop(columns=[y_label]).columns.tolist()
