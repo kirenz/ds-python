@@ -120,36 +120,45 @@ However, by partitioning the available data into three sets, we drastically redu
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-### Train test split
+### Train and test split
 
-We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting:
+We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting and use `random_state` to make this notebook's output identical at every run (we arbitrarily set the number to 42 but you can choose any other number):
 
 ```Python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
-## Data analysis and preprocessing
+### Data exploration set
 
-The goal of this phase is to understand and preprocess the training data. In particular, **exploratory data analysis (EDA)** is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors). 
-
-Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
-
-First, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y labels:
+Furthermore, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y labels. We will use this data for our exploratory data analysis.
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
 df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
-### Predictor characteristics
+## Aanalyze data
+
+The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors). 
+
+Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+
+ ```{admonition} Exploratory data analysis 
+:class: tip
+- [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
+- [Data exploration with seaborn](https://seaborn.pydata.org/) 
+- [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+```
 
 Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:  
 
 :::{Note}
-We use the lists created in [](variable-lists) for some of the steps shown below
+We use some lists created in [](variable-lists) for some of the steps shown below
 :::  
 
-- A) Numerical data: central tendency and distribution:
+### Numerical data
+
+- Numerical data: central tendency and distribution:
 
 ```Python
 # summary of numerical attributes
@@ -161,7 +170,9 @@ df_train.describe().round(2).T
 df_train.hist(figsize=(20, 15));
 ```
 
-- B) Categorical data: levels and uniqueness:
+### Categorical data
+
+- Categorical data: levels and uniqueness:
 
 ```Python
 df_train.describe(include="category").T 
@@ -177,7 +188,7 @@ for i in list_cat:
     print(df_train[i].value_counts().plot(kind='barh', title=i));
 ```  
 
-- C) Numerical data grouped by categorical data:
+- Numerical data grouped by categorical data:
 
 ```Python
 # median
@@ -202,6 +213,8 @@ for i in list_cat:
 sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical");
 ```
 
+### Relationships
+
 - Relationship between each predictor and the response:
 
 ```Python
@@ -220,50 +233,113 @@ sns.pairplot(df_train);
 sns.pairplot(df_train);
 ```
 
-- potentially unusual values within predictors, 
+```Python
+# inspect correlation
+corr = df_train.corr()
 
+print(corr_matrix[y_label].sort_values(ascending=False))
 
+mask = np.zeros_like(corr, dtype=bool)
+mask[np.triu_indices_from(mask)] = True
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
 
-- the degree of missingness within each predictor: 
+sns.heatmap(corr, mask=mask, cmap=cmap, annot=True,  
+            square=True, annot_kws={"size": 12});
+
+```
+
+Instead of inspecting the correlation matrix, a better way to assess multicollinearity is to compute the variance inflation factor (VIF). The smallest possible value for VIF is 1, which indicates the complete absence of collinearity. Typically in practice there is a small amount of collinearity among the predictors. As a rule of thumb, a VIF value that exceeds 5 or 10 indicates a problematic amount of collinearity.
+
+```Python
+# calculate variance inflation factor
+
+# create new dataframe X_ and add constant
+X_ = df_train[list_num]
+X_ = X_.drop(columns=y_label)
+X_ = add_constant(X_)
+
+# For each X, calculate VIF and save in dataframe
+vif = pd.DataFrame()
+vif["VIF Factor"] = [variance_inflation_factor(X_.values, i) for i in range(X_.shape[1])]
+vif["Feature"] = X_.columns
+
+vif.round(2)
+```
+
+## Define schema
+
+Usually it is also a good idea to define a preliminary schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
+
+- which features are expected to be present
+- their type
+- the number of values for a feature in each example
+- the presence of each feature across all examples
+- the expected domains of features.
+
+We don't cover this topic in detail here. If you want to learn more about schemas, check out the following resources:
+
+- [The SchemaGen TFX Pipeline Component](https://www.tensorflow.org/tfx/guide/schemagen)
+- [List of schema anomalies provided by TFX](https://github.com/tensorflow/data-validation/blob/master/g3doc/anomalies.md)
+- [Simple solution for pandas](https://stackoverflow.com/questions/54971410/how-do-you-specify-a-pandas-dataframe-schema-structure-in-a-docstring/61041468#61041468)
+- [3rd party tool PandasSchema](https://multimeric.github.io/PandasSchema/)
+
+## Anomaly detection
+
+Next, we need to identify  missing values and anomalies in the data (with respect to a given schema).
+
+### Missing values
+
+First we check the degree of missingness within each predictor: 
 
 ```Python
 # missing values will be displayed in yellow
-sns.heatmap(df.isnull(), yticklabels=False, cbar=False, cmap='viridis');
+sns.heatmap(df_train.isnull(), yticklabels=False, cbar=False, cmap='viridis');
 ```
 
 ```Python
 # absolute number of missing values
-print(df.isnull().sum())
+print(df_train.isnull().sum())
 ```
 
 ```Python
 # percentage of missing values
-df.isnull().sum() * 100 / len(df)
+df_train.isnull().sum() * 100 / len(df)
 ```
 
-### Schema
-
-Soemetimes it is also a good idea to define a preliminary schema that describes the data (e.g., whether a feature has to be present in all examples, allowed value ranges, and other properties)
 
 
+### Outlier and novelty detection
 
-### Anomalies
+Many applications require being able to decide whether a new observation belongs to the same distribution as existing observations (it is an inlier), or should be considered as different (it is an outlier). Often, this ability is used to clean real data sets. Two important distinctions must be made ([scikit-learn developers](https://scikit-learn.org/stable/modules/outlier_detection.html)):
 
-Finally,  Identifying anomalies and missing values in the data with respect to given schema.
+- **outlier detection**: The training data contains outliers which are defined as observations that are far from the others. Outlier detection estimators thus try to fit the regions where the training data is the most concentrated, ignoring the deviant observations.
+
+- **novelty detection**: The training data is not polluted by outliers and we are interested in detecting whether a new observation is an outlier. In this context an outlier is also called a novelty.
+
+One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
 
- ```{admonition} Exploratory data analysis 
-:class: tip
+```Python
+from sklearn.ensemble import IsolationForest
 
-- [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
-- [Data exploration with seaborn](https://seaborn.pydata.org/) 
-- [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+list_detect = df_train.drop(y_label).columns.tolist()
+
+clf = IsolationForest(random_state=42)
+
+clf.fit(X_train[list_detect])
+y_pred_train = clf.predict(X_train[list_detect])
+y_pred_test = clf.predict(X_test[list_detect])
+
+```
+
+
+
 - [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
 - [Handling multicollinear features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
 
-```
 
 Note that the usage of **data preprocessing pipelines** is considered a best practice to help avoid leaking statistics from your test data into the trained model. To learn more about pipelines, see section [](section:data:pipeline). 
+
 
 ## Feature engineering
 
