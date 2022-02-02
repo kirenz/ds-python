@@ -79,6 +79,18 @@ for i in cat_convert:
     df[i] = df[i].astype("category")
 ```
 
+### Creation of new variables
+
+During the creation of your [plan](plan.md), you maybe gained knowledge about possible ways to derive new variables from already existing columns in your dataset (e.g. through simple variable combinations). If this is the case, now would be a good time to create these variables. 
+
+Pandas offers multiple ways to derive new columns from existing columns (see this [pandas tutorial](https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html) for more examples). Note that you create a new column by assigning the output to the DataFrame with a new column name in between the [] and that operations are element-wise (i.e., no need to loop over rows):
+
+```Python
+df[my_new_feature] = df[feature_1] / df[feature_2]
+
+df[my_newest_feature] = (df[feature_1] + df[feature_2])/2
+```
+
 (variable-lists)=
 ### Variable lists
 
@@ -293,7 +305,7 @@ We don't cover this topic in detail here but if you want to learn more about sch
 
 Next, we need to identify  missing values and anomalies in the data (with respect to a given schema). 
 
-Note that we just gain insights and don't perform any data preprocessing during this phase. All data transformations will be performed during feature engineering with the help of pipelines.
+Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. However, all data transformations will be performed during feature engineering.  
 
 ### Missing values
 
@@ -303,7 +315,6 @@ We check the degree of missingness within each predictor in the original datafra
 We use the original dataframe `df` to check for missing values
 :::
 
-Note that we don't perform any data preprocessing in this phase. We just collect insights. 
 
 ```Python
 # missing values will be displayed in yellow
@@ -320,6 +331,8 @@ print(df.isnull().sum())
 df.isnull().sum() * 100 / len(df)
 ```
 
+If we find missing cases in our data, we need to decide how to deal with them. We cover this topic in the section feature engineering.
+
 ### Outlier and novelty detection
 
 Many applications require being able to decide whether a new observation belongs to the same distribution as existing observations (it is an inlier), or should be considered as different (it is an outlier). Two important distinctions must be made ([scikit-learn developers](https://scikit-learn.org/stable/modules/outlier_detection.html)):
@@ -327,6 +340,8 @@ Many applications require being able to decide whether a new observation belongs
 - **outlier detection**: The training data contains outliers which are defined as observations that are far from the others. Outlier detection estimators thus try to fit the regions where the training data is the most concentrated, ignoring the deviant observations.
 
 - **novelty detection**: The training data is not polluted by outliers and we are interested in detecting whether a new observation is an outlier. In this context an outlier is also called a novelty.
+
+There are various str
 
 Here, we just need to decide which strategy to use. 
 
