@@ -484,6 +484,7 @@
 </div>
 <p>Example of data type transformation for multiple variables:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to categorical</span>
+
 <span class="n">cat_convert</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo1&#39;</span><span class="p">,</span> <span class="s1">&#39;foo2&#39;</span><span class="p">,</span> <span class="s1">&#39;foo3&#39;</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_convert</span><span class="p">:</span>
@@ -503,7 +504,7 @@
 </div>
 <p>Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use <code class="docutils literal notranslate"><span class="pre">foo</span></code> as placeholder for our outcome variable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define outcome variable as y_label</span>
-<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;median_house_value&#39;</span>
+<span class="n">y_label</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span>
 
 <span class="c1"># Select features</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">y_label</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
