@@ -55,6 +55,7 @@ for i in cat_convert:
     df[i] = df[i].astype("category")
 ```
 
+(variable-lists)=
 ### Variable lists
 
 We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
@@ -116,41 +117,60 @@ df_train = pd.DataFrame(X_train.copy())
 df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
-Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:
+Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:  
 
-- Numerical data: central tendency and distribution:
+:::{Note}
+We use the lists created in [](variable-lists) for some of the steps shown below
+:::  
+
+- A) Numerical data: central tendency and distribution:
 
 ```Python
+# summary of numerical attributes
 df_train.describe().round(2).T
 ```
 
-- Categorical data: levels and uniqueness:
+```Python
+# histograms
+df_train.hist(figsize=(20, 15));
+```
+
+- B) Categorical data: levels and uniqueness:
 
 ```Python
 df_train.describe(include="category").T 
-```
+```  
 
 ```Python
 for i in list_cat:
-    print(df_train[i].value_counts());
-```
-
-- Numerical data grouped by catecorical data:
+    print(i, "\n", df_train[i].value_counts())
+```  
 
 ```Python
-# calculate median
+for i in list_cat:
+    print(df_train[i].value_counts().plot(kind='barh', title=i));
+```  
+
+- C) Numerical data grouped by categorical data:
+
+```Python
+df_train.plot.hist(column=["age"], by="gender", figsize=(10, 8))
+```
+
+```Python
+# median
 for i in list_cat:
     print(df_train.groupby(i).median().round(2).T)
 ```
 
 ```Python
-# calculate mean
+# mean
 for i in list_cat:
     print(df_train.groupby(i).mean().round(2).T)
 ```
 
 ```Python
-# calculate standard deviation
+# standard deviation
 for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
 ```
