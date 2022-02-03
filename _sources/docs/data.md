@@ -465,7 +465,7 @@ Although scikit-Learn provides many useful transformers, you will need to write 
 
 You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py):
 (see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
- you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid *args and **kargs in your constructor), you will also get two extra methods [(get_params() and set_params())](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
+ you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
 
 
 (section:data:preprocessing-pipeline)=
@@ -473,16 +473,10 @@ You find a code template to build your own functions [here](https://github.com/s
 
 In this section, we will build a typical data preprocessing pipeline. 
 
-1. Encode categorical variables
-1. Fix missing values.
-1. Take care of outliers
-
-
 
 ```Python
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-
 
 # numeric pipeline
 numeric_transformer = Pipeline(steps=[
@@ -492,14 +486,10 @@ numeric_transformer = Pipeline(steps=[
 categorical_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
 
-
-
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, categorical_features)])
-
-data_prepared = preprocessor.fit_transform(housing)        
 ```
 
 

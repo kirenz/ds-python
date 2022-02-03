@@ -995,19 +995,13 @@
 </ul>
 <p>You find a code template to build your own functions <a class="reference external" href="https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py">here</a>:
 (see <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TemplateTransformer(TransformerMixin,</span> <span class="pre">BaseEstimator)</span></code>). Note that
-you get the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid *args and **kargs in your constructor), you will also get two extra methods <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params">(get_params() and set_params())</a> that will be useful for automatic hyperparameter tuning.</p>
+you get the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params">get_params() and set_params()</a> that will be useful for automatic hyperparameter tuning.</p>
 </div>
 <div class="section" id="data-preprocessing-pipeline">
 <span id="section-data-preprocessing-pipeline"></span><h3>Data preprocessing pipeline<a class="headerlink" href="#data-preprocessing-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>In this section, we will build a typical data preprocessing pipeline.</p>
-<ol class="simple">
-<li><p>Encode categorical variables</p></li>
-<li><p>Fix missing values.</p></li>
-<li><p>Take care of outliers</p></li>
-</ol>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
-
 
 <span class="c1"># numeric pipeline</span>
 <span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
@@ -1017,14 +1011,10 @@ you get the <code class="docutils literal notranslate"><span class="pre">fit_tra
 <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
     <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span><span class="p">))]</span>
 
-
-
 <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">)])</span>
-
-<span class="n">data_prepared</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">housing</span><span class="p">)</span>        
 </pre></div>
 </div>
 </div>
