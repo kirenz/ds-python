@@ -401,8 +401,7 @@ scikit-learn provides a library of transformers for data preprocessing and featu
 
  ```{admonition} Pipelines 
 :class: tip
-- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
-html)
+- scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.html)
 ```
 
 ### Encode categorical features
@@ -464,8 +463,8 @@ Although scikit-Learn provides many useful transformers, you will need to write 
 - `transform()`, and 
 - `fit_transform()`.
 
-You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py)):
-)(see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
+You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py):
+(see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
  you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid *args and **kargs in your constructor), you will also get two extra methods [(get_params() and set_params())](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
 
 
