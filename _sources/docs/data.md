@@ -1,6 +1,8 @@
 # Data
 
-There are various options how to manage your data but we won't go into the details of data engineering in this tutorial. However, if you want to learn more about topics like:
+## Data ingestion
+
+There are various options how to store and ingest your data but we won't go into the details of data engineering in this tutorial. However, if you want to learn more about topics like:
 
 - the basics of big data (Hadoop ecosystem and Spark),
 - relational and NoSQL databases,
@@ -15,8 +17,6 @@ There are various options how to manage your data but we won't go into the detai
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
 ```
-
-## Data ingestion
 
 ### Import data
 
@@ -38,7 +38,7 @@ Next, we get a first impression of the data structure:
 df
 ```
 
-- Print the number of observations and columns:
+- Show the number of observations and columns:
 
 ```Python
 print(f"We have {len(df.index):,} observations and {len(df.columns)} columns in our dataset.")
@@ -54,13 +54,15 @@ df.info()
 
 Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons ([scikit learn developers](https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data)):
 
-- Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (z transformation) or imputing missing values.
+- Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (like z transformation) or imputing missing values.
 
 - You may want to include the parameters of the preprocessors in a parameter search (for hyperparameter tuning).
 
-Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer) helps performing different transformations for different columns of the data  within a **data preprocessing pipeline** that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.
+Later we will see that scikit-learn's [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html#sklearn.compose.ColumnTransformer) helps performing different transformations for different columns of the data  within a data preprocessing pipeline that is safe from data leakage and that can be parametrized. To each column, a different transformation can be applied, such as preprocessing or a specific feature extraction method.
 
+:::{Note}
 As a general rule, we only take care of data errors which can be fixed without the risk of data leakage and which we don't want to include as data preprocessing steps in a pipeline. 
+:::
 
 Example of data type transformation of one variable:
 
@@ -83,7 +85,7 @@ for i in cat_convert:
 
 During the creation of your [plan](plan.md), you maybe gained knowledge about possible ways to derive new variables from already existing columns in your dataset (e.g. through simple variable combinations). If this is the case, now would be a good time to create these variables. 
 
-Pandas offers multiple ways to derive new columns from existing columns (see this [pandas tutorial](https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html) for more examples). Note that you create a new column by assigning the output to the DataFrame with a new column name in between the [] and that operations are element-wise (i.e., no need to loop over rows):
+Pandas offers multiple ways to derive new columns from existing columns (see this [pandas tutorial](https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html) for more examples). Note that you create a new column by assigning the output to the DataFrame with a new column name in between the `[]` and that operations are element-wise (i.e., no need to loop over rows):
 
 ```Python
 df[my_new_feature] = df[feature_1] / df[feature_2]
@@ -94,27 +96,35 @@ df[my_newest_feature] = (df[feature_1] + df[feature_2])/2
 (section:data:variable-lists)=
 ### Variable lists
 
-We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas functions to create specific lists (provided all columns are stored in the correct data format):
+We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas to create specific lists (provided all columns are stored in the correct data format):
 
 ```python
-# list of numerical data
+# list of all numerical data
 list_num = df.select_dtypes(include=[np.number]).columns.tolist()
 
-# list of categorical data
+# list of all categorical data
 list_cat = df.select_dtypes(include=['category']).columns.tolist()
 ```
 
-Furthermore, we prepare lists of variables for the following process of data splitting. Note that we use `foo` as placeholder for our outcome variable:
+Furthermore, we prepare our data for the following processes of data splitting and building of data pipelines. Note that we use `foo` as placeholder for our outcome variable:
 
 ```python
 # define outcome variable as y_label
 y_label = 'foo'
 
-# Select features
+# select features
 features = df.drop(columns=[y_label]).columns.tolist()
+
+# create feature data for data splitting
 X = df[features]
 
-# Create response
+# list of numeric features
+feat_num = X.select_dtypes(include=[np.number]).columns.tolist()
+
+# list of categorical features
+feat_cat = X.select_dtypes(include=['category']).columns.tolist() 
+
+# create response for data splitting
 y = df[y_label]
 ```
 
@@ -126,9 +136,9 @@ Before you start analyzing your data, it is a good idea to split your data into 
 
 The error rate on new cases is called the *generalization error* (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is **overfitting** the training data.
 
-Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the alpha in Lasso, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “**validation set**”: training proceeds on the *training set*, after which evaluation is done on the *validation set*, and when the experiment seems to be successful, final evaluation can be done on the *test set*.
+Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the [alpha in Lasso](https://kirenz.github.io/regression/docs/lasso.html), there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). This way, knowledge about the test set can "leak" into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “**validation set**”: training proceeds on the *training set*, after which evaluation is done on the *validation set*, and when the experiment seems to be successful, final evaluation can be done on the *test set*.
 
-However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called cross-validation (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.
+However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called **cross-validation** (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
@@ -142,7 +152,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ### Data exploration set
 
-Furthermore, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y labels. We will use this data for our exploratory data analysis.
+Furthermore, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y training labels. We will use this data for our exploratory data analysis:
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
@@ -150,11 +160,12 @@ df_train = df_train.join(pd.DataFrame(y_train))
 ```
 
 (section:data:analyze)=
-## Aanalyze data
+## Analyze data
 
-The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand if there are any challenges associated with the data that can be discovered prior to modeling (like potentially unusual values within predictors or multicollinearity between predictors).  
+The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
 
-Furthermore, good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.  
+Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
+
 
  ```{admonition} Exploratory data analysis  
 :class: tip
@@ -163,15 +174,13 @@ Furthermore, good visualisations will show you things that you did not expect, o
 - [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 ```
 
-Next, we analyze the training data to understand important predictor characteristics {cite:p}`Kuhn2019`:  
-
 :::{Note}
-We use some lists created in [](section:data:variable-lists) for some of the steps shown below
+We use lists created in [](section:data:variable-lists) for some of the steps shown below
 :::  
 
 ### Numerical data
 
-- Numerical data: central tendency and distribution:
+For numerical data we take a look at the central tendency and distribution:
 
 ```Python
 # summary of numerical attributes
@@ -183,9 +192,10 @@ df_train.describe().round(2).T
 df_train.hist(figsize=(20, 15));
 ```
 
+(section:data:categorical)=
 ### Categorical data
 
-- Categorical data: levels and uniqueness:
+For categorical data we check the levels and their uniqueness:
 
 ```Python
 df_train.describe(include="category").T 
@@ -201,7 +211,24 @@ for i in list_cat:
     print(df_train[i].value_counts().plot(kind='barh', title=i));
 ```  
 
-- Numerical data grouped by categorical data:
+If you have variables with many levels and are interested only in the top 10 values:
+
+```Python
+for i in cat_list:
+
+    TOP_10 = df[i].value_counts().iloc[:10].index
+
+    g = sns.catplot(y=i, 
+            kind="count", 
+            palette="ch:.25", 
+            data=df,
+            order = TOP_10)    
+    
+    plt.title(i)
+    plt.show();
+```
+
+We can  investigate numerical data grouped by categorical data:
 
 ```Python
 # median
@@ -225,7 +252,7 @@ for i in list_cat:
 
 #### Correlation with response
 
-- Relationship between each predictor and the response:
+Detect the relationship between each predictor and the response:
 
 ```Python
 sns.pairplot(data=df_train, y_vars=y_label, x_vars=features);
@@ -240,12 +267,11 @@ sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical_
 # inspect correlation
 corr = df_train.corr()
 corr_matrix[y_label].sort_values(ascending=False)
-
 ```
 
 #### Correlation between predictors
 
-- Relationships between predictors to detect multicollinearity.
+Investigate relationships between predictors to detect multicollinearity:
 
 ```Python
 sns.pairplot(df_train);
@@ -281,6 +307,8 @@ vif["Feature"] = X_.columns
 vif.round(2)
 ```
 
+An alternative way to handle multicollinear features is by performing hierarchical clustering on the Spearman rank-order correlations, picking a threshold, and keeping a single feature from each cluster (see this [scikit-learn documentation](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)).
+
 ## Define schema
 
 Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
@@ -302,7 +330,7 @@ We don't cover this topic in detail here but if you want to learn more about sch
 
 Next, we need to identify missing values and anomalies in the data (with respect to a given schema).  
 
-Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering.  
+Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering (with pipelines).  
 
 ### Missing values
 
@@ -327,13 +355,7 @@ print(df.isnull().sum())
 df.isnull().sum() * 100 / len(df)
 ```
 
-If we find missing cases in our data, we need to decide how to deal with them. For example, we could:
-
-1. Get rid of the corresponding observations.
-1. Get rid of the whole attribute.
-1. Set the values to some value (zero, the mean, the median, etc.).
-
-We cover this topic in more detail in the section about [fixing missing values](section:data:fix-missing).
+We cover this topic in the section [](section:data:preprocessing-pipeline).
 
 ### Outlier and novelty detection
 
@@ -343,115 +365,66 @@ Many applications require being able to decide whether a new observation belongs
 
 - **novelty detection**: The training data is not polluted by outliers and we are interested in detecting whether a new observation is an outlier. In this context an outlier is also called a novelty.
 
-There are various strategies to deal with unusual cases which we will cover in the section [data preprocessing](section:data:fix-outliers).
+Again, we first use data exploration to gain insights about unusual cases. In addition to the plots covered in []((section:data:analyze)) (histograms are especially relevant), we can use  [boxenplots](https://seaborn.pydata.org/generated/seaborn.boxenplot.html) for our numerical data:
+
+```Python
+# boxenplots
+for i in list_num:
+    g=sns.boxenplot(x=df_train[i])
+    plt.title(i)
+    plt.show();
+```
+
+To investigate categorical data we can use the same methods as described in []( section:data:categorical).  
+
+There are various strategies of how to deal with unusual cases which we will cover in [](section:data:preprocessing-pipeline). 
 
 ## Feature engineering
 
 > "Applied machine learning is basically feature engineering" Andrew Ng 
 
-The understanding gained in [data analysis](section:data:analyze) is now used for data preprocessing and feature engineering, which is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to clean our data and to create new features which improve the predictions from our model and my include steps like:
+The understanding gained in [data analysis](section:data:analyze) is now used for data preprocessing (e.g., encode categorical data, fix missing values and outliers) and feature engineering.  
+
+Feature engineering is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like {cite:p}`Kuhn2019`:
  
-- Data preprocessing (encode categorical data, fix missing values and outliers) 
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
 - Feature transformation (transform features)
 
 Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.
 
+
 (section:data:pipeline)=
 ### Pipelines
 
-Just as it is important to test a model on data held-out from training, data preprocessing (such as standardization, etc.) and data transformations similarly should be learnt from a training set and applied to held-out data for prediction. For example, the standardization of numerical features should always be performed after data splitting and only from training data. 
-
-scikit-learn provides a library of transformers for data preprocessing and feature engineering. Note that we are able to combine data preprocessing with our modeling builing in one pipeline. 
+scikit-learn provides a library of transformers for data preprocessing and feature engineering. 
 
  ```{admonition} Pipelines 
 :class: tip
 - scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.
 html)
-
 ```
 
-### Data preprocessing
+### Encode categorical features
 
-<!--
-Furthermore, we obtain all necessary statistics (mean and standard deviation) from training data and use them on test data. Note that we don’t standardize dummy variables (which only have values of 0 or 1):
+Most algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
 
- Here an example of a data preprocessing pipeline with imputation of missing data and standardization:
+*Scikit-learn* provides a [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.
 
-```python
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
+*Pandas* also has a function to convert categorical variable into dummy/indicator variables: [pandas.get_dummies](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html)
 
-numeric_features = ['a', 'b']
+### Fix missing values
 
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median')),
-    ('scaler', StandardScaler())])
+If we find missing cases in our data, we need to decide how to deal with them. For example, we could:
 
-categorical_features = ['c', 'd']
-categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+1. Get rid of the corresponding observations.
+1. Get rid of the whole attribute.
+1. Impute with some other value (zero, the mean, the median, etc.).
 
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)])
-```
-
-(section:data:categorical)=
-#### Encode categorical data
-
-```Python
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
-
-categorical_features = ['c', 'd']
-
-categorical_transformer = OneHotEncoder(handle_unknown='ignore')
-
-```
--->
-
-(section:data:fix-missing)=
-#### Fix missing values
-
-Here an example of a data preprocessing pipeline to fix missing values: 
-
-A) We start with the imputation of missing data for numerical data:
-
-```Python
-from sklearn.pipeline import Pipeline
-
-numeric_features = ['a', 'b']
-
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median'))]
-```
-
-B) Next, we impute missing values in categorical values:
-
-```Python
-categorical_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
-```
-
-C) Now we combine the two with each other:
-
-```Python
-from sklearn.compose import ColumnTransformer
-
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)])
-
-data_prepared = preprocessor.fit_transform(housing)        
-```
-
-
+We will include a [imputation of missing values](https://scikit-learn.org/stable/modules/impute.html) in our pipeline.
 
 (section:data:fix-outliers)=
-#### Fix outliers
+### Fix outliers
 
 One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
@@ -466,35 +439,68 @@ clf = IsolationForest(random_state=42)
 clf.fit(X_train[list_detect])
 y_pred_train = clf.predict(X_train[list_detect])
 y_pred_test = clf.predict(X_test[list_detect])
-
 ```
-
-- [Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
-- [Handling multicollinear features](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)
 
 ### Feature extraction
 
-For example, features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, **feature extraction** can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis. 
+Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.
 
-- reduce features (see [unsupervised dimensionality reduction](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction)), or 
-
-### Feature creation
-
-- extract features (see [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.htmln)).
+If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different [unsupervised dimensionality reduction methods](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction) in scikit-learn.
 
 ### Feature transformation
 
-Typically, we als need to perform feature transformations like the encoding of categorical features and the transformation of continuous predictors, because predictors may {cite:p}`Kuhn2019`:
+Typically, we als need to perform feature transformations because predictors may {cite:p}`Kuhn2019`:
 
 - be on vastly different scales.
 - follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
 - contain a small number of extreme values.
 - be censored on the low and/or high end of the range.
 
- ```{admonition} Feature engineering 
-:class: tip
+### Feature creation
 
-- [Feature extraction in scikit-learn](https://scikit-learn.org/stable/modules/feature_extraction.html)
+Although scikit-Learn provides many useful transformers, you will need to write your own functions for tasks such as custom data cleaning procedures or combining specific attributes. If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods: 
 
-- Review {cite:t}`Kuhn2019` for a detailed discussion of feature engineering methods.
+- `fit()` (returning self), 
+- `transform()`, and 
+- `fit_transform()`.
+
+You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py)):
+)(see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
+ you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid *args and **kargs in your constructor), you will also get two extra methods [(get_params() and set_params())](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
+
+
+(section:data:preprocessing-pipeline)=
+### Data preprocessing pipeline
+
+In this section, we will build a typical data preprocessing pipeline. 
+
+1. Encode categorical variables
+1. Fix missing values.
+1. Take care of outliers
+
+
+
+```Python
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+
+
+# numeric pipeline
+numeric_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median'))]
+
+# categorical pipeline
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
+
+
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)])
+
+data_prepared = preprocessor.fit_transform(housing)        
 ```
+
+
