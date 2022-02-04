@@ -431,7 +431,7 @@ We will include a [imputation of missing values](https://scikit-learn.org/stable
 
 There are various options of how to fix outliers and scikit-learn provides a set of machine learning tools that can be used both for novelty or outlier detection. For a comparison of outlier detection algorithms in scikit-learn, review [this site](https://scikit-learn.org/stable/modules/outlier_detection.html#overview-of-outlier-detection-methods).
 
-For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
+For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest) (this algorithm can't be included in a pipline). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
 ```Python
 from sklearn.ensemble import IsolationForest
@@ -445,7 +445,7 @@ y_pred_train = clf.predict(X_train[list_detect])
 y_pred_test = clf.predict(X_test[list_detect])
 ```
 
-An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see [](data:scaling:robustscaling)). 
+An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data, which can be included in a pipline (see [robust scaling](data:scaling:robustscaling).
 
 
 (section:data:scaling)=
@@ -530,7 +530,7 @@ If you want your transformer to work with scikit-Learn functionalities (such as 
 
 You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py) (see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). 
 
-Note that you get the `fit_transform` automatically by simply adding `TransformerMixin` as a base class. If you add `BaseEstima´tor` as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
+Note that you get the `fit_transform` automatically by simply adding `TransformerMixin` as a base class. If you add `BaseEstimator` as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
 
 (section:data:final-pipeline)=
 ### Final data pipeline

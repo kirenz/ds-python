@@ -1021,7 +1021,7 @@
 <div class="section" id="fix-outliers">
 <span id="section-data-fix-outliers"></span><h4>Fix outliers<a class="headerlink" href="#fix-outliers" title="Permalink to this headline">¶</a></h4>
 <p>There are various options of how to fix outliers and scikit-learn provides a set of machine learning tools that can be used both for novelty or outlier detection. For a comparison of outlier detection algorithms in scikit-learn, review <a class="reference external" href="https://scikit-learn.org/stable/modules/outlier_detection.html#overview-of-outlier-detection-methods">this site</a>.</p>
-<p>For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest">IsolationForest</a>. When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.</p>
+<p>For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest">IsolationForest</a> (this algorithm can’t be included in a pipline). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
 
 <span class="n">list_detect</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">y_label</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -1033,7 +1033,7 @@
 <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">list_detect</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see [](data:scaling:robustscaling)).</p>
+<p>An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data, which can be included in a pipline (see [robust scaling](data:scaling:robustscaling).</p>
 </div>
 <div class="section" id="feature-scaling">
 <span id="section-data-scaling"></span><h4>Feature scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h4>
@@ -1102,7 +1102,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code>.</p></li>
 </ul>
 <p>You find a code template to build your own functions <a class="reference external" href="https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py">here</a> (see <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TemplateTransformer(TransformerMixin,</span> <span class="pre">BaseEstimator)</span></code>).</p>
-<p>Note that you get the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> automatically by simply adding <code class="docutils literal notranslate"><span class="pre">TransformerMixin</span></code> as a base class. If you add <code class="docutils literal notranslate"><span class="pre">BaseEstima´tor</span></code> as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params">get_params() and set_params()</a> that will be useful for automatic hyperparameter tuning.</p>
+<p>Note that you get the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> automatically by simply adding <code class="docutils literal notranslate"><span class="pre">TransformerMixin</span></code> as a base class. If you add <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code> as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params">get_params() and set_params()</a> that will be useful for automatic hyperparameter tuning.</p>
 </div>
 <div class="section" id="final-data-pipeline">
 <span id="section-data-final-pipeline"></span><h3>Final data pipeline<a class="headerlink" href="#final-data-pipeline" title="Permalink to this headline">¶</a></h3>
