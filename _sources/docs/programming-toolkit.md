@@ -170,9 +170,15 @@ Learn how to use Jupyter Notebooks:
 - [How to use Jupyter Notebooks in VS Code](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
 ```
 
-Additional options:
+If you should have troubles to use Anaconda in Visual Studio Code, follow these instructions: 
 
-- Pro tips:[25 VS Code Productivity Tips and Speed Hacks](https://www.youtube.com/watch?v=ifTF3ags0XI)
+- [Windows](https://stackoverflow.com/a/61937090/14796848)
+- [Mac](https://stackoverflow.com/a/55203534/14796848)
+
+
+Additional VS Code options:
+
+- Pro tips: [25 VS Code Productivity Tips and Speed Hacks](https://www.youtube.com/watch?v=ifTF3ags0XI)
 
 How to configure native bracket pair colorization:
 
