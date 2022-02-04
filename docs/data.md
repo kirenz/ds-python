@@ -570,24 +570,4 @@ full_pipeline = ColumnTransformer(
 
 ```
 
-In the following model building phase (see [](model.md)), we can easily combine our full pipline with scikit-learn algorithms:
-
-```Python
-from sklearn.linear_model import LinearRegression
-
-# Use pipeline with linear regression model
-lm_pipe = Pipeline(steps=[
-            ('full_pipeline', full_pipeline),
-            ('lm', LinearRegression())
-                         ])
-```
-
-
-
-```Python
-# show pipeline as diagram
-set_config(display="diagram")
-
-# Fit model
-lm_pipe.fit(X_train, y_train)
-```
+In the following model building phase (see [](model.md)), section "Train and evaluate", we can easily combine our full pipline with scikit-learn algorithms.
