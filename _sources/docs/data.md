@@ -387,12 +387,11 @@ The understanding gained in [data analysis](section:data:analyze) is now used fo
 
 Feature engineering is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like {cite:p}`Kuhn2019`:
  
+- Feature transformation (transform features)
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
-- Feature transformation (transform features)
 
 Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.
-
 
 (section:data:pipeline)=
 ### Pipelines
@@ -404,15 +403,19 @@ scikit-learn provides a library of transformers for data preprocessing and featu
 - scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.html)
 ```
 
-### Encode categorical features
+### Feature transformation
 
-Most algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
+Typically, we need to perform feature transformations because predictors may {cite:p}`Kuhn2019`:
 
-*Scikit-learn* provides a [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.
+- have missing values
+- contain a small number of extreme values (outliers)
+- be on vastly different scales
+- need to be numeric instead of categorical
+- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
+- be censored on the low and/or high end of the range.
 
-*Pandas* also has a function to convert categorical variable into dummy/indicator variables: [pandas.get_dummies](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html)
 
-### Fix missing values
+#### Fix missing values
 
 If we find missing cases in our data, we need to decide how to deal with them. For example, we could:
 
@@ -423,10 +426,12 @@ If we find missing cases in our data, we need to decide how to deal with them. F
 We will include a [imputation of missing values](https://scikit-learn.org/stable/modules/impute.html) in our pipeline.
 
 (section:data:fix-outliers)=
-### Fix outliers
 
-One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
+#### Fix outliers
 
+There are various options of how to fix outliers and scikit-learn provides a set of machine learning tools that can be used both for novelty or outlier detection. For a comparison of outlier detection algorithms in scikit-learn, review [this site](https://scikit-learn.org/stable/modules/outlier_detection.html#overview-of-outlier-detection-methods).
+
+For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
 ```Python
 from sklearn.ensemble import IsolationForest
@@ -440,56 +445,149 @@ y_pred_train = clf.predict(X_train[list_detect])
 y_pred_test = clf.predict(X_test[list_detect])
 ```
 
+An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see [](data:scaling:robustscaling)). 
+
+
+(section:data:scaling)=
+#### Feature scaling
+
+Feature scaling is a method used to change raw feature vectors into a representation that is more suitable for learning algorithms. 
+
+:::{Note}
+Scaling the target values is generally not required.
+:::
+
+##### Types
+
+Most learning algorithms benefit from standardization (normalization) of the data set since they don’t perform well when the input numerical attributes have very different scales (think of different measurment units like cm and m). For instance, many elements used in the objective function of a learning algorithm (such as the RBF kernel of Support Vector Machines or the l1 and l2 regularizers of linear models) assume that all features are centered around zero and have variance in the same order (an exception are decision tree-based estimators since they are robust to arbitrary scaling of the data).
+
+In general, **standardization** uses linear transformers (scalers) which differ from each other in the way they estimate the parameters used to shift and scale each feature. 
+
+Scikit-learn also offers [`QuantileTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html#sklearn.preprocessing.QuantileTransformer) which provides non-linear transformations in which distances between marginal outliers and inliers are shrunk. Furthermore, [`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) provides non-linear transformations in which data is mapped to a normal distribution to stabilize variance and minimize skewness.
+
+Unlike the previous methods, **normalization** refers to a per sample transformation instead of a per feature transformation.
+
+##### StandardScaler
+
+In our projects, we usually use **standardization** to scale our features: Standardization centers the data by removing the mean value of each feature, then scale it by dividing features by their standard deviation. This leads to a standard normally Gaussian distribution with zero mean and unit variance.
+
+Scikit-learn provides a transformer called [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) for this:
+
+```Python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+```
+
+Note that `StandardScaler` cannot guarantee balanced feature scales in the presence of outliers.
+
+(data:scaling:robustscaling)=
+##### RobustScaler
+
+If outliers are present in the data set, **robust scalers** are more appropriate then standard scaler. This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile): [RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler).
+
+```Python
+from sklearn.preprocessing import RobustScaler
+
+scaler = RobustScaler()
+```
+
+##### MinMaxScaler
+
+An alternative to standardization is **Min-max scaling**, also called **normalization**. Here, values are shifted and rescaled so that they end up ranging from 0 to 1 (e.g., neural networks often expect an input value ranging from 0 to 1). We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called [MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) for this. It has a feature_range hyperparameter that lets you change the range if, for some reason, you don’t want 0–1.
+
+```Python
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+```
+
+Note that `MinMaxScaler` is very sensitive to the presence of outliers.
+
+#### Encode categorical features
+
+Usually algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
+
+*Scikit-learn* provides a [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.
+
+*Pandas* also has a function to convert categorical variable into dummy/indicator variables: [pandas.get_dummies](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html)
+
 ### Feature extraction
 
 Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.
 
 If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different [unsupervised dimensionality reduction methods](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction) in scikit-learn.
 
-### Feature transformation
+### Custom feature operations
 
-Typically, we als need to perform feature transformations because predictors may {cite:p}`Kuhn2019`:
+Although scikit-Learn provides many useful transformers, eventually you may need to write your own functions for tasks such as custom data cleaning procedures or feature engineering (like creating new features). 
 
-- be on vastly different scales.
-- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
-- contain a small number of extreme values.
-- be censored on the low and/or high end of the range.
-
-### Feature creation
-
-Although scikit-Learn provides many useful transformers, you will need to write your own functions for tasks such as custom data cleaning procedures or combining specific attributes. If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods: 
+If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods: 
 
 - `fit()` (returning self), 
 - `transform()`, and 
 - `fit_transform()`.
 
-You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py):
-(see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
- you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
+You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py) (see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). 
 
+Note that you get the `fit_transform` automatically by simply adding `TransformerMixin` as a base class. If you add `BaseEstima´tor` as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
 
-(section:data:preprocessing-pipeline)=
-### Data preprocessing pipeline
+(section:data:final-pipeline)=
+### Final data pipeline
 
-In this section, we will build a typical data preprocessing pipeline. 
+In this final step, we will build a typical data preprocessing pipeline using some of the functions covered in the previous sections. 
+
+:::{Note}
+We use features created in [](section:data:variable-lists) for some of the steps shown below
+:::  
 
 
 ```Python
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import OneHotEncoder
 
-# numeric pipeline
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median'))]
+# build numeric pipeline
+num_pipeline = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', RobustScaler())
+    ])
 
-# categorical pipeline
-categorical_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
+# build categorical pipeline
+cat_pipeline = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
 
-preprocessor = ColumnTransformer(
+# create full pipeline
+full_pipeline = ColumnTransformer(
     transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)])
+        ('num', num_pipeline, feat_num),
+        ('cat', cat_pipeline, feat_cat)])
+
+
+```
+
+In the following model building phase (see [](model.md)), we can easily combine our full pipline with scikit-learn algorithms:
+
+```Python
+from sklearn.linear_model import LinearRegression
+
+# Use pipeline with linear regression model
+lm_pipe = Pipeline(steps=[
+            ('full_pipeline', full_pipeline),
+            ('lm', LinearRegression())
+                         ])
 ```
 
 
+
+```Python
+# show pipeline as diagram
+set_config(display="diagram")
+
+# Fit model
+lm_pipe.fit(X_train, y_train)
+```

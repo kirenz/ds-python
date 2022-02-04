@@ -60,12 +60,12 @@ plot_example_decision_tree()
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1712/2298513404.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1645/2298513404.py[0m in [0;36m<module>[0;34m[0m
 [1;32m     37[0m     [0max[0m[0;34m.[0m[0maxis[0m[0;34m([0m[0;34m[[0m[0;36m0[0m[0;34m,[0m [0;36m1[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0;36m1[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m     38[0m [0;34m[0m[0m
 [0;32m---> 39[0;31m [0mplot_example_decision_tree[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;32m/tmp/ipykernel_1712/2298513404.py[0m in [0;36mplot_example_decision_tree[0;34m()[0m
+[0;32m/tmp/ipykernel_1645/2298513404.py[0m in [0;36mplot_example_decision_tree[0;34m()[0m
 [1;32m      6[0m     [0max[0m[0;34m.[0m[0mset_title[0m[0;34m([0m[0;34m'Example Decision Tree: Animal Classification'[0m[0;34m,[0m [0msize[0m[0;34m=[0m[0;36m24[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      7[0m     [0;31m# Disable color cycling for lines[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 8[0;31m     [0max[0m[0;34m.[0m[0mset_prop_cycle[0m[0;34m([0m[0mcolor[0m[0;34m=[0m[0;34m[[0m[0mplt[0m[0;34m.[0m[0mrcParams[0m[0;34m[[0m[0;34m'lines.color'[0m[0;34m][0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
