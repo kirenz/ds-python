@@ -433,7 +433,6 @@ There are various options of how to fix outliers and scikit-learn provides a set
 
 For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
-
 ```Python
 from sklearn.ensemble import IsolationForest
 
@@ -446,18 +445,33 @@ y_pred_train = clf.predict(X_train[list_detect])
 y_pred_test = clf.predict(X_test[list_detect])
 ```
 
-An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see []((section:data:scaling)) 
+An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see [](data:scaling:robustscaling)). 
+
 
 (section:data:scaling)=
 #### Feature scaling
 
-Feature scaling is a method used to change raw feature vectors into a representation that is more suitable for learning algorithms. Note that scaling the target values is generally not required.
+Feature scaling is a method used to change raw feature vectors into a representation that is more suitable for learning algorithms. 
 
-Most learning algorithms benefit from standardization (normalization) of the data set since they don’t perform well when the input numerical attributes have very different scales (think of different measurment units like cm and m). For instance, many elements used in the objective function of a learning algorithm (such as the RBF kernel of Support Vector Machines or the l1 and l2 regularizers of linear models) assume that all features are centered around zero and have variance in the same order.
+:::{Note}
+Scaling the target values is generally not required.
+:::
 
-We usually use standardization to scale our features. Standardization centers the data by removing the mean value of each feature, then scale it by dividing features by their standard deviation. This leads to a standard normally Gaussian distribution with zero mean and unit variance).
+##### Types
 
-Scikit-learn provides a transformer called [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) for this
+Most learning algorithms benefit from standardization (normalization) of the data set since they don’t perform well when the input numerical attributes have very different scales (think of different measurment units like cm and m). For instance, many elements used in the objective function of a learning algorithm (such as the RBF kernel of Support Vector Machines or the l1 and l2 regularizers of linear models) assume that all features are centered around zero and have variance in the same order (an exception are decision tree-based estimators since they are robust to arbitrary scaling of the data).
+
+In general, **standardization** uses linear transformers (scalers) which differ from each other in the way they estimate the parameters used to shift and scale each feature. 
+
+Scikit-learn also offers [`QuantileTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html#sklearn.preprocessing.QuantileTransformer) which provides non-linear transformations in which distances between marginal outliers and inliers are shrunk. Furthermore, [`PowerTransformer`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer) provides non-linear transformations in which data is mapped to a normal distribution to stabilize variance and minimize skewness.
+
+Unlike the previous methods, **normalization** refers to a per sample transformation instead of a per feature transformation.
+
+##### StandardScaler
+
+In our projects, we usually use **standardization** to scale our features: Standardization centers the data by removing the mean value of each feature, then scale it by dividing features by their standard deviation. This leads to a standard normally Gaussian distribution with zero mean and unit variance.
+
+Scikit-learn provides a transformer called [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) for this:
 
 ```Python
 from sklearn.preprocessing import StandardScaler
@@ -465,9 +479,10 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 ```
 
-Note that if some outliers are present in the data set, robust scalers are more appropriate. This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile).
+(data:scaling:robustscaling)=
+##### RobustScaler
 
-[RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler) in scikit-learn:
+If outliers are present in the data set, **robust scalers** are more appropriate then standard scaler. This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile): [RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler).
 
 ```Python
 from sklearn.preprocessing import RobustScaler
@@ -475,7 +490,9 @@ from sklearn.preprocessing import RobustScaler
 scaler = RobustScaler()
 ```
 
-An alternativte to standardization is **Min-max scaling** (normalization). Here, values are shifted and rescaled so that they end up ranging from 0 to 1 (e.g., neural networks often expect an input value ranging from 0 to 1). We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called [MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) for this. It has a feature_range hyperparameter that lets you change the range if, for some reason, you don’t want 0–1.
+##### MinMaxScaler
+
+An alternative to standardization is **Min-max scaling**, also called **normalization**. Here, values are shifted and rescaled so that they end up ranging from 0 to 1 (e.g., neural networks often expect an input value ranging from 0 to 1). We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called [MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) for this. It has a feature_range hyperparameter that lets you change the range if, for some reason, you don’t want 0–1.
 
 ```Python
 from sklearn.preprocessing import MinMaxScaler
