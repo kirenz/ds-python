@@ -387,12 +387,11 @@ The understanding gained in [data analysis](section:data:analyze) is now used fo
 
 Feature engineering is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like {cite:p}`Kuhn2019`:
  
+- Feature transformation (transform features)
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
-- Feature transformation (transform features)
 
 Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.
-
 
 (section:data:pipeline)=
 ### Pipelines
@@ -404,15 +403,19 @@ scikit-learn provides a library of transformers for data preprocessing and featu
 - scikit-learn's [pipelines documentation](https://scikit-learn.org/stable/modules/compose.html)
 ```
 
-### Encode categorical features
+### Feature transformation
 
-Most algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
+Typically, we need to perform feature transformations because predictors may {cite:p}`Kuhn2019`:
 
-*Scikit-learn* provides a [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.
+- have missing values
+- contain a small number of extreme values (outliers)
+- be on vastly different scales
+- need to be numeric instead of categorical
+- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
+- be censored on the low and/or high end of the range.
 
-*Pandas* also has a function to convert categorical variable into dummy/indicator variables: [pandas.get_dummies](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html)
 
-### Fix missing values
+#### Fix missing values
 
 If we find missing cases in our data, we need to decide how to deal with them. For example, we could:
 
@@ -423,9 +426,12 @@ If we find missing cases in our data, we need to decide how to deal with them. F
 We will include a [imputation of missing values](https://scikit-learn.org/stable/modules/impute.html) in our pipeline.
 
 (section:data:fix-outliers)=
-### Fix outliers
 
-One efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
+#### Fix outliers
+
+There are various options of how to fix outliers and scikit-learn provides a set of machine learning tools that can be used both for novelty or outlier detection. For a comparison of outlier detection algorithms in scikit-learn, review [this site](https://scikit-learn.org/stable/modules/outlier_detection.html#overview-of-outlier-detection-methods).
+
+For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm [IsolationForest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.
 
 
 ```Python
@@ -440,20 +446,58 @@ y_pred_train = clf.predict(X_train[list_detect])
 y_pred_test = clf.predict(X_test[list_detect])
 ```
 
+An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data (see []((section:data:scaling)) 
+
+(section:data:scaling)=
+#### Feature scaling
+
+Feature scaling is a method used to change raw feature vectors into a representation that is more suitable for learning algorithms. Note that scaling the target values is generally not required.
+
+Most learning algorithms benefit from standardization (normalization) of the data set since they don’t perform well when the input numerical attributes have very different scales (think of different measurment units like cm and m). For instance, many elements used in the objective function of a learning algorithm (such as the RBF kernel of Support Vector Machines or the l1 and l2 regularizers of linear models) assume that all features are centered around zero and have variance in the same order.
+
+We usually use standardization to scale our features. Standardization centers the data by removing the mean value of each feature, then scale it by dividing features by their standard deviation. This leads to a standard normally Gaussian distribution with zero mean and unit variance).
+
+Scikit-learn provides a transformer called [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) for this
+
+```Python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+```
+
+Note that if some outliers are present in the data set, robust scalers are more appropriate. This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile).
+
+[RobustScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler) in scikit-learn:
+
+```Python
+from sklearn.preprocessing import RobustScaler
+
+scaler = RobustScaler()
+```
+
+An alternativte to standardization is **Min-max scaling** (normalization). Here, values are shifted and rescaled so that they end up ranging from 0 to 1 (e.g., neural networks often expect an input value ranging from 0 to 1). We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called [MinMaxScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html) for this. It has a feature_range hyperparameter that lets you change the range if, for some reason, you don’t want 0–1.
+
+```Python
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+```
+
+#### Encode categorical features
+
+Usually algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
+
+*Scikit-learn* provides a [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.
+
+*Pandas* also has a function to convert categorical variable into dummy/indicator variables: [pandas.get_dummies](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html)
+
 ### Feature extraction
 
 Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response {cite:p}`Kuhn2019`. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.
 
 If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different [unsupervised dimensionality reduction methods](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction) in scikit-learn.
 
-### Feature transformation
 
-Typically, we als need to perform feature transformations because predictors may {cite:p}`Kuhn2019`:
-
-- be on vastly different scales.
-- follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).
-- contain a small number of extreme values.
-- be censored on the low and/or high end of the range.
 
 ### Feature creation
 
