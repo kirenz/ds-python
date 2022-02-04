@@ -479,6 +479,8 @@ from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 ```
 
+Note that `StandardScaler` cannot guarantee balanced feature scales in the presence of outliers.
+
 (data:scaling:robustscaling)=
 ##### RobustScaler
 
@@ -500,6 +502,8 @@ from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 ```
 
+Note that `MinMaxScaler` is very sensitive to the presence of outliers.
+
 #### Encode categorical features
 
 Usually algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers. 
@@ -514,43 +518,76 @@ Features may contain relevant but overly redundant information. That is, the inf
 
 If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different [unsupervised dimensionality reduction methods](https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction) in scikit-learn.
 
+### Custom feature operations
 
+Although scikit-Learn provides many useful transformers, eventually you may need to write your own functions for tasks such as custom data cleaning procedures or feature engineering (like creating new features). 
 
-### Feature creation
-
-Although scikit-Learn provides many useful transformers, you will need to write your own functions for tasks such as custom data cleaning procedures or combining specific attributes. If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods: 
+If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods: 
 
 - `fit()` (returning self), 
 - `transform()`, and 
 - `fit_transform()`.
 
-You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py):
-(see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). Note that 
- you get the `fit_transform` automatically by simply adding TransformerMixin as a base class. If you add BaseEstimator as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
+You find a code template to build your own functions [here](https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py) (see `class TemplateTransformer(TransformerMixin, BaseEstimator)`). 
 
+Note that you get the `fit_transform` automatically by simply adding `TransformerMixin` as a base class. If you add `BaseEstima´tor` as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods [get_params() and set_params()](https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params) that will be useful for automatic hyperparameter tuning.
 
-(section:data:preprocessing-pipeline)=
-### Data preprocessing pipeline
+(section:data:final-pipeline)=
+### Final data pipeline
 
-In this section, we will build a typical data preprocessing pipeline. 
+In this final step, we will build a typical data preprocessing pipeline using some of the functions covered in the previous sections. 
+
+:::{Note}
+We use features created in [](section:data:variable-lists) for some of the steps shown below
+:::  
 
 
 ```Python
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import OneHotEncoder
 
-# numeric pipeline
-numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='median'))]
+# build numeric pipeline
+num_pipeline = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', RobustScaler())
+    ])
 
-# categorical pipeline
-categorical_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='constant', fill_value='missing'))]
+# build categorical pipeline
+cat_pipeline = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
 
-preprocessor = ColumnTransformer(
+# create full pipeline
+full_pipeline = ColumnTransformer(
     transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorical_features)])
+        ('num', num_pipeline, feat_num),
+        ('cat', cat_pipeline, feat_cat)])
+
+
+```
+
+In the following model building phase (see [](model.md)), we can easily combine our full pipline with scikit-learn algorithms:
+
+```Python
+from sklearn.linear_model import LinearRegression
+
+# Use pipeline with linear regression model
+lm_pipe = Pipeline(steps=[
+            ('full_pipeline', full_pipeline),
+            ('lm', LinearRegression())
+                         ])
 ```
 
 
+
+```Python
+# show pipeline as diagram
+set_config(display="diagram")
+
+# Fit model
+lm_pipe.fit(X_train, y_train)
+```
