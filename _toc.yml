@@ -1,7 +1,7 @@
 format: jb-book
 root: docs/intro.md
 parts:
-  - caption: Toolkit
+ ￼ - caption: Toolkit
     chapters:
     - file: docs/programming-toolkit.md
   - caption: Data Science Lifecycle
@@ -10,7 +10,10 @@ parts:
     - file: docs/plan.md    
     - file: docs/data.md       
     - file: docs/model.md 
-    - file: docs/deployment.md    
+    - file: docs/deployment.md
+  - caption: Algorithms
+    chapters:
+    - file: docs/trees.ipynb    
   - caption: References
     chapters:
     - file: docs/reference.md
