@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overfitting &#8212; Data Science with Python</title>
+    <title>Decison Trees &#8212; Data Science with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -238,17 +238,44 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Overfitting
+   Decison Trees
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intuition">
+     Intuition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interactive-example">
+     Interactive example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overfitting">
+     Overfitting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensemble-of-estimators">
+     Ensemble of estimators
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-decision-tree">
+     Creating a decision tree
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression">
+     Regression
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ensemble-of-estimators">
-   Ensemble of estimators
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regression">
-   Regression
+  <a class="reference internal nav-link" href="#hand-written-digits">
+   Hand written digits
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -266,7 +293,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Overfitting</h1>
+                <h1>Decison Trees</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -278,17 +305,44 @@
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Overfitting
+   Decison Trees
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intuition">
+     Intuition
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interactive-example">
+     Interactive example
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overfitting">
+     Overfitting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensemble-of-estimators">
+     Ensemble of estimators
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-decision-tree">
+     Creating a decision tree
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression">
+     Regression
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ensemble-of-estimators">
-   Ensemble of estimators
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regression">
-   Regression
+  <a class="reference internal nav-link" href="#hand-written-digits">
+   Hand written digits
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -305,16 +359,15 @@
             
               <div>
                 
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Decison Tree</span>
-</pre></div>
-</div>
-</div>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="decison-trees">
+<h1>Decison Trees<a class="headerlink" href="#decison-trees" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial is based on content from the excellent app <a class="reference external" href="https://tinkerstellar.com">Tinkerstellar</a>.</p>
+<div class="section" id="intuition">
+<h2>Intuition<a class="headerlink" href="#intuition" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">def</span> <span class="nf">plot_example_decision_tree</span><span class="p">():</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -357,12 +410,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_1_0.png" src="../_images/trees_1_0.png" />
+<img alt="../_images/trees_3_0.png" src="../_images/trees_3_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="interactive-example">
+<h2>Interactive example<a class="headerlink" href="#interactive-example" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -371,13 +429,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_2_0.png" src="../_images/trees_2_0.png" />
+<img alt="../_images/trees_5_0.png" src="../_images/trees_5_0.png" />
 </div>
 </div>
-<p>Let’s use ipywidgets to make an interactive plot of a decision tree of various depths. We will use a convenience function visualize_tree() — feel free to check this lab’s Appendix chapter if you’d like to see its full source code. Effectively, it generates a (static) plot of decision tree classifier with specified parameters</p>
+<p>We use ipywidgets to make an interactive plot of a decision tree of various depths. Effectively, it generates a (static) plot of decision tree classifier with specified parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">visualize_tree</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -423,18 +481,27 @@
             
     <span class="k">if</span> <span class="n">boundaries</span><span class="p">:</span>
         <span class="n">plot_boundaries</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">())</span>
-        
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_7_0.png" src="../_images/trees_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
 <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_4_0.png" src="../_images/trees_4_0.png" />
+<img alt="../_images/trees_8_0.png" src="../_images/trees_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -453,43 +520,45 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "892a14af0c3e4c948c7278a5fa099fca", "version_major": 2, "version_minor": 0}
+{"model_id": "5e46fe1125bb472088c42b38b2defbaf", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Try changing the slider position and notice that at each increase in depth, every node is split in two except those nodes which contain only a single class. The result is a very fast non-parametric classification, and can be extremely useful in practice.</p>
-<div class="tex2jax_ignore mathjax_ignore section" id="overfitting">
-<h1>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline">¶</a></h2>
 <p>One issue with decision trees is that it is very easy to create trees which overfit the data. That is, they are flexible enough that they can learn the structure of the noise in the data rather than the signal! For example, take a look at two trees built on two subsets of this dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
 <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">[:</span><span class="mi">200</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">200</span><span class="p">],</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Subset</span> <span class="n">of</span> <span class="n">the</span> <span class="n">last</span> <span class="mi">200</span> <span class="n">data</span> <span class="n">points</span>
-</pre></div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_13_0.png" src="../_images/trees_13_0.png" />
 </div>
 </div>
-</div>
+<p>Subset of the last 200 data points</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">:],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">:],</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_15_0.png" src="../_images/trees_15_0.png" />
+</div>
 </div>
 <p>The details of the classifications are completely different! That is an indication of overfitting: when you predict the value for a new point, the result is more reflective of the noise in the model rather than the signal.</p>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="ensemble-of-estimators">
-<h1>Ensemble of estimators<a class="headerlink" href="#ensemble-of-estimators" title="Permalink to this headline">¶</a></h1>
-<p>One possible way to address over-fitting is to use an ensemble method: this is a meta-estimator which essentially averages the results of many individual estimators which over-fit the data. Somewhat surprisingly, the resulting estimates are much more robust and accurate than the individual estimates which make them up!
-One of the most common ensemble methods is the random forest, in which the ensemble is made up of many decision trees which are in some way perturbed.
-There are volumes of theory and precedent about how to randomize these trees, but as an example, let’s imagine an ensemble of estimators fit on subsets of the data. We can get an idea of what these might look like as follows:</p>
+<div class="section" id="ensemble-of-estimators">
+<h2>Ensemble of estimators<a class="headerlink" href="#ensemble-of-estimators" title="Permalink to this headline">¶</a></h2>
+<p>One possible way to address over-fitting is to use an ensemble method: this is a meta-estimator which essentially averages the results of many individual estimators which over-fit the data. Somewhat surprisingly, the resulting estimates are much more robust and accurate than the individual estimates which make them up!</p>
+<p>One of the most common ensemble methods is the random forest, in which the ensemble is made up of many decision trees which are in some way perturbed.</p>
+<p>There are volumes of theory and precedent about how to randomize these trees, but as an example, let’s imagine an ensemble of estimators fit on subsets of the data. We can get an idea of what these might look like as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -514,60 +583,19 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ff731336742849ad8ba6ccae3198d5bc", "version_major": 2, "version_minor": 0}
+{"model_id": "072f5dd9cf4e4b96ad5adb87623b6d32", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>See how the details of the model change as a function of the sample, while the larger characteristics remain the same!</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a decision tree</span>
-</pre></div>
 </div>
-</div>
-</div>
+<div class="section" id="creating-a-decision-tree">
+<h2>Creating a decision tree<a class="headerlink" href="#creating-a-decision-tree" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
 <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>By averaging over 100 randomly perturbed models, we end up with an overall model which is a much better fit to our data!</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="regression">
-<h1>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h1>
-<p>Above we were considering random forests within the context of classification. Random forests can also be made to work in the case of regression (that is, continuous rather than categorical variables). The estimator to use for th</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-
-<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
-    <span class="n">fast_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">slow_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">slow_oscillation</span> <span class="o">+</span> <span class="n">fast_oscillation</span> <span class="o">+</span> <span class="n">noise</span>
-
-<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/trees_20_0.png" src="../_images/trees_20_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">yfit</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xfit</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
-<span class="n">ytrue</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">ytrue</span><span class="p">,</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -575,17 +603,68 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 <img alt="../_images/trees_21_0.png" src="../_images/trees_21_0.png" />
 </div>
 </div>
-<p>As you can see, the non-parametric random forest model is flexible enough to fit the multi-period data, without us even specifying a multi-period model!</p>
+<p>By averaging over 100 randomly perturbed models, we end up with an overall model which is a much better fit to our data!</p>
+</div>
+<div class="section" id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
+<p>Above we were considering random forests within the context of classification. Random forests can also be made to work in the case of regression (that is, continuous rather than categorical variables).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hand written digits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="c1"># make data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="n">fast_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">slow_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">slow_oscillation</span> <span class="o">+</span> <span class="n">fast_oscillation</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ytrue</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_24_0.png" src="../_images/trees_24_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">yfit</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xfit</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">ytrue</span><span class="p">,</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_26_0.png" src="../_images/trees_26_0.png" />
+</div>
+</div>
+<p>As you can see, the non-parametric random forest model is flexible enough to fit the multi-period data, without us even specifying a multi-period model!</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="hand-written-digits">
+<h1>Hand written digits<a class="headerlink" href="#hand-written-digits" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
 <span class="n">digits</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
@@ -601,6 +680,7 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -613,12 +693,14 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 </div>
 </div>
-<p>remind us what we’re looking at, we’ll visualize the first few data points. The data in digits.images is a 1797x8x8 array, with each pixel value within an 8x8 grid.</p>
+<p>To remind us what we’re looking at, we’ll visualize the first few data points. The data in digits.images is a 1797x8x8 array, with each pixel value within an 8x8 grid.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the figure</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="c1"># Set up the figure</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
 <span class="c1"># Plot the digits: each image is 8x8 pixels</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
@@ -629,7 +711,7 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_27_0.png" src="../_images/trees_27_0.png" />
+<img alt="../_images/trees_32_0.png" src="../_images/trees_32_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -640,6 +722,7 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">,</span> <span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
+
 <span class="n">ypred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -652,7 +735,7 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8355555555555556
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8444444444444444
 </pre></div>
 </div>
 </div>
@@ -672,7 +755,7 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_31_0.png" src="../_images/trees_31_0.png" />
+<img alt="../_images/trees_36_0.png" src="../_images/trees_36_0.png" />
 </div>
 </div>
 <p>Exercises</p>
@@ -686,14 +769,18 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 
 <span class="c1"># Load data and split into train and test sets</span>
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+
 <span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
+
 <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">,</span> <span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
 <span class="c1"># Fit the model</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
 <span class="n">ypred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model accuracy: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span> <span class="n">ytest</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="c1"># Plot confusion matrix</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">ypred</span><span class="p">,</span> <span class="n">ytest</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -704,10 +791,10 @@ There are volumes of theory and precedent about how to randomize these trees, bu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model accuracy: 0.8333333333333334
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model accuracy: 0.8355555555555556
 </pre></div>
 </div>
-<img alt="../_images/trees_33_1.png" src="../_images/trees_33_1.png" />
+<img alt="../_images/trees_38_1.png" src="../_images/trees_38_1.png" />
 </div>
 </div>
 </div>
