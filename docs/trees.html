@@ -264,6 +264,13 @@
   <a class="reference internal nav-link" href="#ensemble-of-estimators">
    Ensemble of estimators
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     Random forest
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regression">
@@ -326,6 +333,13 @@
   <a class="reference internal nav-link" href="#ensemble-of-estimators">
    Ensemble of estimators
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     Random forest
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regression">
@@ -416,7 +430,15 @@
 <img alt="../_images/trees_2_0.png" src="../_images/trees_2_0.png" />
 </div>
 </div>
-<p>The binary splitting makes the procedure very efficient. In training a decision tree classifier, the algorithm looks at the features and decides which questions (or “splits”) contain the most information.</p>
+<p>The binary splitting makes the procedure very efficient. In training a decision tree classifier, the algorithm looks at the features and decides which questions (or “splits”) contain the most information. Take a look at R2D3’s [“A visual introduction to machine learning” <a class="reference external" href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">http://www.r2d3.us/visual-intro-to-machine-learning-part-1/</a>] to get a visual explanation of how decision trees work.</p>
+<div>
+  <iframe id="R2D3"
+      title="Visual intro to decision trees"
+      width="960"
+      height="569"
+      src="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">
+  </iframe>
+</div>
 <div class="section" id="interactive-example">
 <h2>Interactive example<a class="headerlink" href="#interactive-example" title="Permalink to this headline">¶</a></h2>
 <p>Next, we use an example data with 4 centers.</p>
@@ -487,7 +509,7 @@
 </div>
 </div>
 </div>
-<p>We use a custom function which generates a (static) plot of decision tree classifier with specified parameters.</p>
+<p>We use a custom function which generates a (static) plot of a decision tree classifier with specified parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
@@ -525,7 +547,12 @@
 {"model_id": "5e46fe1125bb472088c42b38b2defbaf", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to run this notebook on your machine or <a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwj2kMTrtPD1AhXm7rsIHWhzDtsQFnoECAUQAQ&amp;url=https%3A%2F%2Fcolab.research.google.com%2F&amp;usg=AOvVaw3A5aPK2kLFzKOzb6sOckVw">colab</a> to execute the interactive plot
+::</p>
 <p>Try changing the slider position and notice that at each increase in depth, every node is split in two except those nodes which contain only a single class.</p>
+</div>
 </div>
 <div class="section" id="overfitting">
 <h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline">¶</a></h2>
@@ -554,6 +581,7 @@
 </div>
 </div>
 <p>Note that the details of the classifications are very different which is an indication of overfitting: when you predict the value for a new point, the result is more reflective of the noise in the model rather than the signal.</p>
+<p>Again, take a look at r2d3’s visual introduction of <a class="reference external" href="http://www.r2d3.us/visual-intro-to-machine-learning-part-2/">“Model Tuning and the Bias-Variance Tradeoff”</a> to learn more about the concept of overfitting.</p>
 </div>
 <div class="section" id="ensemble-of-estimators">
 <h2>Ensemble of estimators<a class="headerlink" href="#ensemble-of-estimators" title="Permalink to this headline">¶</a></h2>
@@ -562,7 +590,9 @@
 <li><p>this is a meta-estimator which essentially averages the results of many individual estimators which over-fit the data.</p></li>
 <li><p>Somewhat surprisingly, the resulting estimates are much more robust and accurate than the individual estimates which make them up.</p></li>
 </ul>
-<p>One of the most common ensemble methods is the random forest, in which the ensemble is made up of many decision trees.</p>
+<div class="section" id="random-forest">
+<h3>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<p>One of the most common ensemble methods is the <strong>random forest</strong>, in which the ensemble is made up of many decision trees.</p>
 <p>Let’s use an ensemble of estimators fit on subsets of the data. We can get an idea of what these might look like as follows:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -592,7 +622,7 @@
 {"model_id": "072f5dd9cf4e4b96ad5adb87623b6d32", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
-<p>Creating a decision tree:</p>
+<p>Creating a random forest:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -607,7 +637,8 @@
 <img alt="../_images/trees_21_0.png" src="../_images/trees_21_0.png" />
 </div>
 </div>
-<p>By averaging over 100 randomly perturbed models, we end up with an overall model which is a much better fit to our data.</p>
+<p>By averaging over 100 randomly decision tree models, we end up with an overall model which is a much better fit to our data.</p>
+</div>
 </div>
 <div class="section" id="regression">
 <h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
