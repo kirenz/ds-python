@@ -20,8 +20,8 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 # HIDE CODE
 
 # Python setup
+%matplotlib inline
 import numpy as np
-
 import matplotlib.pyplot as plt
 
 from sklearn.datasets import make_blobs
@@ -33,7 +33,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import ConfusionMatrixDisplay
 
 from ipywidgets import interactive
 from ipywidgets import interact, IntSlider
@@ -41,7 +43,7 @@ from ipywidgets import interact, IntSlider
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1718/2083482569.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1738/3221088179.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      6[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      7[0m [0;34m[0m[0m
 [0;32m----> 8[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdatasets[0m [0;32mimport[0m [0mmake_blobs[0m[0;34m[0m[0;34m[0m[0m
