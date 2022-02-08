@@ -388,7 +388,6 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span>
@@ -574,7 +573,7 @@
 <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 
 <span class="c1"># visualize boundaries of classifier with custom function</span>
-<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf_inter</span><span class="p">,</span> <span class="n">X</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -596,9 +595,24 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "14e756dd43f543918af1ad7e8a53978b", "version_major": 2, "version_minor": 0}
+{"model_id": "e398dc9c916d481fa0752f0a0d92b82e", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Depths 1 and 3</p></th>
+<th class="head"><p>Depths 2 and 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="../_images/tree-1.png" /></p></td>
+<td><p><img alt="" src="../_images/tree-2.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="../_images/tree-3.png" /></p></td>
+<td><p><img alt="" src="../_images/tree-4.png" /></p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You need to run this notebook on your machine or <a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwj2kMTrtPD1AhXm7rsIHWhzDtsQFnoECAUQAQ&amp;url=https%3A%2F%2Fcolab.research.google.com%2F&amp;usg=AOvVaw3A5aPK2kLFzKOzb6sOckVw">colab</a> to execute the interactive plot</p>
@@ -620,7 +634,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_17_0.png" src="../_images/trees_17_0.png" />
+<img alt="../_images/trees_18_0.png" src="../_images/trees_18_0.png" />
 </div>
 </div>
 <p>Next, we use a different sample to fit another tree:</p>
@@ -636,7 +650,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_19_0.png" src="../_images/trees_19_0.png" />
+<img alt="../_images/trees_20_0.png" src="../_images/trees_20_0.png" />
 </div>
 </div>
 <p>Note that the details of the classifications are very different which is an indication of overfitting: when you predict the value for a new point, the result is more reflective of the noise in the model rather than the signal.</p>
@@ -661,12 +675,12 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
 
 <span class="k">def</span> <span class="nf">fit_randomized_tree</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="c1">#    X, y = make_blobs(n_samples=300, centers=4, random_state=0, cluster_std=2.0)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
     <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">250</span><span class="p">]],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">250</span><span class="p">]],</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">20</span><span class="p">]],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">20</span><span class="p">]],</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
                    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -679,7 +693,7 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "d6b7e52091684b439667db631e17e3a0", "version_major": 2, "version_minor": 0}
+{"model_id": "27c17b711916463fb8e0412eb03d4ce3", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Creating a random forest:</p>
@@ -692,7 +706,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_24_0.png" src="../_images/trees_24_0.png" />
+<img alt="../_images/trees_25_0.png" src="../_images/trees_25_0.png" />
 </div>
 </div>
 <p>By averaging over 100 randomly decision tree models, we end up with an overall model which is a much better fit to our data.</p>
@@ -720,7 +734,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_27_0.png" src="../_images/trees_27_0.png" />
+<img alt="../_images/trees_28_0.png" src="../_images/trees_28_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -748,7 +762,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_30_0.png" src="../_images/trees_30_0.png" />
+<img alt="../_images/trees_31_0.png" src="../_images/trees_31_0.png" />
 </div>
 </div>
 <p>As you can see, the non-parametric random forest model is flexible enough to fit the multi-period data, without us even specifying a multi-period model.</p>
@@ -805,7 +819,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_37_0.png" src="../_images/trees_37_0.png" />
+<img alt="../_images/trees_38_0.png" src="../_images/trees_38_0.png" />
 </div>
 </div>
 </div>
@@ -824,7 +838,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model accuracy: 0.85
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model accuracy: 0.84
 </pre></div>
 </div>
 </div>
@@ -845,7 +859,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_41_0.png" src="../_images/trees_41_0.png" />
+<img alt="../_images/trees_42_0.png" src="../_images/trees_42_0.png" />
 </div>
 </div>
 <p>Finally, we take a look at the classification report.</p>
@@ -858,20 +872,20 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0      0.895     0.919     0.907        37
-           1      0.867     0.907     0.886        43
-           2      0.818     0.818     0.818        44
-           3      0.642     0.756     0.694        45
-           4      0.892     0.868     0.880        38
-           5      0.891     0.854     0.872        48
-           6      0.943     0.962     0.952        52
-           7      0.951     0.812     0.876        48
-           8      0.902     0.771     0.831        48
-           9      0.731     0.809     0.768        47
+           0      0.872     0.919     0.895        37
+           1      0.911     0.953     0.932        43
+           2      0.756     0.773     0.764        44
+           3      0.739     0.756     0.747        45
+           4      0.846     0.868     0.857        38
+           5      0.872     0.854     0.863        48
+           6      0.980     0.942     0.961        52
+           7      0.950     0.792     0.864        48
+           8      0.809     0.792     0.800        48
+           9      0.712     0.787     0.747        47
 
-    accuracy                          0.847       450
-   macro avg      0.853     0.848     0.849       450
-weighted avg      0.854     0.847     0.848       450
+    accuracy                          0.842       450
+   macro avg      0.845     0.844     0.843       450
+weighted avg      0.846     0.842     0.843       450
 </pre></div>
 </div>
 </div>
