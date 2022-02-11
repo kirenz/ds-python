@@ -45,6 +45,8 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -369,18 +371,7 @@ First, let’s generate some one-dimensional data in a particular distribution. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1791</span><span class="o">/</span><span class="mf">3790497529.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span> <span class="k">as</span> <span class="n">GMM</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Fit the model:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">clf</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">xpdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
-</pre></div>
-</div>
+<img alt="../_images/gmm_2_0.png" src="../_images/gmm_2_0.png" />
 </div>
 </div>
 <p>Note that this density is fit not as a single Gaussian, but using a mixture of Gaussians. Next, we will examine its individual components.</p>
@@ -393,20 +384,20 @@ First, let’s generate some one-dimensional data in a particular distribution. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Means = [[ 2.3930921 ]
- [11.08960533]
- [-0.92546383]
- [ 7.02808953]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Means = [[-1.762037  ]
+ [ 8.04894855]
+ [ 2.87628921]
+ [-0.26509542]]
 
-Covariances = [[[ 2.24902207]]
+Covariances = [[[ 7.39304484]]
 
- [[10.099018  ]]
+ [[14.2611261 ]]
 
- [[ 4.98083492]]
+ [[ 1.25253655]]
 
- [[ 3.87429382]]]
+ [[ 2.1852085 ]]]
 
-Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
+Weights = [0.15154409 0.2532411  0.28492403 0.31029078]
 </pre></div>
 </div>
 </div>
@@ -441,8 +432,8 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25963.88685202711
-25893.114924619862
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25825.201910224507
+25754.42998281726
 </pre></div>
 </div>
 </div>
@@ -553,7 +544,8 @@ Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True outliers: [  99  537  705 1033 1653 1701 1871 2046 2135 2163 2222 2496 2599 2607
  2732 2893 2897 3264 3468 4373]
 
-Detected outliers: [  99  537  705 1653 2046 2135 2163 2496 2732 2893 2897 3067 3468 4373]
+Detected outliers: [  99  537  705 1653 2046 2130 2135 2163 2222 2496 2724 2732 2893 2897
+ 3067 3173 3253 3468 3483 4373]
 </pre></div>
 </div>
 </div>
@@ -567,7 +559,7 @@ Here are the outliers that were missed:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1033, 1701, 1871, 2222, 2599, 2607, 3264}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1033, 1701, 1871, 2599, 2607, 3264}
 </pre></div>
 </div>
 </div>
@@ -580,7 +572,7 @@ Here are the outliers that were missed:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{3067}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2130, 2724, 3067, 3173, 3253, 3483}
 </pre></div>
 </div>
 </div>
