@@ -1,6 +1,8 @@
 # Model
 
-Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. The process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
+Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the training of the model. Note that the type of preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)).
+
+The process of analysis, data preprocessing, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
 
 ![](https://www.tmwr.org/premade/modeling-process.svg)
 
@@ -19,8 +21,7 @@ Note that there are a number of different strategies for **feature selection** t
 
 ```
 
-In the next sections, we'll discuss the process of model building in deatil.  
-
+In the next sections, we'll discuss the process of model building in detail.  
 
 ## Select algorithm
 
@@ -61,7 +62,32 @@ Visit [this site](https://scikit-learn.org/stable/tutorial/machine_learning_map/
 
 ## Train and evaluate
 
-In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:
+In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. 
+
+Now we can use the pipeline we created in [](data.md) (see last section) and combine it with scikit-learn algorithms of our choice:
+
+
+```Python
+from sklearn.linear_model import LinearRegression
+
+# Use pipeline with linear regression model
+lm_pipe = Pipeline(steps=[
+            ('full_pipeline', full_pipeline),
+            ('lm', LinearRegression())
+                         ])
+```
+
+```Python
+# Show pipeline as diagram
+set_config(display="diagram")
+
+# Fit model
+lm_pipe.fit(X_train, y_train)
+```
+
+In model evaluation, we mainly assess the model’s performance metrics (using an evaluation set) and examine residual plots (see this [example for linear regression dagnostics](https://kirenz.github.io/regression/docs/diagnostics.html)) to understand how well the models work. 
+
+Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:
 
 ```{admonition} Metrics 
 :class: tip
@@ -71,7 +97,6 @@ In the first phase of the model building process, a variety of initial models ar
 ```
 
 Our first goal in this process is to shortlist a few (two to five) promising models. 
-
 
 ## Tuning
 
@@ -96,6 +121,41 @@ Instead of trying to find good hyper-paramters manually, it is recommended to se
 
 The *GridSearchCV* approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use *RandomizedSearchCV* instead {cite:p}`Geron2019`. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values. 
 
+Example of hyperparameter tuning with skicit-learn pipeline ([scikit-learn developers](https://scikit-learn.org/stable/tutorial/statistical_inference/putting_together.html)): Define a pipeline to search for the best combination of PCA truncation and classifier regularization.
+
+```Python
+import numpy as np
+from sklearn import datasets
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import StandardScaler
+
+# Pipeline
+pipe = Pipeline(steps=[
+    ("scaler", StandardScaler()), 
+    ("pca", PCA()), 
+    ("logistic", LogisticRegression(max_iter=10000, tol=0.1))])
+
+# Data
+X_digits, y_digits = datasets.load_digits(return_X_y=True)
+
+# Parameters of pipelines can be set using ‘__’ separated parameter names:
+param_grid = {
+    "pca__n_components": [5, 15, 30, 45, 60],
+    "logistic__C": np.logspace(-4, 4, 4),
+}
+
+# Gridsearch
+search = GridSearchCV(pipe, param_grid, n_jobs=2)
+search.fit(X_digits, y_digits)
+
+# Show results
+print("Best parameter (CV score=%0.3f):" % search.best_score_)
+print(search.best_params_)
+```
+
 ## Voting and stacking
 
 It often makes sense to combine different models since the group ("ensemble") will usually perform better than the best individual model, especially if the individual models make very different types of errors. 
@@ -114,8 +174,7 @@ Model **voting** combines the predictions for multiple models of any type and th
 ```{admonition} Voting regressor
 :class: tip
 
-- [Voting regressor example(https://kirenz.github.io/regression/docs/ensemble.html
-)
+- [Voting regressor example(https://kirenz.github.io/regression/docs/ensemble.html)
 ```
 
 **Stacked** generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.

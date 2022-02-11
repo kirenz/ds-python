@@ -9,7 +9,7 @@
 
 # In this tutorial, we use the famous [iris flower](https://en.wikipedia.org/wiki/Iris_flower_data_set) data set. 
 
-# In[2]:
+# In[1]:
 
 
 from sklearn.datasets import load_iris
@@ -18,7 +18,7 @@ iris = load_iris()
 print(iris.keys())
 
 
-# In[3]:
+# In[2]:
 
 
 n_samples, n_features = iris.data.shape
@@ -26,26 +26,26 @@ n_samples, n_features = iris.data.shape
 print((n_samples, n_features))
 
 
-# In[4]:
+# In[3]:
 
 
 print(iris.data[0])
 
 
-# In[5]:
+# In[4]:
 
 
 print(iris.target.shape)
 
 
-# In[6]:
+# In[5]:
 
 
 print(iris.target)
 print(iris.target_names)
 
 
-# In[7]:
+# In[6]:
 
 
 import numpy as np
@@ -67,7 +67,7 @@ plt.ylabel(iris.feature_names[y_index]);
 
 # Every algorithm is exposed in scikit-learn via an estimator object. For instance a linear regression is implemented as so:
 
-# In[24]:
+# In[7]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -76,14 +76,14 @@ model = LinearRegression(normalize=True)
 
 # All the parameters of an estimator can be set when it is instantiated, and have suitable default values. You can check a specific value, or print values of all currently set estimator parameters.
 
-# In[25]:
+# In[8]:
 
 
 print('Normalize value: ' + str(model.normalize))
 print(model)
 
 
-# In[28]:
+# In[9]:
 
 
 import numpy as np
@@ -96,7 +96,7 @@ plt.show()
 
 # Now we will prepare the data for sklearn, so that the input data is in a 2D array (samples == 10 x features == 1), and fit the model on our data:
 
-# In[29]:
+# In[10]:
 
 
 X = x[:, np.newaxis]
@@ -105,7 +105,7 @@ model.fit(X, y)
 
 # We can now check the estimated parameters — they are all attributes of the estimator object ending with an underscore:
 
-# In[30]:
+# In[11]:
 
 
 # Underscore at the end indicates a fit parameter
@@ -123,7 +123,7 @@ print(model.intercept_)
 # K-nearest neighbors (k-NN) is one of the simplest learning strategies: given a new, unknown observation, look up in your reference database which ones have the closest features and assign the predominant class.
 # Let's try it out on our iris classification problem. As before, we load the dataset, initialize the model object, and, finally, fit the model to the data:
 
-# In[31]:
+# In[12]:
 
 
 from sklearn import neighbors, datasets
@@ -137,7 +137,7 @@ print(knn)
 
 # Now that we have a model 'trained' using our dataset, we can use the predict() method to get a prediction for an arbitrary data point. What kind of iris has 3cm x 5cm sepal and 4cm x 2cm petal?
 
-# In[32]:
+# In[13]:
 
 
 result = knn.predict([[3, 5, 4, 2],])
@@ -146,7 +146,7 @@ print(iris.target_names[result])
 
 # You can also do probabilistic predictions, i.e. check individual probability of this data point belonging to each of the classes:
 
-# In[33]:
+# In[14]:
 
 
 knn.predict_proba([[3, 5, 4, 2],])
@@ -159,7 +159,7 @@ knn.predict_proba([[3, 5, 4, 2],])
 # Next, we paint a 'map' of predicted classes: we fill the plot area using a mesh grid of colored regions, where each region's color is based on the class predicted by the model.
 # Finally, we put the data points from the original dataset on the plot as well (in bold).
 
-# In[34]:
+# In[15]:
 
 
 from sklearn import neighbors, datasets, linear_model

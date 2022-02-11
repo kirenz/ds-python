@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision trees &#8212; Data Science with Python</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="reference.html" />
+    <link rel="prev" title="Deployment" href="deployment.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Data Science with Python</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Toolkit
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-toolkit.html">
+   Programming toolkit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Science Lifecycle
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lifecycle.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plan.html">
+   Plan
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="deployment.html">
+   Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Algorithms
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Decision trees
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  References
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="reference.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/trees.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://kirenz.github.io/ds-python/"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/trees.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interactive-example">
+   Interactive example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overfitting">
+   Overfitting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensemble-of-estimators">
+   Ensemble of estimators
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest">
+     Random forest
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression">
+   Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hand-written-digits">
+   Hand written digits
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model">
+     Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-report">
+     Classification report
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="decision-trees">
+<h1>Decision trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="c1"># Python setup</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interactive</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>This tutorial is mainly based on content from the excellent iOS app <a class="reference external" href="https://tinkerstellar.com">Tinkerstellar</a> and documentations from <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</em></p>
+<p>Decision trees are extremely intuitive ways to classify or label objects - you simply ask a series of questions designed to zero-in on the classification. As a first example, we use the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set">iris</a> dataset. The data is already included in scikit-learn and consists of 50 samples from each of three species of Iris (Iris setosa, Iris virginica and Iris versicolor):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/iris.png"><img alt="iris" class="bg-primary mb-1 align-center" src="../_images/iris.png" style="width: 600px;" /></a>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="n">x_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_index</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># this formatter will label the colorbar with the correct target names</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">x_index</span><span class="p">],</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">y_index</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdYlBu&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">x_index</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">y_index</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_5_0.png" src="../_images/trees_5_0.png" />
+</div>
+</div>
+<p>To gain a better understanding of how decision trees work, we first will take a look at pairs of features. For each pair of iris features (e.g. sepal length and sepal width), the decision tree learns decision boundaries made of combinations of simple thresholding rules inferred from the training samples (<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/tree/plot_iris_dtc.html#sphx-glr-auto-examples-tree-plot-iris-dtc-py">scikit-learn developers</a>):</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plot_colors</span> <span class="o">=</span> <span class="s2">&quot;ryb&quot;</span>
+<span class="n">plot_step</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<span class="k">for</span> <span class="n">pairidx</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]):</span>
+    <span class="c1"># We only take the two corresponding features</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">pair</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+    <span class="c1"># Train</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Plot the decision boundary</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">pairidx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">plot_step</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+    <span class="c1"># Plot the training points</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_classes</span><span class="p">),</span> <span class="n">plot_colors</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Decision surface of decision trees trained on pairs of features&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span> <span class="n">borderpad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">handletextpad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_7_0.png" src="../_images/trees_7_0.png" />
+</div>
+</div>
+<p>Next, we display the structure of a single decision tree trained on all the features together (<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/tree/plot_iris_dtc.html#sphx-glr-auto-examples-tree-plot-iris-dtc-py">scikit-learn developers</a>):</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Decision tree trained on all the iris features&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_9_0.png" src="../_images/trees_9_0.png" />
+</div>
+</div>
+<p>The binary splitting makes the procedure very efficient. In training a decision tree classifier, the algorithm looks at the features and decides which questions (or “splits”) contain the most information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Take a look at R2D3’s <a class="reference external" href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">“A visual introduction to machine learning”</a> to get a more detailed visual explanation of how decision trees work.</p>
+</div>
+<div class="section" id="interactive-example">
+<h2>Interactive example<a class="headerlink" href="#interactive-example" title="Permalink to this headline">¶</a></h2>
+<p>Next, we use an example data with 4 centers.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_12_0.png" src="../_images/trees_12_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="k">def</span> <span class="nf">visualize_tree</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">xlim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">xlim</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">ylim</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="c1"># Put the result into a color plot</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="c1"># Plot also the training points</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Paired</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>        
+    <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    
+    <span class="c1"># Plot the decision boundaries</span>
+    <span class="k">def</span> <span class="nf">plot_boundaries</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">tree_</span>
+        
+        <span class="k">if</span> <span class="n">tree</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">ylim</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+            <span class="n">plot_boundaries</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">children_left</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">ylim</span><span class="p">)</span>
+            <span class="n">plot_boundaries</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">children_right</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">ylim</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="n">tree</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlim</span><span class="p">,</span> <span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+            <span class="n">plot_boundaries</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">children_left</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xlim</span><span class="p">,</span> <span class="p">[</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">plot_boundaries</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">children_right</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">xlim</span><span class="p">,</span> <span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+            
+    <span class="k">if</span> <span class="n">boundaries</span><span class="p">:</span>
+        <span class="n">plot_boundaries</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We use a custom function which generates a (static) plot of a decision tree classifier with specified parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use 2 features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># create model</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="c1"># visualize boundaries of classifier with custom function</span>
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_15_0.png" src="../_images/trees_15_0.png" />
+</div>
+</div>
+<p>Create an interactive plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interactive_tree</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">interactive</span><span class="p">(</span><span class="n">interactive_tree</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "d59cfd91bb144d9a88c8872b1a5e6afd"}
+</script></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Depths 1 and 3</p></th>
+<th class="head"><p>Depths 2 and 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="../_images/tree-1.png" /></p></td>
+<td><p><img alt="" src="../_images/tree-2.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="../_images/tree-3.png" /></p></td>
+<td><p><img alt="" src="../_images/tree-4.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to run this notebook on your machine or <a class="reference external" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwj2kMTrtPD1AhXm7rsIHWhzDtsQFnoECAUQAQ&amp;url=https%3A%2F%2Fcolab.research.google.com%2F&amp;usg=AOvVaw3A5aPK2kLFzKOzb6sOckVw">colab</a> to execute the interactive plot</p>
+</div>
+<p>Try changing the slider position and notice that at each increase in depth, every node is split in two except those nodes which contain only a single class.</p>
+</div>
+<div class="section" id="overfitting">
+<h2>Overfitting<a class="headerlink" href="#overfitting" title="Permalink to this headline">¶</a></h2>
+<p>One issue with decision trees is that it is very easy to create trees which overfit the data. As an example, we will use a random sample of 50% of the iris data to train the model and display the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_22_0.png" src="../_images/trees_22_0.png" />
+</div>
+</div>
+<p>Next, we use a different sample to fit another tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_24_0.png" src="../_images/trees_24_0.png" />
+</div>
+</div>
+<p>Note that the details of the classifications are very different which is an indication of overfitting: when you predict the value for a new point, the result is more reflective of the noise in the model rather than the signal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Take a look at R2D3’s visual introduction of <a class="reference external" href="http://www.r2d3.us/visual-intro-to-machine-learning-part-2/">“Model Tuning and the Bias-Variance Tradeoff”</a> to learn more about the concept of overfitting.</p>
+</div>
+</div>
+<div class="section" id="ensemble-of-estimators">
+<h2>Ensemble of estimators<a class="headerlink" href="#ensemble-of-estimators" title="Permalink to this headline">¶</a></h2>
+<p>One possible way to address over-fitting is to use an ensemble method:</p>
+<ul class="simple">
+<li><p>this is a meta-estimator which essentially averages the results of many individual estimators which over-fit the data.</p></li>
+<li><p>Somewhat surprisingly, the resulting estimates are much more robust and accurate than the individual estimates which make them up.</p></li>
+</ul>
+<div class="section" id="random-forest">
+<h3>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<p>One of the most common ensemble methods is the <strong>random forest</strong>, in which the ensemble is made up of many decision trees.</p>
+<p>Let’s use an ensemble of estimators fit on subsets of the data. We can get an idea of what these might look like as follows:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="k">def</span> <span class="nf">fit_randomized_tree</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="c1">#    X, y = make_blobs(n_samples=300, centers=4, random_state=0, cluster_std=2.0)</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">20</span><span class="p">]],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">20</span><span class="p">]],</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                   <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+                   <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">interact</span><span class="p">(</span><span class="n">fit_randomized_tree</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Random state&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">},</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "37d0c6afe5b24d47a2c15d79a14ac970"}
+</script></div>
+</div>
+<p>Creating a random forest:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">visualize_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_29_0.png" src="../_images/trees_29_0.png" />
+</div>
+</div>
+<p>By averaging over 100 randomly decision tree models, we end up with an overall model which is a much better fit to our data.</p>
+</div>
+</div>
+<div class="section" id="regression">
+<h2>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
+<p>Above we were considering random forests within the context of classification. Random forests can also be made to work in the case of regression (that is, continuous rather than categorical variables).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+
+<span class="c1"># make data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="n">fast_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">slow_oscillation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">slow_oscillation</span> <span class="o">+</span> <span class="n">fast_oscillation</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_32_0.png" src="../_images/trees_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">yfit</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xfit</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot our data points (in blue) along with our prediction (in red) as well as the “true” function which created our y (in green).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="n">ytrue</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">,</span> <span class="s1">&#39;-r&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">ytrue</span><span class="p">,</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_35_0.png" src="../_images/trees_35_0.png" />
+</div>
+</div>
+<p>As you can see, the non-parametric random forest model is flexible enough to fit the multi-period data, without us even specifying a multi-period model.</p>
+</div>
+<div class="section" id="hand-written-digits">
+<h2>Hand written digits<a class="headerlink" href="#hand-written-digits" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="n">digits</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;feature_names&#39;, &#39;target_names&#39;, &#39;images&#39;, &#39;DESCR&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1797, 64)
+(1797,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data in digits.images is a 1797x8x8 array, with each pixel value within an 8x8 grid:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="c1"># Set up the figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Plot the digits: each image is 8x8 pixels</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="c1"># label the image with the target value</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_42_0.png" src="../_images/trees_42_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model accuracy: </span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model accuracy: 0.85
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="classification-report">
+<h3>Classification report<a class="headerlink" href="#classification-report" title="Permalink to this headline">¶</a></h3>
+<p>Let’s plot the confusion matrix, where each row represents the true label of the sample, while each column represents the predicted label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">cm</span><span class="p">,</span>
+                              <span class="n">display_labels</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_46_0.png" src="../_images/trees_46_0.png" />
+</div>
+</div>
+<p>Finally, we take a look at the classification report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0      0.919     0.919     0.919        37
+           1      0.760     0.884     0.817        43
+           2      0.787     0.841     0.813        44
+           3      0.739     0.756     0.747        45
+           4      0.892     0.868     0.880        38
+           5      0.872     0.854     0.863        48
+           6      0.942     0.942     0.942        52
+           7      1.000     0.792     0.884        48
+           8      0.848     0.812     0.830        48
+           9      0.760     0.809     0.784        47
+
+    accuracy                          0.847       450
+   macro avg      0.852     0.848     0.848       450
+weighted avg      0.853     0.847     0.848       450
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"6dc108b11ff44156852094549033b54a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d59cfd91bb144d9a88c8872b1a5e6afd": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_f4ed89bd55ce43fbae55a3d6bd8d3904", "IPY_MODEL_8371fc3276dd44cbbb93ac3ce4c85a5e"], "layout": "IPY_MODEL_6dc108b11ff44156852094549033b54a"}}, "076f6aa194464878a4b52f4a9b3bb45b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4d18fc011d2345f3b701bb9e8882a0d7": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "f4ed89bd55ce43fbae55a3d6bd8d3904": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "depth", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_076f6aa194464878a4b52f4a9b3bb45b", "max": 5, "min": 1, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_4d18fc011d2345f3b701bb9e8882a0d7", "value": 1}}, "887ab54ebb034a87bad967f251c791f1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8371fc3276dd44cbbb93ac3ce4c85a5e": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_887ab54ebb034a87bad967f251c791f1", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {"needs_background": "light"}, "data": {"text/plain": "<Figure size 432x288 with 1 Axes>", "image/png": "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\n"}}]}}, "add658390b0644819f0ff09d9592c517": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "auto", "handle_color": null}}, "3d5a8311727b40ff937e7e990fc178de": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1cb10e5bb1724239b3a7433ab5518b59": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": false, "description": "Random state", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_3d5a8311727b40ff937e7e990fc178de", "max": 100, "min": 0, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_add658390b0644819f0ff09d9592c517", "value": 0}}, "083b21e5a64c43feb1430b032bdebaf6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "37d0c6afe5b24d47a2c15d79a14ac970": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_1cb10e5bb1724239b3a7433ab5518b59", "IPY_MODEL_2e907142bf89498382b3d2b99f1d4dfc"], "layout": "IPY_MODEL_083b21e5a64c43feb1430b032bdebaf6"}}, "1a691e149ed0433ebc06cdc0a71442ba": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2e907142bf89498382b3d2b99f1d4dfc": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_1a691e149ed0433ebc06cdc0a71442ba", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {"needs_background": "light"}, "data": {"text/plain": "<Figure size 432x288 with 1 Axes>", "image/png": "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\n"}}]}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="deployment.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Deployment</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="reference.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Jan Kirenz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -43,6 +43,8 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -138,6 +140,18 @@
  <li class="toctree-l1">
   <a class="reference internal" href="deployment.html">
    Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Algorithms
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="trees.html">
+   Decision trees
   </a>
  </li>
 </ul>
@@ -287,7 +301,8 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="model">
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
-<p>Once our features have been encoded in a format ready for modeling algorithms, they can be used in the training of the model. The process of analysis, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id1">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
+<p>Once our features have been preprocessed in a format ready for modeling algorithms (see <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a>), they can be used in the training of the model. Note that the type of preprocessing is dependent on the type of model being fit. <span id="id1">Kuhn and Silge [<a class="reference internal" href="reference.html#id4">2021</a>]</span> provide recommendations for baseline levels of preprocessing that are needed for various model functions (see <a class="reference external" href="https://www.tmwr.org/pre-proc-table.html">this table</a>).</p>
+<p>The process of analysis, data preprocessing, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id2">[<a class="reference internal" href="reference.html#id4">Kuhn and Silge, 2021</a>]</span>:</p>
 <p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
 <p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.</p>
 <div class="admonition note">
@@ -301,10 +316,10 @@
 <li><p><a class="reference external" href="https://kirenz.github.io/feature-engineering/docs/feature-selection.html">Feature Selection</a></p></li>
 </ul>
 </div>
-<p>In the next sections, we’ll discuss the process of model building in deatil.</p>
+<p>In the next sections, we’ll discuss the process of model building in detail.</p>
 <div class="section" id="select-algorithm">
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
+<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id3">[<a class="reference internal" href="reference.html#id13">Wolpert, 1996</a>]</span>.</p>
 <br>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
@@ -316,7 +331,7 @@
 <li><p>Boosting: <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#adaboost">AdaBoost</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting">Gradient Tree Boosting</a></p></li>
 </ul>
 <p>Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).</p>
-<p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
+<p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
 <p>The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:</p>
 <br>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/algorithms.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/algorithms.png" style="width: 800px;" /></a>
@@ -325,7 +340,26 @@
 </div>
 <div class="section" id="train-and-evaluate">
 <h2>Train and evaluate<a class="headerlink" href="#train-and-evaluate" title="Permalink to this headline">¶</a></h2>
-<p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. In model evaluation, we mainly assess the model’s performance metrics and examine residual plots to understand how well the models work. Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
+<p>In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation.</p>
+<p>Now we can use the pipeline we created in <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a> (see last section) and combine it with scikit-learn algorithms of our choice:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Use pipeline with linear regression model</span>
+<span class="n">lm_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s1">&#39;full_pipeline&#39;</span><span class="p">,</span> <span class="n">full_pipeline</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;lm&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())</span>
+                         <span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show pipeline as diagram</span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s2">&quot;diagram&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fit model</span>
+<span class="n">lm_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In model evaluation, we mainly assess the model’s performance metrics (using an evaluation set) and examine residual plots (see this <a class="reference external" href="https://kirenz.github.io/regression/docs/diagnostics.html">example for linear regression dagnostics</a>) to understand how well the models work.</p>
+<p>Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:</p>
 <div class="tip admonition">
 <p class="admonition-title">Metrics</p>
 <ul class="simple">
@@ -353,7 +387,40 @@
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">Tuning the hyper-parameters of an estimator</a></p></li>
 </ul>
 </div>
-<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id4">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
+<p>The <em>GridSearchCV</em> approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use <em>RandomizedSearchCV</em> instead <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values.</p>
+<p>Example of hyperparameter tuning with skicit-learn pipeline (<a class="reference external" href="https://scikit-learn.org/stable/tutorial/statistical_inference/putting_together.html">scikit-learn developers</a>): Define a pipeline to search for the best combination of PCA truncation and classifier regularization.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># Pipeline</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> 
+    <span class="p">(</span><span class="s2">&quot;pca&quot;</span><span class="p">,</span> <span class="n">PCA</span><span class="p">()),</span> 
+    <span class="p">(</span><span class="s2">&quot;logistic&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))])</span>
+
+<span class="c1"># Data</span>
+<span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Parameters of pipelines can be set using ‘__’ separated parameter names:</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;pca__n_components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+    <span class="s2">&quot;logistic__C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Gridsearch</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">)</span>
+
+<span class="c1"># Show results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameter (CV score=</span><span class="si">%0.3f</span><span class="s2">):&quot;</span> <span class="o">%</span> <span class="n">search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="voting-and-stacking">
 <h2>Voting and stacking<a class="headerlink" href="#voting-and-stacking" title="Permalink to this headline">¶</a></h2>
@@ -370,8 +437,7 @@
 <div class="tip admonition">
 <p class="admonition-title">Voting regressor</p>
 <ul class="simple">
-<li><p>[Voting regressor example(<a class="reference external" href="https://kirenz.github.io/regression/docs/ensemble.html">https://kirenz.github.io/regression/docs/ensemble.html</a>
-)</p></li>
+<li><p>[Voting regressor example(<a class="reference external" href="https://kirenz.github.io/regression/docs/ensemble.html">https://kirenz.github.io/regression/docs/ensemble.html</a>)</p></li>
 </ul>
 </div>
 <p><strong>Stacked</strong> generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.</p>
@@ -385,12 +451,12 @@
 <div class="section" id="evaluate-best-model">
 <h2>Evaluate best model<a class="headerlink" href="#evaluate-best-model" title="Permalink to this headline">¶</a></h2>
 <p>After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in detail.</p>
-<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id5">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
+<p>In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/permutation_importance.html">permutation feature importance</a>). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.</p>
 <p>After evaluating the model (system) for a while, we eventually have a system that performs sufficiently well.</p>
 </div>
 <div class="section" id="evaluate-on-test-set">
 <h2>Evaluate on test set<a class="headerlink" href="#evaluate-on-test-set" title="Permalink to this headline">¶</a></h2>
-<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id6">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
+<p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id7">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>.</p>
 <p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
 </div>
 <div class="section" id="modeling-examples">
