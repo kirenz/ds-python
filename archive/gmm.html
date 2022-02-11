@@ -37,16 +37,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -145,18 +141,6 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Algorithms
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../docs/trees.html">
-   Decision trees
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
   References
  </span>
 </p>
@@ -212,7 +196,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -246,7 +230,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -286,50 +270,7 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>GMM</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   GMM
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-many-gaussians">
-   How many Gaussians?
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-density-estimators">
-   Other density estimators
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preparing-data">
-   Preparing data
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#identifiying-outliers">
-   identifiying outliers
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
+        
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="gmm">
@@ -384,20 +325,20 @@ First, let’s generate some one-dimensional data in a particular distribution. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Means = [[-1.762037  ]
- [ 8.04894855]
- [ 2.87628921]
- [-0.26509542]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Means = [[ 2.3930921 ]
+ [11.08960533]
+ [-0.92546383]
+ [ 7.02808953]]
 
-Covariances = [[[ 7.39304484]]
+Covariances = [[[ 2.24902207]]
 
- [[14.2611261 ]]
+ [[10.099018  ]]
 
- [[ 1.25253655]]
+ [[ 4.98083492]]
 
- [[ 2.1852085 ]]]
+ [[ 3.87429382]]]
 
-Weights = [0.15154409 0.2532411  0.28492403 0.31029078]
+Weights = [0.38339489 0.09847354 0.39509906 0.12303252]
 </pre></div>
 </div>
 </div>
@@ -432,8 +373,8 @@ Weights = [0.15154409 0.2532411  0.28492403 0.31029078]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25825.201910224507
-25754.42998281726
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25963.88685202711
+25893.114924619862
 </pre></div>
 </div>
 </div>
@@ -544,8 +485,7 @@ Weights = [0.15154409 0.2532411  0.28492403 0.31029078]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True outliers: [  99  537  705 1033 1653 1701 1871 2046 2135 2163 2222 2496 2599 2607
  2732 2893 2897 3264 3468 4373]
 
-Detected outliers: [  99  537  705 1653 2046 2130 2135 2163 2222 2496 2724 2732 2893 2897
- 3067 3173 3253 3468 3483 4373]
+Detected outliers: [  99  537  705 1653 2046 2135 2163 2496 2732 2893 2897 3067 3468 4373]
 </pre></div>
 </div>
 </div>
@@ -559,7 +499,7 @@ Here are the outliers that were missed:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1033, 1701, 1871, 2599, 2607, 3264}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1033, 1701, 1871, 2222, 2599, 2607, 3264}
 </pre></div>
 </div>
 </div>
@@ -572,7 +512,7 @@ Here are the outliers that were missed:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{2130, 2724, 3067, 3173, 3253, 3483}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{3067}
 </pre></div>
 </div>
 </div>
@@ -601,21 +541,23 @@ Here are the outliers that were missed:</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+        
+            <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+        
         </div>
     </div>
     <footer class="footer">
-  <p>
-    
-      By Jan Kirenz<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
+    <div class="container">
+      <p>
+        
+          By Jan Kirenz<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
