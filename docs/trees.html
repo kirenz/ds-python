@@ -37,9 +37,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -405,16 +408,59 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1875</span><span class="o">/</span><span class="mf">2198831475.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p><em>This tutorial is mainly based on content from the excellent iOS app <a class="reference external" href="https://tinkerstellar.com">Tinkerstellar</a> and documentations from <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>.</em></p>
-<p>Decision trees are extremely intuitive ways to classify or label objects - you simply ask a series of questions designed to zero-in on the classification. As a first example, we use the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set">iris</a> dataset. The data consists of 50 samples from each of three species of Iris (Iris setosa, Iris virginica and Iris versicolor). Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.</p>
+<p>Decision trees are extremely intuitive ways to classify or label objects - you simply ask a series of questions designed to zero-in on the classification. As a first example, we use the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set">iris</a> dataset. The data consists of 50 samples from each of three species of Iris (Iris setosa, Iris virginica and Iris versicolor).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/iris.png"><img alt="iris" class="bg-primary mb-1 align-center" src="../_images/iris.png" style="width: 600px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
+<span class="n">x_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_index</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># this formatter will label the colorbar with the correct target names</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">x_index</span><span class="p">],</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">y_index</span><span class="p">],</span>
+            <span class="n">c</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdYlBu&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">x_index</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">y_index</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/trees_5_0.png" src="../_images/trees_5_0.png" />
+</div>
+</div>
 <p>To gain a better understanding of how decision trees work, we first will take a look at pairs of features. For each pair of iris features (e.g. sepal length and sepal width), the decision tree learns decision boundaries made of combinations of simple thresholding rules inferred from the training samples (<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/tree/plot_iris_dtc.html#sphx-glr-auto-examples-tree-plot-iris-dtc-py">scikit-learn developers</a>):</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDE CODE</span>
-
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
 
 <span class="c1"># Parameters</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>
@@ -466,7 +512,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_3_0.png" src="../_images/trees_3_0.png" />
+<img alt="../_images/trees_7_0.png" src="../_images/trees_7_0.png" />
 </div>
 </div>
 <p>Next, we display the structure of a single decision tree trained on all the features together (<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/tree/plot_iris_dtc.html#sphx-glr-auto-examples-tree-plot-iris-dtc-py">scikit-learn developers</a>):</p>
@@ -488,7 +534,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_5_0.png" src="../_images/trees_5_0.png" />
+<img alt="../_images/trees_9_0.png" src="../_images/trees_9_0.png" />
 </div>
 </div>
 <p>The binary splitting makes the procedure very efficient. In training a decision tree classifier, the algorithm looks at the features and decides which questions (or “splits”) contain the most information.</p>
@@ -507,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_8_0.png" src="../_images/trees_8_0.png" />
+<img alt="../_images/trees_12_0.png" src="../_images/trees_12_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -578,7 +624,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_11_0.png" src="../_images/trees_11_0.png" />
+<img alt="../_images/trees_15_0.png" src="../_images/trees_15_0.png" />
 </div>
 </div>
 <p>Create an interactive plot:</p>
@@ -634,7 +680,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_18_0.png" src="../_images/trees_18_0.png" />
+<img alt="../_images/trees_22_0.png" src="../_images/trees_22_0.png" />
 </div>
 </div>
 <p>Next, we use a different sample to fit another tree:</p>
@@ -650,7 +696,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_20_0.png" src="../_images/trees_20_0.png" />
+<img alt="../_images/trees_24_0.png" src="../_images/trees_24_0.png" />
 </div>
 </div>
 <p>Note that the details of the classifications are very different which is an indication of overfitting: when you predict the value for a new point, the result is more reflective of the noise in the model rather than the signal.</p>
@@ -706,7 +752,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_25_0.png" src="../_images/trees_25_0.png" />
+<img alt="../_images/trees_29_0.png" src="../_images/trees_29_0.png" />
 </div>
 </div>
 <p>By averaging over 100 randomly decision tree models, we end up with an overall model which is a much better fit to our data.</p>
@@ -734,7 +780,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_28_0.png" src="../_images/trees_28_0.png" />
+<img alt="../_images/trees_32_0.png" src="../_images/trees_32_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -762,7 +808,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_31_0.png" src="../_images/trees_31_0.png" />
+<img alt="../_images/trees_35_0.png" src="../_images/trees_35_0.png" />
 </div>
 </div>
 <p>As you can see, the non-parametric random forest model is flexible enough to fit the multi-period data, without us even specifying a multi-period model.</p>
@@ -819,7 +865,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_38_0.png" src="../_images/trees_38_0.png" />
+<img alt="../_images/trees_42_0.png" src="../_images/trees_42_0.png" />
 </div>
 </div>
 </div>
@@ -859,7 +905,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/trees_42_0.png" src="../_images/trees_42_0.png" />
+<img alt="../_images/trees_46_0.png" src="../_images/trees_46_0.png" />
 </div>
 </div>
 <p>Finally, we take a look at the classification report.</p>
