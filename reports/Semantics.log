@@ -24,7 +24,7 @@ The other type of loop in Python is a while loop, which iterates until some cond
     
 ------------------
 
-[0;36m  File [0;32m"/tmp/ipykernel_1652/599667643.py"[0;36m, line [0;32m3[0m
+[0;36m  File [0;32m"/tmp/ipykernel_1706/599667643.py"[0;36m, line [0;32m3[0m
 [0;31m    The other type of loop in Python is a while loop, which iterates until some condition is met:[0m
 [0m            ^[0m
 [0;31mSyntaxError[0m[0;31m:[0m invalid syntax

@@ -357,6 +357,70 @@
    Asterisk
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anonymous-lambda-functions">
+   Anonymous (lambda) functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterator-syntax">
+   Iterator syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#range">
+     Range
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterating-over-lists">
+     Iterating over lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enumerate">
+     Enumerate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zip">
+     Zip
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map">
+     Map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter">
+     Filter
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-comprehensions">
+     List comprehensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-iteration">
+   Multiple iteration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#errors-and-exceptions">
+   Errors and Exceptions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runtime-errors">
+     Runtime errors
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -480,6 +544,70 @@
   <a class="reference internal nav-link" href="#asterisk">
    Asterisk
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#anonymous-lambda-functions">
+   Anonymous (lambda) functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterator-syntax">
+   Iterator syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#range">
+     Range
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterating-over-lists">
+     Iterating over lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enumerate">
+     Enumerate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zip">
+     Zip
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map">
+     Map
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filter">
+     Filter
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#list-comprehensions">
+     List comprehensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multiple-iteration">
+   Multiple iteration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#errors-and-exceptions">
+   Errors and Exceptions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runtime-errors">
+     Runtime errors
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -970,7 +1098,7 @@ Range from 0 to 10 by 2:  [0, 2, 4, 6, 8]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_1652/599667643.py&quot;</span><span class="gt">, line </span><span class="mi">3</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_1706/599667643.py&quot;</span><span class="gt">, line </span><span class="mi">3</span>
     <span class="n">The</span> <span class="n">other</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">Python</span> <span class="ow">is</span> <span class="n">a</span> <span class="k">while</span> <span class="n">loop</span><span class="p">,</span> <span class="n">which</span> <span class="n">iterates</span> <span class="n">until</span> <span class="n">some</span> <span class="n">condition</span> <span class="ow">is</span> <span class="n">met</span><span class="p">:</span>
             <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -1177,7 +1305,356 @@ Here is an example of using continue to print a string of odd numbers. In this c
 </div>
 <div class="section" id="asterisk">
 <h2>Asterisk<a class="headerlink" href="#asterisk" title="Permalink to this headline">¶</a></h2>
-<p>In case of *args and **kwargs, it is not the names args and kwargs that are important, but the * characters preceding them. args and kwargs are just the variable names often used by convention, short for “arguments” and “keyword arguments”. The operative difference is the asterisk characters: a single * before a variable means “expand this as a sequence”, while a double ** before a variable means “expand this as a dictionary”. In fact, this syntax can be used not only with the function definition, but with the function call as well!</p>
+<p>In case of *args and **kwargs, it is not the names args and kwargs that are important, but the * characters preceding them. args and kwargs are just the variable names often used by convention, short for “arguments” and “keyword arguments”.</p>
+<p>The operative difference is the asterisk characters:</p>
+<p>a single * before a variable means “expand this as a sequence”, while a double ** before a variable means “expand this as a dictionary”. In fact, this syntax can be used not only with the function definition, but with the function call as well!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">keywords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pi&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
+
+<span class="n">catch_all</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">keywords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="anonymous-lambda-functions">
+<h2>Anonymous (lambda) functions<a class="headerlink" href="#anonymous-lambda-functions" title="Permalink to this headline">¶</a></h2>
+<p>Earlier we quickly covered the most common way of defining functions, the <code class="docutils literal notranslate"><span class="pre">def</span></code> statement. You’ll likely come across another way of defining short, one-off functions with the lambda statement. It looks something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>This lambda function is roughly equivalent to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So why would you ever want to use such a thing? Primarily, it comes down to the fact that everything is an object in Python, even functions themselves! That means that functions can be passed as arguments to functions.</p>
+<p>As an example of a lambda function passed as argument, suppose we have some data stored in a list of dictionaries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;Guido&#39;</span><span class="p">,</span> <span class="s1">&#39;last&#39;</span><span class="p">:</span><span class="s1">&#39;Van Rossum&#39;</span><span class="p">,</span> <span class="s1">&#39;YOB&#39;</span><span class="p">:</span><span class="mi">1956</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;Grace&#39;</span><span class="p">,</span> <span class="s1">&#39;last&#39;</span><span class="p">:</span><span class="s1">&#39;Hopper&#39;</span><span class="p">,</span>     <span class="s1">&#39;YOB&#39;</span><span class="p">:</span><span class="mi">1906</span><span class="p">},</span>
+        <span class="p">{</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;Alan&#39;</span><span class="p">,</span>  <span class="s1">&#39;last&#39;</span><span class="p">:</span><span class="s1">&#39;Turing&#39;</span><span class="p">,</span>     <span class="s1">&#39;YOB&#39;</span><span class="p">:</span><span class="mi">1912</span><span class="p">}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now suppose we want to sort this data. Python has a sorted function, which can order a list of integers, for example. But dictionaries are not orderable: we need a way to tell the function how to sort our data. We can do this by specifying the key function, a function which given an item returns the sorting key for that item:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort alphabetically by first name</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;first&#39;: &#39;Alan&#39;, &#39;last&#39;: &#39;Turing&#39;, &#39;YOB&#39;: 1912},
+ {&#39;first&#39;: &#39;Grace&#39;, &#39;last&#39;: &#39;Hopper&#39;, &#39;YOB&#39;: 1906},
+ {&#39;first&#39;: &#39;Guido&#39;, &#39;last&#39;: &#39;Van Rossum&#39;, &#39;YOB&#39;: 1956}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort by year of birth</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;YOB&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;first&#39;: &#39;Grace&#39;, &#39;last&#39;: &#39;Hopper&#39;, &#39;YOB&#39;: 1906},
+ {&#39;first&#39;: &#39;Alan&#39;, &#39;last&#39;: &#39;Turing&#39;, &#39;YOB&#39;: 1912},
+ {&#39;first&#39;: &#39;Guido&#39;, &#39;last&#39;: &#39;Van Rossum&#39;, &#39;YOB&#39;: 1956}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>While these key functions could certainly be created by the normal, def syntax, the lambda syntax is convenient for such short one-off functions like these.</p>
+</div>
+<div class="section" id="iterator-syntax">
+<h2>Iterator syntax<a class="headerlink" href="#iterator-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Often an important piece of data analysis is repeating a similar calculation, over and over, in an automated fashion.</p>
+<div class="section" id="range">
+<h3>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h3>
+<p>For example, you may have a table of a names that you’d like to split into first and last, or perhaps of dates that you’d like to convert to some standard format.</p>
+<p>One of Python’s answers to this is the iterator syntax. We’ve seen this already with the range iterator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>range is not a list, but is something called an iterator, and learning how it works is key to understanding a wide class of very useful Python functionality.</p>
+</div>
+<div class="section" id="iterating-over-lists">
+<h3>Iterating over lists<a class="headerlink" href="#iterating-over-lists" title="Permalink to this headline">¶</a></h3>
+<p>Iterators are perhaps most easily understood in the concrete case of iterating through a list. Consider the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
+    <span class="c1"># Do some operation</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+4
+6
+8
+10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 5 6 7 8 9 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The familiar “for x in y” syntax allows us to repeat some operation for each value in the list. The fact that the syntax of the code is so close to its English description (“for [each] value in [the] list”) is just one of the syntactic choices that makes Python such an intuitive language to learn and use.</p>
+</div>
+<div class="section" id="enumerate">
+<h3>Enumerate<a class="headerlink" href="#enumerate" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you need to iterate not only the values in an array, but also keep track of the index:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 2
+1 4
+2 6
+3 8
+4 10
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="zip">
+<h3>Zip<a class="headerlink" href="#zip" title="Permalink to this headline">¶</a></h3>
+<p>Other times, you may have multiple lists that you want to iterate over simultaneously. Use the zip iterator, which zips together iterables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">lval</span><span class="p">,</span> <span class="n">rval</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lval</span><span class="p">,</span> <span class="n">rval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 3
+4 6
+6 9
+8 12
+10 15
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="map">
+<h3>Map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h3>
+<p>The map iterator takes a function and applies it to the values in an iterator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the first 10 square numbers</span>
+<span class="n">square</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 4 9 16 25 36 49 64 81 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 4 9 16 25 36 49 64 81
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="filter">
+<h3>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+<p>The filter iterator looks similar, except it only passes-through values for which the filter function evaluates to True:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find values up to 10 for which x % 2 is zero</span>
+<span class="n">is_even</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="n">is_even</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 2 4 6 8 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="list-comprehensions">
+<h3>List comprehensions<a class="headerlink" href="#list-comprehensions" title="Permalink to this headline">¶</a></h3>
+<p>List comprehensions are simply a way to compress a list-building for-loop into a single short, readable line. For example, here is a loop that constructs a list of the first 12 square integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with many Python statements, you can almost read-off the meaning of this statement in plain English: “construct a list consisting of the square of n for each n up to 12”.</p>
+<p>This basic syntax, then, is  <code class="docutils literal notranslate"><span class="pre">[expr</span> <span class="pre">for</span> <span class="pre">var</span> <span class="pre">in</span> <span class="pre">iterable*]</span></code>, where <code class="docutils literal notranslate"><span class="pre">*expr</span></code> is any valid expression, var is a variable name, and iterable is any iterable Python object.</p>
+</div>
+</div>
+<div class="section" id="multiple-iteration">
+<h2>Multiple iteration<a class="headerlink" href="#multiple-iteration" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you want to build a list not just from one value, but from two. To do this, simply add another for expression in the comprehension</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the second for expression acts as the interior index, varying the fastest in the resulting list. This type of construction can be extended to three, four, or more iterators within the comprehension, though at some point code readibility will suffer!</p>
+</div>
+<div class="section" id="errors-and-exceptions">
+<h2>Errors and Exceptions<a class="headerlink" href="#errors-and-exceptions" title="Permalink to this headline">¶</a></h2>
+<p>No matter your skill as a programmer, you will eventually make a coding mistake. Such mistakes come in three basic flavors:</p>
+<ul class="simple">
+<li><p>Syntax errors: Errors where the code is not valid Python (generally easy to fix)</p></li>
+<li><p>Runtime errors: Errors where syntactically valid code fails to execute, perhaps due to invalid user input (sometimes easy to fix)</p></li>
+<li><p>Semantic errors: Errors in logic: code executes without a problem, but the result is not what you expect (often very difficult to track-down and fix)</p></li>
+</ul>
+<p>In this chapter we are going to focus on how to deal cleanly with runtime errors. As we’ll see, Python handles runtime errors via its exception handling framework.</p>
+<div class="section" id="runtime-errors">
+<h3>Runtime errors<a class="headerlink" href="#runtime-errors" title="Permalink to this headline">¶</a></h3>
+<p>If you’ve done any coding in Python, you’ve likely come across runtime errors. They can happen in a lot of ways.
+For example, if you try to reference an undefined variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">cbf1bd89097d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;Q&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or if you try an operation that’s not defined:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="s1">&#39;abc&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">a51a3635a212</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">1</span> <span class="o">+</span> <span class="s1">&#39;abc&#39;</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or you might be trying to compute a mathematically ill-defined result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">/</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">8</span><span class="n">b4ac6d3a3e1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that in each case, Python is to not simply indicate that an error happened, but also includes information about what exactly went wrong, along with the exact line of code where the error happened. Having access to meaningful errors like this is immensely useful when trying to trace the root of problems in your code.</p>
+</div>
 </div>
 </div>
 
