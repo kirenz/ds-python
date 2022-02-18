@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Python basics 1 &#8212; Data Science with Python</title>
+    <title>Syntax &#8212; Data Science with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -254,11 +254,6 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#syntax">
-   Syntax
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comments">
    Comments
   </a>
@@ -298,7 +293,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Python basics 1</h1>
+                <h1>Syntax</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -308,11 +303,6 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#syntax">
-   Syntax
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comments">
    Comments
@@ -352,16 +342,13 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="python-basics-1">
-<h1>Python basics 1<a class="headerlink" href="#python-basics-1" title="Permalink to this headline">¶</a></h1>
-<p>This short introduction to Python is based on content from the excellent app Tinkerstellar.</p>
-<div class="section" id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="syntax">
+<h1>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h1>
+<p><em>This short tutorial is a very brief exploration of the essential features of Python syntax. It is mainly based on content from the excellent app Tinkerstellar.</em></p>
 <ul class="simple">
 <li><p>Syntax refers to the structure of the language (i.e., what constitutes a correctly-formed program).</p></li>
 <li><p>Here, we’ll not focus on the semantics – the meaning of the words and symbols within the syntax.</p></li>
 </ul>
-<p>Consider the following code example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the midpoint</span>
@@ -390,12 +377,11 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="comments">
 <h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Comments in Python are marked by #.</p></li>
-<li><p>This script starts with a comment:</p></li>
+<li><p>Comments in Python are marked by #</p></li>
+<li><p>Anything on the line following the # sign is ignored by the interpreter</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -404,27 +390,17 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Comments in Python are indicated by a pound sign (#)</p></li>
-<li><p>Anything on the line following the pound sign is ignored by the interpreter</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># below is an example of an inline comment</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># below are examples of inline comments</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># create a variable x and assign value 1</span>
 <span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
-<span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># print x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1757</span><span class="o">/</span><span class="mf">351880272.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># below is an example of an inline comment</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">x</span>
-
-<span class="ne">NameError</span>: name &#39;x&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -445,7 +421,7 @@ upper: [5, 6, 7, 8, 9]
 <ul class="simple">
 <li><p>This is an assignment operation, where we’ve created a variable named midpoint and assigned it the value 5.</p></li>
 <li><p>Notice that the end of this statement is simply marked by the end of the line.</p></li>
-<li><p>If you’d like a statement to continue to the next line, it is possible to use the “” marker to indicate this:</p></li>
+<li><p>If you’d like a statement to continue to the next line, it is possible to use the “&quot; marker to indicate this:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -479,39 +455,22 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 <ul class="simple">
-<li><p>Most Python style guides recommend the second version of line continuation (within parentheses) to the first (use of the “&quot; marker).</p></li>
-<li><p>Sometimes it can be useful to put multiple statements on a single line — semicolon can optionally terminate a statement in Python:</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Functionally, this is equivalent to writing</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Using a semicolon to put multiple statements on a single line is generally discouraged by most Python style guides</p></li>
+<li><p>Most Python style guides recommend the second version of line continuation (within parentheses)</p></li>
 </ul>
 </div>
 <div class="section" id="indentation">
 <h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Next, we get to the main block of code:</p></li>
+<li><p>A block of code is a set of statements that should be treated as a unit</p></li>
+<li><p>Code blocks are denoted by indentation (white space)</p></li>
+<li><p>The amount of whitespace used for indenting code blocks is up to the user, as long as it is consistent throughout the script</p></li>
+<li><p>By convention, most style guides recommend to indent code blocks by four spaces</p></li>
+<li><p>Indented code blocks are always preceded by a colon (:) on the previous line</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">midpoint</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">:</span>
         <span class="n">lower</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -520,11 +479,6 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>A block of code is a set of statements that should be treated as a unit</p></li>
-<li><p>Code blocks are denoted by indentation (white space)</p></li>
-<li><p>Indented code blocks are always preceded by a colon (:) on the previous line</p></li>
-</ul>
 <ul class="simple">
 <li><p>In the snippet below, print(x) is in the indented block, and will be executed only if x is less than 4</p></li>
 </ul>
@@ -556,23 +510,20 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>The amount of whitespace used for indenting code blocks is up to the user, as long as it is consistent throughout the script</p></li>
-<li><p>By convention, most style guides recommend to indent code blocks by four spaces</p></li>
-</ul>
 </div>
 <div class="section" id="whitespace-wihin-lines">
 <h2>Whitespace wihin lines<a class="headerlink" href="#whitespace-wihin-lines" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>White space within lines of Python code does not matter.</p></li>
-<li><p>For example, all three of these expressions are equivalent:</p></li>
+<li><p>White space within lines of Python code does not matter</p></li>
+<li><p>For example, all three of these expressions are equivalent</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
-<span class="n">x</span>   <span class="o">=</span>   <span class="mi">1</span>   <span class="o">+</span>   <span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">a</span>   <span class="o">=</span>   <span class="mi">1</span>   <span class="o">+</span>   <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -585,11 +536,14 @@ upper: [5, 6, 7, 8, 9]
 <ul class="simple">
 <li><p>Using whitespace effectively can lead to much more readable code</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">2</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">2</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span>
-</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="parentheses">
@@ -610,19 +564,32 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<p>They can also be used to indicate that a function is being called. In the next snippet, the print() function is used to display the contents of a variable. The function call is indicated by a pair of opening and closing parentheses, with the arguments to the function contained within:</p>
+<ul class="simple">
+<li><p>They can also be used to indicate that a function is being called.</p></li>
+<li><p>In the next snippet, the <code class="docutils literal notranslate"><span class="pre">print()</span></code> function is used to display the contents of a variable.</p></li>
+<li><p>The function call is indicated by a pair of opening and closing parentheses, with the arguments to the function contained within:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Value:&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value: 1
+</pre></div>
 </div>
-<p>Some functions can be called with no arguments at all, in which case the opening and closing parentheses still must be used to indicate a function evaluation. An example of this is the sort method of lists:</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>Some functions can be called with no arguments at all, in which case the opening and closing parentheses still must be used to indicate a function evaluation.</p></li>
+<li><p>An example of this is the sort method of lists:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">L</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -633,13 +600,15 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<p>The “()” after sort indicates that the function should be executed, and is required even if no arguments are necessary.</p>
+<ul class="simple">
+<li><p>The “()” after sort indicates that the function should be executed, and is required even if no arguments are necessary.</p></li>
+</ul>
 </div>
 <div class="section" id="style-guides">
 <h2>Style guides<a class="headerlink" href="#style-guides" title="Permalink to this headline">¶</a></h2>
-<p>This has been a very brief exploration of the essential features of Python syntax; its purpose is to give you a good frame of reference for when you’re reading the code in later chapters.</p>
-<p>Several times we’ve mentioned Python “style guides”, which can help teams to write code in a consistent style. The most widely used style guide in Python is known as PEP8, and can be found at <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a>.</p>
-<p>As you begin to write more Python code, it would be useful to read through this! The style suggestions contain the wisdom of many Python gurus, and most suggestions go beyond simple pedantry: they are experience-based recommendations that can help avoid subtle mistakes and bugs in your code.</p>
+<ul class="simple">
+<li><p>The most widely used style guide in Python is known as PEP8, and can be found at <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+</ul>
 </div>
 </div>
 
