@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Syntax basics &#8212; Data Science with Python</title>
+    <title>Python basics 1 &#8212; Data Science with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -253,42 +253,37 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Syntax basics
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-syntax">
-   What is syntax?
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comments">
    Comments
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#statements">
    Statements
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indentation">
    Indentation
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#whitespace-wihin-lines">
    Whitespace wihin lines
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parentheses">
    Parentheses
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#style-guides">
    Style guides
   </a>
@@ -303,7 +298,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Syntax basics</h1>
+                <h1>Python basics 1</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -313,42 +308,37 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Syntax basics
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-syntax">
-   What is syntax?
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comments">
    Comments
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#statements">
    Statements
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indentation">
    Indentation
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#whitespace-wihin-lines">
    Whitespace wihin lines
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parentheses">
    Parentheses
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#style-guides">
    Style guides
   </a>
@@ -362,53 +352,24 @@
             
               <div>
                 
-  <div class="section" id="syntax-basics">
-<h1>Syntax basics<a class="headerlink" href="#syntax-basics" title="Permalink to this headline">¶</a></h1>
-<p>This introduction to Python is based on content from the ecellent app Tinkerstellar.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">this</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Zen of Python, by Tim Peters
-
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren&#39;t special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you&#39;re Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it&#39;s a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let&#39;s do more of those!
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="what-is-syntax">
-<h1>What is syntax?<a class="headerlink" href="#what-is-syntax" title="Permalink to this headline">¶</a></h1>
-<p>Syntax refers to the structure of the language (i.e., what constitutes a correctly-formed program). For the time being, we’ll not focus on the semantics – the meaning of the words and symbols within the syntax – but will return to this at a later point.
-Consider the following code example:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="python-basics-1">
+<h1>Python basics 1<a class="headerlink" href="#python-basics-1" title="Permalink to this headline">¶</a></h1>
+<p>This short introduction to Python is based on content from the excellent app Tinkerstellar.</p>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Syntax refers to the structure of the language (i.e., what constitutes a correctly-formed program).</p></li>
+<li><p>Here, we’ll not focus on the semantics – the meaning of the words and symbols within the syntax.</p></li>
+</ul>
+<p>Consider the following code example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the midpoint</span>
 <span class="n">midpoint</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="c1"># make two empty lists</span>
-<span class="n">lower</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lower</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># split the numbers into lower and upper</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -431,8 +392,11 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 <div class="section" id="comments">
-<h1>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h1>
-<p>Comments in Python are marked by #. This script starts with a comment:</p>
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Comments in Python are marked by #.</p></li>
+<li><p>This script starts with a comment:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the midpoint</span>
@@ -440,36 +404,49 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<p>Comments in Python are indicated by a pound sign (#), and anything on the line following the pound sign is ignored by the interpreter.</p>
-<p>This means, for example, that you can have stand-alone comments like the one just shown, as well as inline comments that follow a statement. For example:</p>
+<ul class="simple">
+<li><p>Comments in Python are indicated by a pound sign (#)</p></li>
+<li><p>Anything on the line following the pound sign is ignored by the interpreter</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># below is an example of an inline comment</span>
+<span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
+<span class="n">x</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1725</span><span class="o">/</span><span class="mf">2945675296.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1757</span><span class="o">/</span><span class="mf">351880272.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># below is an example of an inline comment</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># shorthand for x = x + 2</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">x</span>
 
 <span class="ne">NameError</span>: name &#39;x&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
-<p>Python does not have any syntax for multi-line comments, such as the /* … */ syntax used in C and C++, though multi-line strings are often used as a replacement for multi-line comments (more on this in String Manipulation and Regular Expressions chapter).</p>
 </div>
 <div class="section" id="statements">
-<h1>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">¶</a></h1>
-<p>End-of-line terminates a statement in Python. The next line in the script is</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">midpoint</span> <span class="o">=</span> <span class="mi">5</span>
+<h2>Statements<a class="headerlink" href="#statements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>End-of-line terminates a statement in Python</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">midpoint</span> <span class="o">=</span> <span class="mi">5</span>
 </pre></div>
 </div>
-<p>This is an assignment operation, where we’ve created a variable named midpoint and assigned it the value 5.</p>
-<p>Notice that the end of this statement is simply marked by the end of the line. This is in contrast to languages like C and C++, where every statement must end with a semicolon (;).</p>
-<p>In Python, if you’d like a statement to continue to the next line, it is possible to use the “” marker to indicate this:</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>This is an assignment operation, where we’ve created a variable named midpoint and assigned it the value 5.</p></li>
+<li><p>Notice that the end of this statement is simply marked by the end of the line.</p></li>
+<li><p>If you’d like a statement to continue to the next line, it is possible to use the “” marker to indicate this:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span>\
@@ -484,7 +461,9 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<p>It is also possible to continue expressions on the next line within parentheses, without using the “” marker:</p>
+<ul class="simple">
+<li><p>It is also possible to continue expressions on the next line within parentheses:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">+</span>
@@ -499,58 +478,95 @@ upper: [5, 6, 7, 8, 9]
 </div>
 </div>
 </div>
-<p>Most Python style guides recommend the second version of line continuation (within parentheses) to the first (use of the “” marker).</p>
-<p>Sometimes it can be useful to put multiple statements on a single line — semicolon can optionally terminate a statement in Python. The next portion of the script is</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
+<ul class="simple">
+<li><p>Most Python style guides recommend the second version of line continuation (within parentheses) to the first (use of the “&quot; marker).</p></li>
+<li><p>Sometimes it can be useful to put multiple statements on a single line — semicolon can optionally terminate a statement in Python:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
 </div>
-<p>This shows the example of how the semicolon (;) familiar in C can be used optionally in Python to put two statements on a single line. Functionally, this is entirely equivalent to writing</p>
-<p>lower = []
-upper = []</p>
-<p>Using a semicolon to put multiple statements on a single line is generally discouraged by most Python style guides, though occasionally it proves convenient</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>Functionally, this is equivalent to writing</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">upper</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Using a semicolon to put multiple statements on a single line is generally discouraged by most Python style guides</p></li>
+</ul>
 </div>
 <div class="section" id="indentation">
-<h1>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h1>
-<p>Next, we get to the main block of code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Next, we get to the main block of code:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">:</span>
         <span class="n">lower</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">upper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This is a compound control-flow statement including a <strong>loop</strong> and a <strong>conditional</strong> – we’ll look at these types of statements in a moment. For now, consider that this demonstrates what is perhaps the most controversial feature of Python’s syntax: whitespace is meaningful!</p>
-<p>In programming languages, a block of code is a set of statements that should be treated as a unit. In C, for example, code blocks are denoted by curly braces:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">C</span> <span class="n">code</span>
-<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="o">//</span> <span class="n">curly</span> <span class="n">braces</span> <span class="n">indicate</span> <span class="n">code</span> <span class="n">block</span>
-    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
-<span class="p">}</span>
+</div>
+</div>
+<ul class="simple">
+<li><p>A block of code is a set of statements that should be treated as a unit</p></li>
+<li><p>Code blocks are denoted by indentation (white space)</p></li>
+<li><p>Indented code blocks are always preceded by a colon (:) on the previous line</p></li>
+</ul>
+<ul class="simple">
+<li><p>In the snippet below, print(x) is in the indented block, and will be executed only if x is less than 4</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">5</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>      
 </pre></div>
 </div>
-<p>In Python, code blocks are denoted by indentation:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="c1"># indentation indicates code block</span>
-    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+</div>
+</div>
+<ul class="simple">
+<li><p>In the snippet below, print(x) is outside the block, and will be executed regardless of the value of x</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">5</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>      
 </pre></div>
 </div>
-<p>In Python, indented code blocks are always preceded by a colon (:) on the previous line.</p>
-<p>The use of indentation helps to enforce the uniform, readable style that many find appealing in Python code. But it might be confusing to the uninitiated; for example, the following two snippets will produce different results:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>         <span class="o">&gt;&gt;&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>     <span class="o">...</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>      <span class="o">...</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
-<p>In the snippet on the left, print(x) is in the indented block, and will be executed only if x is less than 4.</p>
-<p>In the snippet on the right print(x) is outside the block, and will be executed regardless of the value of x!</p>
-<p>Python’s use of meaningful whitespace often is surprising to programmers who are accustomed to other languages, but in practice it can lead to much more consistent and readable code than languages that do not enforce indentation of code blocks.</p>
-<p>Finally, you should be aware that the amount of whitespace used for indenting code blocks is up to the user, as long as it is consistent throughout the script.</p>
-<p>By convention, most style guides recommend to indent code blocks by <strong>four spaces</strong>, and that is the convention we will follow in this report.</p>
+</div>
+</div>
+<ul class="simple">
+<li><p>The amount of whitespace used for indenting code blocks is up to the user, as long as it is consistent throughout the script</p></li>
+<li><p>By convention, most style guides recommend to indent code blocks by four spaces</p></li>
+</ul>
 </div>
 <div class="section" id="whitespace-wihin-lines">
-<h1>Whitespace wihin lines<a class="headerlink" href="#whitespace-wihin-lines" title="Permalink to this headline">¶</a></h1>
-<p>While the mantra of meaningful whitespace holds true for whitespace before lines (which indicate a code block), white space within lines of Python code does not matter.</p>
-<p>For example, all three of these expressions are equivalent:</p>
+<h2>Whitespace wihin lines<a class="headerlink" href="#whitespace-wihin-lines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>White space within lines of Python code does not matter.</p></li>
+<li><p>For example, all three of these expressions are equivalent:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span>
@@ -566,20 +582,22 @@ upper = []</p>
 </div>
 </div>
 </div>
-<p>Using whitespace effectively can lead to much more readable code, especially in cases where operators follow each other – compare the following two expressions for exponentiating by a negative number:</p>
+<ul class="simple">
+<li><p>Using whitespace effectively can lead to much more readable code</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="o">**-</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p>to</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p>I find the second version with spaces much more easily readable at a single glance.</p>
-<p>Most Python style guides recommend using a single space around binary operators, and no space around unary operators. We’ll discuss Python’s operators further in the Operators chapter.</p>
 </div>
 <div class="section" id="parentheses">
-<h1>Parentheses<a class="headerlink" href="#parentheses" title="Permalink to this headline">¶</a></h1>
-<p>Parentheses are used in Python for grouping or calling. In the previous code snippet, we see two uses of parentheses. First, they can be used in the typical way to group statements or mathematical operations:</p>
+<h2>Parentheses<a class="headerlink" href="#parentheses" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Parentheses are used for grouping or calling</p></li>
+<li><p>They can be used in the typical way to group statements or mathematical operations:</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
@@ -618,10 +636,11 @@ upper = []</p>
 <p>The “()” after sort indicates that the function should be executed, and is required even if no arguments are necessary.</p>
 </div>
 <div class="section" id="style-guides">
-<h1>Style guides<a class="headerlink" href="#style-guides" title="Permalink to this headline">¶</a></h1>
+<h2>Style guides<a class="headerlink" href="#style-guides" title="Permalink to this headline">¶</a></h2>
 <p>This has been a very brief exploration of the essential features of Python syntax; its purpose is to give you a good frame of reference for when you’re reading the code in later chapters.</p>
 <p>Several times we’ve mentioned Python “style guides”, which can help teams to write code in a consistent style. The most widely used style guide in Python is known as PEP8, and can be found at <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a>.</p>
 <p>As you begin to write more Python code, it would be useful to read through this! The style suggestions contain the wisdom of many Python gurus, and most suggestions go beyond simple pedantry: they are experience-based recommendations that can help avoid subtle mistakes and bugs in your code.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

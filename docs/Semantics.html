@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Semantics &#8212; Data Science with Python</title>
+    <title>Python basics &#8212; Data Science with Python</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -254,6 +254,11 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#semantics">
+   Semantics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-as-pointers">
    Variables as pointers
   </a>
@@ -431,7 +436,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Semantics</h1>
+                <h1>Python basics</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -441,6 +446,11 @@
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#semantics">
+   Semantics
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#variables-as-pointers">
    Variables as pointers
@@ -618,9 +628,11 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="semantics">
-<h1>Semantics<a class="headerlink" href="#semantics" title="Permalink to this headline">¶</a></h1>
-<p>This chapter will begin to cover the basic semantics of the Python language. As opposed to the syntax covered in the previous chapter, the semantics of a language involve the meaning of the statements. As with our discussion of syntax, here we’ll preview a few of the essential semantic constructions in Python to give you a better frame of reference for understanding the code in the following chapters.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="python-basics">
+<h1>Python basics<a class="headerlink" href="#python-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="semantics">
+<h2>Semantics<a class="headerlink" href="#semantics" title="Permalink to this headline">¶</a></h2>
+<p>Semantics of a language involve the meaning of the statements. As with our discussion of syntax, here we’ll preview a few of the essential semantic constructions in Python to give you a better frame of reference for understanding the code in the following chapters.</p>
 <p>This chapter will cover the semantics of variables and objects, which are the main ways you store, reference, and operate on data within a Python script.</p>
 <p>Assigning variables in Python is as easy as putting a variable name to the left of the equals (=) sign:</p>
 <div class="cell docutils container">
@@ -666,6 +678,7 @@ x as a list:  [1, 2, 3]
 <p>While users of <strong>statically-typed</strong> languages might miss the type-safety that comes with declarations like those found in C,</p>
 <p>int x = 4;</p>
 <p>this dynamic typing is one of the pieces that makes Python so quick to write and easy to read.</p>
+</div>
 <div class="section" id="variables-as-pointers">
 <h2>Variables as pointers<a class="headerlink" href="#variables-as-pointers" title="Permalink to this headline">¶</a></h2>
 <p>There is a consequence of this “variable as pointer” approach that you need to be aware of. If we have two variable names pointing to the same mutable object, then changing one will change the other as well! For example, let’s create and modify a list:</p>
@@ -1098,7 +1111,7 @@ Range from 0 to 10 by 2:  [0, 2, 4, 6, 8]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_1706/599667643.py&quot;</span><span class="gt">, line </span><span class="mi">3</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;/tmp/ipykernel_1737/599667643.py&quot;</span><span class="gt">, line </span><span class="mi">3</span>
     <span class="n">The</span> <span class="n">other</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">Python</span> <span class="ow">is</span> <span class="n">a</span> <span class="k">while</span> <span class="n">loop</span><span class="p">,</span> <span class="n">which</span> <span class="n">iterates</span> <span class="n">until</span> <span class="n">some</span> <span class="n">condition</span> <span class="ow">is</span> <span class="n">met</span><span class="p">:</span>
             <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
