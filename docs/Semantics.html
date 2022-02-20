@@ -704,7 +704,26 @@ y =  [1, 2, 3, 4]
 </div>
 <ul class="simple">
 <li><p>This makes perfect sense if you think of x and y as pointers, and the “=” operator as an operation that changes what the name points to.</p></li>
+<li><p>Using a question mark (?) before or after a variable will display some general information about the object.
+This is referred to as object introspection.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>If the object is a function or instance method, the docstring, if defined, will also be shown:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="variables-of-simple-types">
 <h2>Variables of simple types<a class="headerlink" href="#variables-of-simple-types" title="Permalink to this headline">¶</a></h2>
@@ -1235,7 +1254,35 @@ Range from 0 to 10 by 2:  [0, 2, 4, 6, 8]
 <div class="section" id="defining-functions">
 <h3>Defining functions<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Functions are defined with the def statement.</p></li>
+<li><p>Functions are defined with the def statement</p></li>
+<li><p>It is good practice to include a description of your function (<a class="reference external" href="https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring">docstring</a>) at the top oy your function’s body:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add two numbers together</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    the_sum : type of arguments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Then using ? shows us the docstring:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add_numbers<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
 <li><p>For example, we can encapsulate a version of our Fibonacci sequence code from the previous chapter as follows:</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1525,9 +1572,7 @@ kwargs =  {&#39;pi&#39;: 3.14}
 4
 6
 8
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+10
 </pre></div>
 </div>
 </div>
@@ -1540,10 +1585,7 @@ kwargs =  {&#39;pi&#39;: 3.14}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 5 6 7 8 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 5 6 7 8 9 
 </pre></div>
 </div>
 </div>
@@ -1569,9 +1611,7 @@ kwargs =  {&#39;pi&#39;: 3.14}
 1 4
 2 6
 3 8
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 10
+4 10
 </pre></div>
 </div>
 </div>
@@ -1746,7 +1786,7 @@ kwargs =  {&#39;pi&#39;: 3.14}
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1682</span><span class="o">/</span><span class="mf">2082171899.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1761</span><span class="o">/</span><span class="mf">2082171899.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
 
 <span class="ne">NameError</span>: name &#39;Q&#39; is not defined
