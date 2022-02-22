@@ -45,15 +45,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Overview" href="lifecycle.html" />
@@ -257,9 +256,9 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="welcome">
 <h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
-<p>The goal of this book is to give you a first impression of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this:</p>
+<p>The goal of this book is to give you an introduction of some important tools and concepts in Python when doing data science or statistics projects. A typical project looks something like this:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/lifecycle.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/lifecycle.png" style="width: 600px;" /></a>
-<p>Surrounding all these steps is programming (e.g. with Python or R) and the usage of different tools like Git, Visual Studio Code and Anaconda. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important basics.</p>
+<p>Surrounding all these steps is programming and the usage of different data science modules like scikit-learn for machine learning and data preprocessing as well as pandas and seaborn for data exploration. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important methods.</p>
 <hr class="docutils" />
 <p>This online work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
 <p><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br /></p>

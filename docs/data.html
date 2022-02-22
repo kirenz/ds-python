@@ -45,15 +45,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Model" href="model.html" />
@@ -764,7 +763,7 @@
 </div>
 <div class="section" id="data-splitting">
 <h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
-<p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we will perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
+<p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6" title="Aurélien Géron. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019. ISBN 1492032611.">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we will perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
 <div class="section" id="training-evaluation-and-test-set">
 <h3>Training, evaluation and test set<a class="headerlink" href="#training-evaluation-and-test-set" title="Permalink to this headline">¶</a></h3>
 <p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
@@ -790,7 +789,7 @@
 </div>
 <div class="section" id="analyze-data">
 <span id="section-data-analyze"></span><h2>Analyze data<a class="headerlink" href="#analyze-data" title="Permalink to this headline">¶</a></h2>
-<p>The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
+<p>The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9" title="Hadley Wickham and Garrett Grolemund. R for data science: import, tidy, transform, visualize, and model data. O'Reilly Media, Inc., 2016. URL: https://r4ds.had.co.nz.">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
 <p>Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.</p>
 <div class="tip admonition">
 <p class="admonition-title">Exploratory data analysis  </p>
@@ -985,7 +984,7 @@
 <div><p>“Applied machine learning is basically feature engineering” Andrew Ng</p>
 </div></blockquote>
 <p>The understanding gained in <a class="reference internal" href="#section-data-analyze"><span class="std std-ref">data analysis</span></a> is now used for data preprocessing (e.g., encode categorical data, fix missing values and outliers) and feature engineering.</p>
-<p>Feature engineering is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like <span id="id3">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<p>Feature engineering is the process of using domain knowledge to extract meaningful features (attributes) from raw data. The goal of this process is to create new features which improve the predictions from our model and my include steps like <span id="id3">[<a class="reference internal" href="reference.html#id5" title="Max Kuhn and Kjell Johnson. Feature engineering and selection: A practical approach for predictive models. CRC Press, 2019. URL: http://www.feat.engineering/.">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>Feature transformation (transform features)</p></li>
 <li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
@@ -1004,7 +1003,7 @@
 </div>
 <div class="section" id="feature-transformation">
 <h3>Feature transformation<a class="headerlink" href="#feature-transformation" title="Permalink to this headline">¶</a></h3>
-<p>Typically, we need to perform feature transformations because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>:</p>
+<p>Typically, we need to perform feature transformations because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5" title="Max Kuhn and Kjell Johnson. Feature engineering and selection: A practical approach for predictive models. CRC Press, 2019. URL: http://www.feat.engineering/.">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>have missing values</p></li>
 <li><p>contain a small number of extreme values (outliers)</p></li>
@@ -1094,7 +1093,7 @@
 </div>
 <div class="section" id="feature-extraction">
 <h3>Feature extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h3>
-<p>Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response <span id="id5">[<a class="reference internal" href="reference.html#id5">Kuhn and Johnson, 2019</a>]</span>. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.</p>
+<p>Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response <span id="id5">[<a class="reference internal" href="reference.html#id5" title="Max Kuhn and Kjell Johnson. Feature engineering and selection: A practical approach for predictive models. CRC Press, 2019. URL: http://www.feat.engineering/.">Kuhn and Johnson, 2019</a>]</span>. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.</p>
 <p>If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">unsupervised dimensionality reduction methods</a> in scikit-learn.</p>
 </div>
 <div class="section" id="custom-feature-operations">
