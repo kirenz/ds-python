@@ -14,7 +14,7 @@ Feature selection is the process of selecting a subset of relevant features (var
 
 Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. If you want to learn more about feature selection methods, review the following content:
 
-```{admonition} Feature selection 
+```{admonition} Jupyter Book 
 :class: tip
 
 - [Feature Selection](https://kirenz.github.io/feature-engineering/docs/feature-selection.html#)
@@ -202,12 +202,33 @@ Now is the time to evaluate the final model on the test set. If you did a lot of
 
 It is important to note that we don't change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.
 
-## Modeling examples
+## Challenges
+
+In the following presentation, we cover some typical modeling challenges:
+
+- Poor quality data
+- irrelevant features and feature engineering
+- overfitting and regularization
+- underfitting
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz4smNkQ4Ef0JL2RvMXqlb4RiagKxajxF_QekQhdq8czpX456ly7GgoLKk-tZ5khHSP6J6ztTjMs6X/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Slides
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1WPUVfUe4rZu1bt61IwjneHqldhH9nC6U0F_u7Mj_ZL4/export/pdf)
+```
+
+
+## Regression & Classification models
 
 The following resources provide some model building examples for regression and classification problems:  
 
 
-```{admonition} Regression & Classification models 
+```{admonition} Jupyter Books about Regression & Classification 
 :class: tip
 
 - [Regression](https://kirenz.github.io/regression/docs/intro.html)
