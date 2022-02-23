@@ -34,7 +34,6 @@ Next, we discuss some important model selection topics in the following presenta
 
 ### Feature selection
 
-
 Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. 
 
 :::{Note}
