@@ -12,7 +12,7 @@ There are various options how to store and ingest your data but we won't go into
 
  review this online book: 
 
- ```{admonition} Data engineering
+ ```{admonition} Jupyter Book
 :class: tip
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
@@ -20,7 +20,7 @@ There are various options how to store and ingest your data but we won't go into
 
 ### Import data
 
-The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
+The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
 
 ```Python
 path_to_file = "my-file.csv"
@@ -166,13 +166,35 @@ The goal of this phase is to understand the training data. In particular, explor
 
 Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
 
+Data visualization in Python:
+
+- [Matplotlib](https://matplotlib.org/) is a comprehensive library for creating static, animated, and interactive visualizations in Python. It can be used  with numpy as well as pandas dataframes. 
+
+
+- [Seaborn](https://seaborn.pydata.org/) is a Python data visualization library based on [matplotlib](https://matplotlib.org/). It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Slides
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1Mb7yEu3KdHx9qVy0c4wmU0OlFo0am_pfJgZBAIbjJHU/export/pdf)
+```
+
+- [Plotly's](https://plotly.com/python/) Python graphing library makes interactive, publication-quality graphs. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, polar charts, and bubble charts.
+
+- [Dash](https://dash.plotly.com/) is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.
+
 
  ```{admonition} Exploratory data analysis  
 :class: tip
-- [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
-- [Data exploration with seaborn](https://seaborn.pydata.org/) 
+- [Data analysis in pandas](https://kirenz.github.io/pandas/docs/intro.html)
 - [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 ```
+
 
 :::{Note}
 We use lists created in [](section:data:variable-lists) for some of the steps shown below
