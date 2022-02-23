@@ -1,18 +1,47 @@
 # Model
 
-Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the training of the model. Note that the type of preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)).
+Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the training and selection of the model. Note that the type of preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)).
 
-The process of analysis, data preprocessing, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
+The process of analysis, data preprocessing, feature engineering, feature selection, modeling and model selection often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
 
 ![](https://www.tmwr.org/premade/modeling-process.svg)
 
-The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.
+The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. 
+
+## Important concepts
+
+### Regression example
+
+Next, we discuss some important model selection topics in the following presentation:
+
+- Model selection
+- best fitting model 
+- mean squared error
+- bias-variance trade off.
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWlyTZB6YpdYyRpWXdaI5_s8o9MZ5DFk9Gm-cTO4CrrJBHrNgrcyZl4IdktJEMq0e4apMDPpMP46Cb/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1ZrzKUPZqp7GlCAh4uFpXnvUW6kQTvUgD2G-YZ7B24aM/export/pdf)
+- Colab: [Case Does money make people happier?](https://colab.research.google.com/github/kirenz/data-science-projects/blob/master/ds-first-steps-happy-gdp.ipynb)
+
+```
+
+### Feature selection
+
+
+Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. 
 
 :::{Note}
 Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.
 :::
 
-Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. If you want to learn more about feature selection methods, review the following content:
+If you want to learn more about feature selection methods, review the following content:
 
 ```{admonition} Jupyter Book 
 :class: tip
