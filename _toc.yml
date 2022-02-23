@@ -1,9 +1,9 @@
 format: jb-book
 root: docs/intro.md
 parts:
-  - caption: Toolkit
+  - caption: Introduction
     chapters:
-    - file: docs/programming-toolkit.md
+    - file: docs/intro-data-driven.md
   - caption: Data Science Lifecycle
     chapters:
     - file: docs/lifecycle.md
