@@ -12,7 +12,7 @@ There are various options how to store and ingest your data but we won't go into
 
  review this online book: 
 
- ```{admonition} Data engineering
+ ```{admonition} Jupyter Book
 :class: tip
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
@@ -20,7 +20,7 @@ There are various options how to store and ingest your data but we won't go into
 
 ### Import data
 
-The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
+The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
 
 ```Python
 path_to_file = "my-file.csv"
@@ -162,21 +162,41 @@ df_train = df_train.join(pd.DataFrame(y_train))
 (section:data:analyze)=
 ## Analyze data
 
-The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
-
-Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
-
-
- ```{admonition} Exploratory data analysis  
-:class: tip
-- [Data analysis in pandas](https://kirenz.github.io/pandas/intro.html)
-- [Data exploration with seaborn](https://seaborn.pydata.org/) 
-- [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
-```
+The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
 
 :::{Note}
-We use lists created in [](section:data:variable-lists) for some of the steps shown below
-:::  
+The interactive website [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+:::
+
+Data visualization modules in Python:
+
+- [Matplotlib](https://matplotlib.org/) is a comprehensive library for creating static, animated, and interactive visualizations in Python. It can be used  with numpy as well as pandas dataframes. 
+
+- [Seaborn](https://seaborn.pydata.org/) is a Python data visualization library based on [matplotlib](https://matplotlib.org/). It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Slides
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1Mb7yEu3KdHx9qVy0c4wmU0OlFo0am_pfJgZBAIbjJHU/export/pdf)
+```
+
+- [Plotly's](https://plotly.com/python/) Python graphing library makes interactive, publication-quality graphs. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, polar charts, and bubble charts.
+
+- [Dash](https://dash.plotly.com/) is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.
+
+```{admonition} Installation tutorial
+:class: tip
+- [Dash installation tutorial](https://kirenz.github.io/codelabs/codelabs/dash-setup/#0)
+- [Dash starter code repository](https://github.com/kirenz/dash-tutorial)
+```
+
+
+Note that in the next section, we will use lists created in [](section:data:variable-lists) for some of the steps shown below.
 
 ### Numerical data
 
@@ -191,6 +211,26 @@ df_train.describe().round(2).T
 # histograms
 df_train.hist(figsize=(20, 15));
 ```
+
+Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1hxGSzOcvwqBbmMsz0MCVRkuWP9e0ID3u3t0WNGpwItc/export/pdf)
+- [Example in Google sheets](https://docs.google.com/spreadsheets/d/1xXhRBbKjqlglrUUdRKWhwG5XiMKQsbGqOagLara3V0k/edit#gid=0)
+- Colab: [Dot plots and the mean](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb)
+- Colab: [Histograms](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb)
+- Colab: [Case height](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-numerical.html)
+```
+
 
 (section:data:categorical)=
 ### Categorical data
@@ -228,7 +268,29 @@ for i in cat_list:
     plt.show();
 ```
 
-We can  investigate numerical data grouped by categorical data:
+
+Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1s5-_4lGxJERlPQxpb3adG99iH9b5hiyarK2fGBwHhIY/export/pdf)
+- Colab: [Contingency table and bar plot](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-1-contingency-table-bar-plot.ipynb)
+- Colab: [Two categorical variables](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-2-two-categorical-variables.ipynb)
+- Colab: [Row and column proportions ](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-3-row-column-proportions.ipynb)
+- Colab: [Pie charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-4-pie-charts.ipynb)
+- Colab: [Waffle charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-5-waffle-charts.ipynb)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#contingency-tables-and-bar-plots)
+```
+
+### Numerical grouped by categorical
+
+We can also investigate numerical data grouped by categorical data:
 
 ```Python
 # median
@@ -246,6 +308,19 @@ for i in list_cat:
 # standard deviation
 for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
+```
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1GDhWpIMsyFWA2lZP9NERyncL84W3HuIkylendbVfq-g/export/pdf)
+- Colab: [Comparisons across groups](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-6-comparisons-across-groups.ipynb)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#comparing-numerical-data-across-groups)
 ```
 
 ### Relationships

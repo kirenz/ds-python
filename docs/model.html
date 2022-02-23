@@ -100,6 +100,18 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-data-driven.html">
+   Data driven
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Data Science Lifecycle
  </span>
 </p>
@@ -229,6 +241,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-concepts">
+   Important concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-example">
+     Regression example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-selection">
+     Feature selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#select-algorithm">
    Select algorithm
   </a>
@@ -259,8 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modeling-examples">
-   Modeling examples
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-classification-models">
+   Regression &amp; Classification models
   </a>
  </li>
 </ul>
@@ -284,6 +318,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-concepts">
+   Important concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-example">
+     Regression example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-selection">
+     Feature selection
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#select-algorithm">
    Select algorithm
   </a>
@@ -314,8 +365,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modeling-examples">
-   Modeling examples
+  <a class="reference internal nav-link" href="#challenges">
+   Challenges
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-classification-models">
+   Regression &amp; Classification models
   </a>
  </li>
 </ul>
@@ -329,22 +385,49 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="model">
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
-<p>Once our features have been preprocessed in a format ready for modeling algorithms (see <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a>), they can be used in the training of the model. Note that the type of preprocessing is dependent on the type of model being fit. <span id="id1">Kuhn and Silge [<a class="reference internal" href="reference.html#id4" title="Max Kuhn and Julia Silge. Tidy Modeling with R. Online book, 2021. URL: https://www.tmwr.org/.">2021</a>]</span> provide recommendations for baseline levels of preprocessing that are needed for various model functions (see <a class="reference external" href="https://www.tmwr.org/pre-proc-table.html">this table</a>).</p>
-<p>The process of analysis, data preprocessing, feature engineering, feature selection and modeling often requires multiple iterations. The general phases are <span id="id2">[<a class="reference internal" href="reference.html#id4" title="Max Kuhn and Julia Silge. Tidy Modeling with R. Online book, 2021. URL: https://www.tmwr.org/.">Kuhn and Silge, 2021</a>]</span>:</p>
+<p>Once our features have been preprocessed in a format ready for modeling algorithms (see <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a>), they can be used in the training and selection of the model. Note that the type of preprocessing is dependent on the type of model being fit. <span id="id1">Kuhn and Silge [<a class="reference internal" href="reference.html#id4" title="Max Kuhn and Julia Silge. Tidy Modeling with R. Online book, 2021. URL: https://www.tmwr.org/.">2021</a>]</span> provide recommendations for baseline levels of preprocessing that are needed for various model functions (see <a class="reference external" href="https://www.tmwr.org/pre-proc-table.html">this table</a>).</p>
+<p>The process of analysis, data preprocessing, feature engineering, feature selection, modeling and model selection often requires multiple iterations. The general phases are <span id="id2">[<a class="reference internal" href="reference.html#id4" title="Max Kuhn and Julia Silge. Tidy Modeling with R. Online book, 2021. URL: https://www.tmwr.org/.">Kuhn and Silge, 2021</a>]</span>:</p>
 <p><img alt="" src="https://www.tmwr.org/premade/modeling-process.svg" /></p>
-<p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. We discuss the model building process in the following sections.</p>
+<p>The colored segments within the circles signify the repeated data splitting (cross validation) used during model training.</p>
+<div class="section" id="important-concepts">
+<h2>Important concepts<a class="headerlink" href="#important-concepts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="regression-example">
+<h3>Regression example<a class="headerlink" href="#regression-example" title="Permalink to this headline">¶</a></h3>
+<p>Next, we discuss some important model selection topics in the following presentation:</p>
+<ul class="simple">
+<li><p>Model selection</p></li>
+<li><p>best fitting model</p></li>
+<li><p>mean squared error</p></li>
+<li><p>bias-variance trade off.</p></li>
+</ul>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWlyTZB6YpdYyRpWXdaI5_s8o9MZ5DFk9Gm-cTO4CrrJBHrNgrcyZl4IdktJEMq0e4apMDPpMP46Cb/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Resources</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1ZrzKUPZqp7GlCAh4uFpXnvUW6kQTvUgD2G-YZ7B24aM/export/pdf">Download slides</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/data-science-projects/blob/master/ds-first-steps-happy-gdp.ipynb">Case Does money make people happier?</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="feature-selection">
+<h3>Feature selection<a class="headerlink" href="#feature-selection" title="Permalink to this headline">¶</a></h3>
+<p>Note that there are a number of different strategies for <strong>feature selection</strong> that can be applied and some of them are performed simultaneously with model building.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.</p>
 </div>
-<p>Note that there are a number of different strategies for <strong>feature selection</strong> that can be applied and some of them are performed simultaneously with model building. If you want to learn more about feature selection methods, review the following content:</p>
+<p>If you want to learn more about feature selection methods, review the following content:</p>
 <div class="tip admonition">
-<p class="admonition-title">Feature selection </p>
+<p class="admonition-title">Jupyter Book </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/feature-engineering/docs/feature-selection.html">Feature Selection</a></p></li>
 </ul>
 </div>
 <p>In the next sections, we’ll discuss the process of model building in detail.</p>
+</div>
+</div>
 <div class="section" id="select-algorithm">
 <h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id3">[<a class="reference internal" href="reference.html#id13" title="David H. Wolpert. The Lack of A Priori Distinctions Between Learning Algorithms. Neural Computation, 8(7):1341–1390, October 1996. URL: https://doi.org/10.1162/neco.1996.8.7.1341, doi:10.1162/neco.1996.8.7.1341.">Wolpert, 1996</a>]</span>.</p>
@@ -465,7 +548,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="tip admonition">
 <p class="admonition-title">Voting regressor</p>
 <ul class="simple">
-<li><p>[Voting regressor example(<a class="reference external" href="https://kirenz.github.io/regression/docs/ensemble.html">https://kirenz.github.io/regression/docs/ensemble.html</a>)</p></li>
+<li><p><a class="reference external" href="https://kirenz.github.io/regression/docs/ensemble.html">Voting regressor example</a></p></li>
 </ul>
 </div>
 <p><strong>Stacked</strong> generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.</p>
@@ -487,11 +570,30 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset <span id="id7">[<a class="reference internal" href="reference.html#id6" title="Aurélien Géron. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019. ISBN 1492032611.">Géron, 2019</a>]</span>.</p>
 <p>It is important to note that we don’t change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.</p>
 </div>
-<div class="section" id="modeling-examples">
-<h2>Modeling examples<a class="headerlink" href="#modeling-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="challenges">
+<h2>Challenges<a class="headerlink" href="#challenges" title="Permalink to this headline">¶</a></h2>
+<p>In the following presentation, we cover some typical modeling challenges:</p>
+<ul class="simple">
+<li><p>Poor quality data</p></li>
+<li><p>irrelevant features and feature engineering</p></li>
+<li><p>overfitting and regularization</p></li>
+<li><p>underfitting</p></li>
+</ul>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz4smNkQ4Ef0JL2RvMXqlb4RiagKxajxF_QekQhdq8czpX456ly7GgoLKk-tZ5khHSP6J6ztTjMs6X/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Slides</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1WPUVfUe4rZu1bt61IwjneHqldhH9nC6U0F_u7Mj_ZL4/export/pdf">Download slides</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="regression-classification-models">
+<h2>Regression &amp; Classification models<a class="headerlink" href="#regression-classification-models" title="Permalink to this headline">¶</a></h2>
 <p>The following resources provide some model building examples for regression and classification problems:</p>
 <div class="tip admonition">
-<p class="admonition-title">Regression &amp; Classification models </p>
+<p class="admonition-title">Jupyter Books about Regression &amp; Classification </p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/regression/docs/intro.html">Regression</a></p></li>
 <li><p><a class="reference external" href="https://kirenz.github.io/classification/docs/intro.html">Classification</a></p></li>

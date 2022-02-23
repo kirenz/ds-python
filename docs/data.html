@@ -100,6 +100,18 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro-data-driven.html">
+   Data driven
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Data Science Lifecycle
  </span>
 </p>
@@ -295,6 +307,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-data">
      Categorical data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-grouped-by-categorical">
+     Numerical grouped by categorical
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -504,6 +521,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-grouped-by-categorical">
+     Numerical grouped by categorical
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#relationships">
      Relationships
     </a>
@@ -643,14 +665,14 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>review this online book:</p>
 <div class="tip admonition">
-<p class="admonition-title">Data engineering</p>
+<p class="admonition-title">Jupyter Book</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
 </div>
 <div class="section" id="import-data">
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
-<p>The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
+<p>The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;my-file.csv&quot;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
@@ -775,20 +797,37 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="analyze-data">
 <span id="section-data-analyze"></span><h2>Analyze data<a class="headerlink" href="#analyze-data" title="Permalink to this headline">¶</a></h2>
-<p>The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9" title="Hadley Wickham and Garrett Grolemund. R for data science: import, tidy, transform, visualize, and model data. O'Reilly Media, Inc., 2016. URL: https://r4ds.had.co.nz.">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data.</p>
-<p>Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.</p>
-<div class="tip admonition">
-<p class="admonition-title">Exploratory data analysis  </p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://kirenz.github.io/pandas/intro.html">Data analysis in pandas</a></p></li>
-<li><p><a class="reference external" href="https://seaborn.pydata.org/">Data exploration with seaborn</a></p></li>
-<li><p><a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p></li>
-</ul>
-</div>
+<p>The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9" title="Hadley Wickham and Garrett Grolemund. R for data science: import, tidy, transform, visualize, and model data. O'Reilly Media, Inc., 2016. URL: https://r4ds.had.co.nz.">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We use lists created in <a class="reference internal" href="#section-data-variable-lists"><span class="std std-ref">Variable lists</span></a> for some of the steps shown below</p>
+<p>The interactive website <a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p>
 </div>
+<p>Data visualization modules in Python:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> is a comprehensive library for creating static, animated, and interactive visualizations in Python. It can be used  with numpy as well as pandas dataframes.</p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> is a Python data visualization library based on <a class="reference external" href="https://matplotlib.org/">matplotlib</a>. It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.</p></li>
+</ul>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Slides</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1Mb7yEu3KdHx9qVy0c4wmU0OlFo0am_pfJgZBAIbjJHU/export/pdf">Download slides</a></p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://plotly.com/python/">Plotly’s</a> Python graphing library makes interactive, publication-quality graphs. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, polar charts, and bubble charts.</p></li>
+<li><p><a class="reference external" href="https://dash.plotly.com/">Dash</a> is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Installation tutorial</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/codelabs/codelabs/dash-setup/#0">Dash installation tutorial</a></p></li>
+<li><p><a class="reference external" href="https://github.com/kirenz/dash-tutorial">Dash starter code repository</a></p></li>
+</ul>
+</div>
+<p>Note that in the next section, we will use lists created in <a class="reference internal" href="#section-data-variable-lists"><span class="std std-ref">Variable lists</span></a> for some of the steps shown below.</p>
 <div class="section" id="numerical-data">
 <h3>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h3>
 <p>For numerical data we take a look at the central tendency and distribution:</p>
@@ -799,6 +838,21 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># histograms</span>
 <span class="n">df_train</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
 </pre></div>
+</div>
+<p>Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.</p>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Resources</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1hxGSzOcvwqBbmMsz0MCVRkuWP9e0ID3u3t0WNGpwItc/export/pdf">Download slides</a></p></li>
+<li><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1xXhRBbKjqlglrUUdRKWhwG5XiMKQsbGqOagLara3V0k/edit#gid=0">Example in Google sheets</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb">Dot plots and the mean</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb">Histograms</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb">Case height</a></p></li>
+<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-numerical.html">Introduction to Modern Statistics (2021)</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="categorical-data">
@@ -830,7 +884,26 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>We can  investigate numerical data grouped by categorical data:</p>
+<p>Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts</p>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Resources</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1s5-_4lGxJERlPQxpb3adG99iH9b5hiyarK2fGBwHhIY/export/pdf">Download slides</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-1-contingency-table-bar-plot.ipynb">Contingency table and bar plot</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-2-two-categorical-variables.ipynb">Two categorical variables</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-3-row-column-proportions.ipynb">Row and column proportions </a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-4-pie-charts.ipynb">Pie charts</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-5-waffle-charts.ipynb">Waffle charts</a></p></li>
+<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-categorical.html#contingency-tables-and-bar-plots">Introduction to Modern Statistics (2021)</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="numerical-grouped-by-categorical">
+<h3>Numerical grouped by categorical<a class="headerlink" href="#numerical-grouped-by-categorical" title="Permalink to this headline">¶</a></h3>
+<p>We can also investigate numerical data grouped by categorical data:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># median</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -845,6 +918,17 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
+</div>
+<br>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+<div class="tip admonition">
+<p class="admonition-title">Resources</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1GDhWpIMsyFWA2lZP9NERyncL84W3HuIkylendbVfq-g/export/pdf">Download slides</a></p></li>
+<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-6-comparisons-across-groups.ipynb">Comparisons across groups</a></p></li>
+<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-categorical.html#comparing-numerical-data-across-groups">Introduction to Modern Statistics (2021)</a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="relationships">
