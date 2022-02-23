@@ -4,6 +4,8 @@ parts:
   - caption: Introduction
     chapters:
     - file: docs/intro-data-driven.md
+    - file: docs/intro-pandas.md
+
   - caption: Data Science Lifecycle
     chapters:
     - file: docs/lifecycle.md
