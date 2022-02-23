@@ -228,7 +228,7 @@ Content of the following presentation: Scatterplots for paired data; dot plots a
 - Colab: [Dot plots and the mean](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb)
 - Colab: [Histograms](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb)
 - Colab: [Case height](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb)
-- Reading: [IMS 5](https://openintro-ims.netlify.app/explore-numerical.html)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-numerical.html)
 ```
 
 
@@ -268,7 +268,29 @@ for i in cat_list:
     plt.show();
 ```
 
-We can  investigate numerical data grouped by categorical data:
+
+Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1s5-_4lGxJERlPQxpb3adG99iH9b5hiyarK2fGBwHhIY/export/pdf)
+- Colab: [Contingency table and bar plot](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-1-contingency-table-bar-plot.ipynb)
+- Colab: [Two categorical variables](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-2-two-categorical-variables.ipynb)
+- Colab: [Row and column proportions ](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-3-row-column-proportions.ipynb)
+- Colab: [Pie charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-4-pie-charts.ipynb)
+- Colab: [Waffle charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-5-waffle-charts.ipynb)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#contingency-tables-and-bar-plots)
+```
+
+### Numerical grouped by categorical
+
+We can also investigate numerical data grouped by categorical data:
 
 ```Python
 # median
@@ -286,6 +308,19 @@ for i in list_cat:
 # standard deviation
 for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
+```
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1GDhWpIMsyFWA2lZP9NERyncL84W3HuIkylendbVfq-g/export/pdf)
+- Colab: [Comparisons across groups](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-6-comparisons-across-groups.ipynb)
+- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#comparing-numerical-data-across-groups)
 ```
 
 ### Relationships
