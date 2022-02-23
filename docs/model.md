@@ -174,7 +174,7 @@ Model **voting** combines the predictions for multiple models of any type and th
 ```{admonition} Voting regressor
 :class: tip
 
-- [Voting regressor example(https://kirenz.github.io/regression/docs/ensemble.html)
+- [Voting regressor example](https://kirenz.github.io/regression/docs/ensemble.html)
 ```
 
 **Stacked** generalization is a method for combining estimators to reduce their biases. Therefore, the predictions of each individual estimator are stacked together and used as input to a final estimator to compute the prediction. This final estimator is trained through cross-validation.
