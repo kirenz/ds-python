@@ -162,14 +162,15 @@ df_train = df_train.join(pd.DataFrame(y_train))
 (section:data:analyze)=
 ## Analyze data
 
-The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. 
+The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data {cite:p}`Wickham2016`: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
 
-Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.  
+:::{Note}
+The interactive website [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+:::
 
-Data visualization in Python:
+Data visualization modules in Python:
 
 - [Matplotlib](https://matplotlib.org/) is a comprehensive library for creating static, animated, and interactive visualizations in Python. It can be used  with numpy as well as pandas dataframes. 
-
 
 - [Seaborn](https://seaborn.pydata.org/) is a Python data visualization library based on [matplotlib](https://matplotlib.org/). It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.
 
@@ -188,17 +189,14 @@ Data visualization in Python:
 
 - [Dash](https://dash.plotly.com/) is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.
 
-
- ```{admonition} Exploratory data analysis  
+```{admonition} Installation tutorial
 :class: tip
-- [Data analysis in pandas](https://kirenz.github.io/pandas/docs/intro.html)
-- [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
+- [Dash installation tutorial](https://kirenz.github.io/codelabs/codelabs/dash-setup/#0)
+- [Dash starter code repository](https://github.com/kirenz/dash-tutorial)
 ```
 
 
-:::{Note}
-We use lists created in [](section:data:variable-lists) for some of the steps shown below
-:::  
+Note that in the next section, we will use lists created in [](section:data:variable-lists) for some of the steps shown below.
 
 ### Numerical data
 
@@ -213,6 +211,26 @@ df_train.describe().round(2).T
 # histograms
 df_train.hist(figsize=(20, 15));
 ```
+
+Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.
+
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<br>
+
+
+```{admonition} Resources
+:class: tip
+- [Download slides](https://docs.google.com/presentation/d/1hxGSzOcvwqBbmMsz0MCVRkuWP9e0ID3u3t0WNGpwItc/export/pdf)
+- [Example in Google sheets](https://docs.google.com/spreadsheets/d/1xXhRBbKjqlglrUUdRKWhwG5XiMKQsbGqOagLara3V0k/edit#gid=0)
+- Colab: [Dot plots and the mean](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb)
+- Colab: [Histograms](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb)
+- Colab: [Case height](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb)
+- Reading: [IMS 5](https://openintro-ims.netlify.app/explore-numerical.html)
+```
+
 
 (section:data:categorical)=
 ### Categorical data
