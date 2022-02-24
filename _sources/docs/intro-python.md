@@ -4,8 +4,6 @@ The goal of your first tutorial is to give you a first impression of some import
 
 It also includes a programming toolkit to get you started for your first data science projects.
 
-<br>
-
 ```{admonition} Jupyter Book
 :class: tip
 - [Python basics](https://kirenz.github.io/python-basics/docs/intro.html)
