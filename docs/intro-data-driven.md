@@ -5,7 +5,7 @@ We start with an overview about some important data-driven decision making conce
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRsA9DRKEm7XOZeO8NA-6udaVRhIYMFGH5EkIaTSEU9Qh7Q2Wcaplg1EZDvfQxUos3LoHZkv-Gr28I5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="860" height="380" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRsA9DRKEm7XOZeO8NA-6udaVRhIYMFGH5EkIaTSEU9Qh7Q2Wcaplg1EZDvfQxUos3LoHZkv-Gr28I5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="600" height="400" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
