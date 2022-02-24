@@ -782,7 +782,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
 <p>Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the <a class="reference external" href="https://kirenz.github.io/regression/docs/lasso.html">alpha in Lasso</a>, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “<strong>validation set</strong>”: training proceeds on the <em>training set</em>, after which evaluation is done on the <em>validation set</em>, and when the experiment seems to be successful, final evaluation can be done on the <em>test set</em>.</p>
 <p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called <strong>cross-validation</strong> (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.</p>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </div>
 <div class="section" id="train-and-test-split">
 <h3>Train and test split<a class="headerlink" href="#train-and-test-split" title="Permalink to this headline">¶</a></h3>
@@ -813,7 +813,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> is a Python data visualization library based on <a class="reference external" href="https://matplotlib.org/">matplotlib</a>. It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.</p></li>
 </ul>
 <br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <div class="tip admonition">
 <p class="admonition-title">Slides</p>
@@ -846,7 +846,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.</p>
 <br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <div class="tip admonition">
 <p class="admonition-title">Resources</p>
@@ -891,7 +891,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts</p>
 <br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <div class="tip admonition">
 <p class="admonition-title">Resources</p>
@@ -925,7 +925,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 <div class="tip admonition">
 <p class="admonition-title">Resources</p>
@@ -1032,7 +1032,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We cover this topic in the section <span class="xref myst"></span>.</p>
+<p>We cover this topic in the section about <span class="xref myst">preprocessing pipelines</span>.</p>
 </div>
 <div class="section" id="outlier-and-novelty-detection">
 <h3>Outlier and novelty detection<a class="headerlink" href="#outlier-and-novelty-detection" title="Permalink to this headline">¶</a></h3>
@@ -1050,7 +1050,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>To investigate categorical data we can use the same methods as described in <a class="reference internal" href="#section-data-categorical"><span class="std std-ref">Categorical data</span></a>.</p>
-<p>There are various strategies of how to deal with unusual cases which we will cover in <span class="xref myst"></span>.</p>
+<p>There are various strategies of how to deal with unusual cases which we will cover in <span class="xref myst"> preprocessing pipelines</span>.</p>
 </div>
 </div>
 <div class="section" id="feature-engineering">
