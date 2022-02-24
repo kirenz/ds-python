@@ -59,7 +59,6 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-https://docs.google.com/presentation/d/1ZycVKQLPSHGUv3Mga1CE3BHTL0W_gfszs6SkEh7fzeU/edit?usp=sharing
 
 <br>
 
@@ -95,6 +94,19 @@ The following flowchart was provided by scikit-learn developers to give users a 
 <br>
 
 Visit [this site](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) to interact with the flowchart.
+
+
+The following resources provide some model building examples for regression and classification problems.  
+
+
+```{admonition} Jupyter Books about Regression & Classification 
+:class: tip
+
+- [Regression](https://kirenz.github.io/regression/docs/intro.html)
+- [Classification](https://kirenz.github.io/classification/docs/intro.html)
+
+```
+
 
 ## Train and evaluate
 
@@ -259,15 +271,3 @@ In the following presentation, we cover some typical modeling challenges:
 ```
 
 
-## Regression & Classification models
-
-The following resources provide some model building examples for regression and classification problems:  
-
-
-```{admonition} Jupyter Books about Regression & Classification 
-:class: tip
-
-- [Regression](https://kirenz.github.io/regression/docs/intro.html)
-- [Classification](https://kirenz.github.io/classification/docs/intro.html)
-
-```
