@@ -8,11 +8,17 @@ The process of analysis, data preprocessing, feature engineering, feature select
 
 The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. 
 
-## Overview
+The following resources provide more detailed information about different regression and classifiaction models. 
 
-### Model selection
+```{admonition} Jupyter Book
+:class: tip
 
-Next, we discuss some important model selection topics in the following presentation:
+- [Introduction to Regression](https://kirenz.github.io/regression/docs/intro.html)
+- [Introduction to Classification](https://kirenz.github.io/classification/docs/intro.html)
+
+```
+
+Next, we discuss some important model selection topics like
 
 - Model selection
 - best fitting model 
@@ -32,23 +38,6 @@ Next, we discuss some important model selection topics in the following presenta
 
 ```
 
-### Feature selection
-
-Note that there are a number of different strategies for **feature selection** that can be applied and some of them are performed simultaneously with model building. 
-
-:::{Note}
-Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.
-:::
-
-If you want to learn more about feature selection methods, review the following content:
-
-```{admonition} Jupyter Book 
-:class: tip
-
-- [Feature Selection](https://kirenz.github.io/feature-engineering/docs/feature-selection.html#)
-
-```
-
 In the next sections, we'll discuss the process of model building in detail.  
 
 ## Select algorithm
@@ -59,7 +48,6 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-https://docs.google.com/presentation/d/1ZycVKQLPSHGUv3Mga1CE3BHTL0W_gfszs6SkEh7fzeU/edit?usp=sharing
 
 <br>
 
@@ -69,7 +57,16 @@ https://docs.google.com/presentation/d/1ZycVKQLPSHGUv3Mga1CE3BHTL0W_gfszs6SkEh7f
 
 ```
 
-Some of the most common algorithms are Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, Neural Networks and Ensemble methods like Gradient Boosted Decision Trees (GBDT). 
+Some of the most common algorithms are (take a look at the Jupyter Books [Regression](https://kirenz.github.io/regression/docs/intro.html) and [Classification](https://kirenz.github.io/classification/docs/intro.html) for more details):
+
+- Linear and Polynomial Regression, 
+- Logistic Regression, 
+- k-Nearest Neighbors, 
+- Support Vector Machines,
+- Decision Trees, 
+- Random Forests, 
+- Neural Networks and
+- Ensemble methods like Gradient Boosted Decision Trees (GBDT). 
 
 A model **ensemble**, where the predictions of multiple single learners are aggregated together to make one prediction, can produce a high-performance final model. The most popular methods for creating ensemble models in scikit-learn are: 
 
@@ -98,7 +95,26 @@ Visit [this site](https://scikit-learn.org/stable/tutorial/machine_learning_map/
 
 ## Train and evaluate
 
-In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. 
+In the first phase of the model building process, a variety of initial models are generated and their performance is compared during model evaluation. As a part of this process, we also need to decide which features we want to include in our model ("feature selection"). Therefore, let's first take a look at the topic of feature selection.
+
+### Feature selection
+
+There are a number of different strategies for feature selection that can be applied and some of them are performed simultaneously with model building. 
+
+:::{Note}
+Feature selection is the process of selecting a subset of relevant features (variables, predictors) for our model.
+:::
+
+If you want to learn more about feature selection methods, review the following content:
+
+```{admonition} Jupyter Book 
+:class: tip
+
+- [Feature Selection](https://kirenz.github.io/feature-engineering/docs/feature-selection.html#)
+
+```
+
+### Training
 
 Now we can use the pipeline we created in [](data.md) (see last section) and combine it with scikit-learn algorithms of our choice:
 
@@ -120,6 +136,8 @@ set_config(display="diagram")
 # Fit model
 lm_pipe.fit(X_train, y_train)
 ```
+
+### Evaluation
 
 In model evaluation, we mainly assess the model’s performance metrics (using an evaluation set) and examine residual plots (see this [example for linear regression dagnostics](https://kirenz.github.io/regression/docs/diagnostics.html)) to understand how well the models work. 
 
@@ -256,18 +274,4 @@ In the following presentation, we cover some typical modeling challenges:
 ```{admonition} Slides
 :class: tip
 - [Download slides](https://docs.google.com/presentation/d/1WPUVfUe4rZu1bt61IwjneHqldhH9nC6U0F_u7Mj_ZL4/export/pdf)
-```
-
-
-## Regression & Classification models
-
-The following resources provide some model building examples for regression and classification problems:  
-
-
-```{admonition} Jupyter Books about Regression & Classification 
-:class: tip
-
-- [Regression](https://kirenz.github.io/regression/docs/intro.html)
-- [Classification](https://kirenz.github.io/classification/docs/intro.html)
-
 ```
