@@ -21,7 +21,7 @@ Next, we discuss some important model selection topics in the following presenta
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWlyTZB6YpdYyRpWXdaI5_s8o9MZ5DFk9Gm-cTO4CrrJBHrNgrcyZl4IdktJEMq0e4apMDPpMP46Cb/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRWlyTZB6YpdYyRpWXdaI5_s8o9MZ5DFk9Gm-cTO4CrrJBHrNgrcyZl4IdktJEMq0e4apMDPpMP46Cb/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
@@ -57,7 +57,7 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="840" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
@@ -241,7 +241,7 @@ In the following presentation, we cover some typical modeling challenges:
 
 <br>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz4smNkQ4Ef0JL2RvMXqlb4RiagKxajxF_QekQhdq8czpX456ly7GgoLKk-tZ5khHSP6J6ztTjMs6X/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz4smNkQ4Ef0JL2RvMXqlb4RiagKxajxF_QekQhdq8czpX456ly7GgoLKk-tZ5khHSP6J6ztTjMs6X/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 <br>
 
