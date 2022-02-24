@@ -1,7 +1,7 @@
 (section-intro-data-driven)=
 # Data driven
 
-We start with an overview about some important data-driven decision making concepts:
+Let's start with an overview about some important data-driven decision making concepts:
 
 <br>
 
