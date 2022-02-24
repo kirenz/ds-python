@@ -466,7 +466,12 @@ Feature engineering is the process of using domain knowledge to extract meaningf
 - Feature extraction (reduce the number of features by combining existing features)
 - Feature creation (make new features)
 
-Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.
+Note that the usage of **data pipelines** is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature 
+engineering. Therefore, we first take a look at pipelines.
+
+:::{Note}
+The topic of **feature selection** is part of the model building process and will be covered in the [modeling phase](https://kirenz.github.io/ds-python/docs/model.html#feature-selection).
+:::
 
 (section:data:pipeline)=
 ### Pipelines

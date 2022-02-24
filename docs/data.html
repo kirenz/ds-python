@@ -1065,7 +1065,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Feature extraction (reduce the number of features by combining existing features)</p></li>
 <li><p>Feature creation (make new features)</p></li>
 </ul>
-<p>Note that the usage of <strong>data pipelines</strong> is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature engineering. Therefore, we first take a look at pipelines.</p>
+<p>Note that the usage of <strong>data pipelines</strong> is considered best practice to help avoid leaking statistics from your test data into the trained model during data preprocessing and feature
+engineering. Therefore, we first take a look at pipelines.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The topic of <strong>feature selection</strong> is part of the model building process and will be covered in the <a class="reference external" href="https://kirenz.github.io/ds-python/docs/model.html#feature-selection">modeling phase</a>.</p>
+</div>
 <div class="section" id="pipelines">
 <span id="section-data-pipeline"></span><h3>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h3>
 <p>scikit-learn provides a library of transformers for data preprocessing and feature engineering.</p>
