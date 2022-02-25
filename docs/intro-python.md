@@ -1,6 +1,8 @@
-# Python & Toolkit
+# Python toolkit
 
 The goal of this section is to give you a first impression of some important tools and concepts when doing data science or statistics projects in Python.
+
+## Important concepts
 
 Let's start with an overview about some important concepts:
 
@@ -15,8 +17,9 @@ Let's start with an overview about some important concepts:
 - [Download slides](https://docs.google.com/presentation/d/1AfzqhjEAfJ5X4Q8YC9GK14jEBfdDXEIRmXonriwYHNY/export/pdf)
 ```
 
+## Python basics
 
-It also includes a programming toolkit to get you started for your first data science projects.
+The following resources contain an overview about the programming toolkit you will need for our course and provides an introduction to Python:
 
 ```{admonition} Jupyter Book
 :class: tip
