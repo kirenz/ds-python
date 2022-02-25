@@ -1,16 +1,12 @@
 # Model
 
-Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the training and selection of the model. This predictive model can then serve up predictions about previously unseen data. 
+Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the model selection process. 
 
-Note that the type of data preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)).
+:::{Note}
+The type of data preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)). 
+:::
 
-The process of analysis, data preprocessing, feature engineering, feature selection, modeling and model selection often requires multiple iterations. The general phases are {cite:p}`Kuhn2021`:
-
-![](https://www.tmwr.org/premade/modeling-process.svg)
-
-The colored segments within the circles signify the repeated data splitting (cross validation) used during model training. 
-
-The following resources provide more detailed information about different regression and classifiaction models. 
+The following Jupyter Books provide information about different regression and classifiaction models: 
 
 ```{admonition} Jupyter Book
 :class: tip
