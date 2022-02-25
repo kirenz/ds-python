@@ -185,7 +185,7 @@ Data visualization modules in Python:
 - [Download slides](https://docs.google.com/presentation/d/1Mb7yEu3KdHx9qVy0c4wmU0OlFo0am_pfJgZBAIbjJHU/export/pdf)
 ```
 
-- [Plotly's](https://plotly.com/python/) Python graphing library makes interactive, publication-quality graphs. Examples of how to make line plots, scatter plots, area charts, bar charts, error bars, box plots, histograms, heatmaps, subplots, multiple-axes, polar charts, and bubble charts.
+- [Plotly's](https://plotly.com/python/) Python graphing library makes interactive, publication-quality graphs. 
 
 - [Dash](https://dash.plotly.com/) is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.
 
