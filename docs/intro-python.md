@@ -21,6 +21,10 @@ Let's start with an overview about some important concepts:
 
 The following resources contain an overview about the programming toolkit you will need for our course and provides an introduction to Python:
 
+- Programming toolkit
+- Python syntax and semantics
+- Python modules: Pandas, NumPy, Scikit-learn, Jupyter, IPython
+
 ```{admonition} Jupyter Book
 :class: tip
 - [Python basics](https://kirenz.github.io/python-basics/docs/intro.html)
