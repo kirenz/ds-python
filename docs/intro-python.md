@@ -19,7 +19,7 @@ Let's start with an overview about some important concepts:
 
 ## Python basics
 
-The following resources contain an overview about the programming toolkit you will need for our course and provides an introduction to Python:
+The following Jupyter Book "Python basics" contains an overview about the programming toolkit you will need for our course and provides an introduction to Python:
 
 - Programming toolkit
 - Python syntax and semantics
