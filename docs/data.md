@@ -168,33 +168,13 @@ The goal of this phase is to understand the training data. In particular, explor
 The interactive website [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 :::
 
-Data visualization modules in Python:
+To learn more about data visualization modules in Python, visit this Jupyter Books:
 
-- [Matplotlib](https://matplotlib.org/) is a comprehensive library for creating static, animated, and interactive visualizations in Python. It can be used  with numpy as well as pandas dataframes. 
-
-- [Seaborn](https://seaborn.pydata.org/) is a Python data visualization library based on [matplotlib](https://matplotlib.org/). It provides a high-level interface for drawing attractive and informative statistical graphics and is especially tailored to pandas dataframes.
-
-<br>
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQY6HEaIPu_YoN5MohdLryWBqkrfVy7sgZCl5svAU5eeLyh6LLC-3Or8kE4vEqSu6BhbvN0NPeHI9Yv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-<br>
-
-```{admonition} Slides
+```{admonition} Jupyter Book
 :class: tip
-- [Download slides](https://docs.google.com/presentation/d/1Mb7yEu3KdHx9qVy0c4wmU0OlFo0am_pfJgZBAIbjJHU/export/pdf)
+- [Matplotlib and seaborn](https://kirenz.github.io/python-basics/docs/matplotlib-seaborn.html)
+- [Dash](https://kirenz.github.io/python-basics/docs/dash.html)
 ```
-
-- [Plotly's](https://plotly.com/python/) Python graphing library makes interactive, publication-quality graphs. 
-
-- [Dash](https://dash.plotly.com/) is a Python framework provided by plotly for building web applications. Written on top of Flask, Plotly.js, and React.js, Dash is ideal for building data visualization apps with highly custom user interfaces in pure Python.
-
-```{admonition} Installation tutorial
-:class: tip
-- [Dash installation tutorial](https://kirenz.github.io/codelabs/codelabs/dash-setup/#0)
-- [Dash starter code repository](https://github.com/kirenz/dash-tutorial)
-```
-
 
 Note that in the next section, we will use lists created in [](section:data:variable-lists) for some of the steps shown below.
 
