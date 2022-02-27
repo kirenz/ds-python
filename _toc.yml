@@ -3,8 +3,8 @@ root: docs/intro.md
 parts:
   - caption: Introduction
     chapters:
+    - file: docs/analytics-data-science.md
     - file: docs/intro-python.md
-    - file: docs/intro-data-driven.md
   - caption: Data Science Lifecycle
     chapters:
     - file: docs/lifecycle.md
