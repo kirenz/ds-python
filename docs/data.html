@@ -310,11 +310,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-data">
-     Numerical data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-data">
      Categorical data
     </a>
@@ -322,6 +317,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerical-grouped-by-categorical">
      Numerical grouped by categorical
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-data">
+     Numerical data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -521,11 +521,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-data">
-     Numerical data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-data">
      Categorical data
     </a>
@@ -533,6 +528,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numerical-grouped-by-categorical">
      Numerical grouped by categorical
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-data">
+     Numerical data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -821,33 +821,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <p>Note that in the next section, we will use lists created in <a class="reference internal" href="#section-data-variable-lists"><span class="std std-ref">Variable lists</span></a> for some of the steps shown below.</p>
-<div class="section" id="numerical-data">
-<h3>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h3>
-<p>For numerical data we take a look at the central tendency and distribution:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># summary of numerical attributes</span>
-<span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-</pre></div>
-</div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># histograms</span>
-<span class="n">df_train</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
-</pre></div>
-</div>
-<p>Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.</p>
-<br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<br>
-<div class="tip admonition">
-<p class="admonition-title">Resources</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1hxGSzOcvwqBbmMsz0MCVRkuWP9e0ID3u3t0WNGpwItc/export/pdf">Download slides</a></p></li>
-<li><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1xXhRBbKjqlglrUUdRKWhwG5XiMKQsbGqOagLara3V0k/edit#gid=0">Example in Google sheets</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb">Dot plots and the mean</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb">Histograms</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb">Case height</a></p></li>
-<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-numerical.html">Introduction to Modern Statistics (2021)</a></p></li>
-</ul>
-</div>
-</div>
 <div class="section" id="categorical-data">
 <span id="section-data-categorical"></span><h3>Categorical data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">¶</a></h3>
 <p>For categorical data we check the levels and their uniqueness:</p>
@@ -877,20 +850,11 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts</p>
-<br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<br>
+<p>To learn more about data visualizations, visit the following site:</p>
 <div class="tip admonition">
 <p class="admonition-title">Resources</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1s5-_4lGxJERlPQxpb3adG99iH9b5hiyarK2fGBwHhIY/export/pdf">Download slides</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-1-contingency-table-bar-plot.ipynb">Contingency table and bar plot</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-2-two-categorical-variables.ipynb">Two categorical variables</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-3-row-column-proportions.ipynb">Row and column proportions </a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-4-pie-charts.ipynb">Pie charts</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-5-waffle-charts.ipynb">Waffle charts</a></p></li>
-<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-categorical.html#contingency-tables-and-bar-plots">Introduction to Modern Statistics (2021)</a></p></li>
+<li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-categorical.html">Visualization of categorical data</a></p></li>
 </ul>
 </div>
 </div>
@@ -912,15 +876,30 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="nb">print</span><span class="p">(</span><span class="n">df_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
-<br>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<br>
+<p>To learn more about data visualizations, visit the following site:</p>
 <div class="tip admonition">
 <p class="admonition-title">Resources</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.google.com/presentation/d/1GDhWpIMsyFWA2lZP9NERyncL84W3HuIkylendbVfq-g/export/pdf">Download slides</a></p></li>
-<li><p>Colab: <a class="reference external" href="https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-6-comparisons-across-groups.ipynb">Comparisons across groups</a></p></li>
-<li><p>Reading: <a class="reference external" href="https://openintro-ims.netlify.app/explore-categorical.html#comparing-numerical-data-across-groups">Introduction to Modern Statistics (2021)</a></p></li>
+<li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-categorical.html#comparisons-across-groups">Visualization of numerical data grouped by categorical data</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="numerical-data">
+<h3>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h3>
+<p>For numerical data we take a look at the central tendency and distribution:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># summary of numerical attributes</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># histograms</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>To learn more about data visualizations, visit the following site:</p>
+<div class="tip admonition">
+<p class="admonition-title">Resources</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-numerical.html">Visualization of numerical data</a></p></li>
 </ul>
 </div>
 </div>
