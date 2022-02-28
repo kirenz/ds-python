@@ -180,39 +180,6 @@ To learn more about data visualization modules in Python, visit this Jupyter Boo
 
 Note that in the next section, we will use lists created in [](section:data:variable-lists) for some of the steps shown below.
 
-### Numerical data
-
-For numerical data we take a look at the central tendency and distribution:
-
-```Python
-# summary of numerical attributes
-df_train.describe().round(2).T
-```
-
-```Python
-# histograms
-df_train.hist(figsize=(20, 15));
-```
-
-Content of the following presentation: Scatterplots for paired data; dot plots and the mean; histograms and shape; Variance and standard deviation.
-
-<br>
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQckk0QRSzfFAWcyxx8vO42WTBusDau6Su5NR7PD4cmBpqmI9Bq2cRYy_juPogZKWQGymUF9dhy7B9a/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-<br>
-
-
-```{admonition} Resources
-:class: tip
-- [Download slides](https://docs.google.com/presentation/d/1hxGSzOcvwqBbmMsz0MCVRkuWP9e0ID3u3t0WNGpwItc/export/pdf)
-- [Example in Google sheets](https://docs.google.com/spreadsheets/d/1xXhRBbKjqlglrUUdRKWhwG5XiMKQsbGqOagLara3V0k/edit#gid=0)
-- Colab: [Dot plots and the mean](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-2-dot-plots-mean.ipynb)
-- Colab: [Histograms](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-histograms.ipynb)
-- Colab: [Case height](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/05-3-pairplot.ipynb)
-- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-numerical.html)
-```
-
 
 (section:data:categorical)=
 ### Categorical data
@@ -250,25 +217,13 @@ for i in cat_list:
     plt.show();
 ```
 
-
-Content of the following presentation: Contingency tables and bar plots; bar plots with two variables; mosaic plots; row and column proportions; pie charts; waffle charts
-
-<br>
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRyIy9mif940HDWeF3qkPwfcO68n-KXwbmq2B50eUcovtbMcO3LdvJYKnqwJ3JudWG9Q2l0qKwH9pyf/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-<br>
+To learn more about data visualizations, visit the following site:
 
 ```{admonition} Resources
 :class: tip
-- [Download slides](https://docs.google.com/presentation/d/1s5-_4lGxJERlPQxpb3adG99iH9b5hiyarK2fGBwHhIY/export/pdf)
-- Colab: [Contingency table and bar plot](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-1-contingency-table-bar-plot.ipynb)
-- Colab: [Two categorical variables](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-2-two-categorical-variables.ipynb)
-- Colab: [Row and column proportions ](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-3-row-column-proportions.ipynb)
-- Colab: [Pie charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-4-pie-charts.ipynb)
-- Colab: [Waffle charts](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-5-waffle-charts.ipynb)
-- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#contingency-tables-and-bar-plots)
+- [Visualization of categorical data](https://kirenz.github.io/applied-statistics/docs/eda-categorical.html)
 ```
+
 
 ### Numerical grouped by categorical
 
@@ -292,18 +247,37 @@ for i in list_cat:
     print(df_train.groupby(i).std().round(2).T)
 ```
 
-<br>
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKNIZnYToIwcsrhiYqbX1gf5rvhPDXh7SACeg7YlokmKB85840iyG_zjbWrQIHwkhFjzROFous1noj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-<br>
+To learn more about data visualizations, visit the following site:
 
 ```{admonition} Resources
 :class: tip
-- [Download slides](https://docs.google.com/presentation/d/1GDhWpIMsyFWA2lZP9NERyncL84W3HuIkylendbVfq-g/export/pdf)
-- Colab: [Comparisons across groups](https://colab.research.google.com/github/kirenz/modern-statistics/blob/main/04-6-comparisons-across-groups.ipynb)
-- Reading: [Introduction to Modern Statistics (2021)](https://openintro-ims.netlify.app/explore-categorical.html#comparing-numerical-data-across-groups)
+- [Visualization of numerical data grouped by categorical data](https://kirenz.github.io/applied-statistics/docs/eda-categorical.html#comparisons-across-groups)
 ```
+
+
+
+### Numerical data
+
+For numerical data we take a look at the central tendency and distribution:
+
+```Python
+# summary of numerical attributes
+df_train.describe().round(2).T
+```
+
+```Python
+# histograms
+df_train.hist(figsize=(20, 15));
+```
+
+To learn more about data visualizations, visit the following site:
+
+```{admonition} Resources
+:class: tip
+- [Visualization of numerical data](https://kirenz.github.io/applied-statistics/docs/eda-numerical.html)
+```
+
+
 
 ### Relationships
 
