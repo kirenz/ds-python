@@ -24,7 +24,7 @@ In a real world data science project you would usually use a cloud environment (
 
 - create a new folder (e.g., `datascience`) on your machine (which is not synchronized with a cloud service like Apple's iCloud or Microsoft's OneDrive)
 
-- open a terminal where you can use `conda` and `cd`(change directory) into your newly created folder:
+- open a terminal where you can use `conda` and `cd` (change directory) into your newly created folder:
 
 ```bash
 cd datascience
@@ -38,7 +38,7 @@ In your terminal:
 cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 ```
 
-Connect your local folder with GitHub.
+Connect your local folder with GitHub (visit [this site](https://kirenz.github.io/python-basics/docs/programming-toolkit.html#git-and-github) for more information about GitHub).
 
 
 ### Import data
