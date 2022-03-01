@@ -18,9 +18,32 @@ There are various options how to store and ingest your data but we won't go into
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
 ```
 
+### Prepare environment
+
+In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine. Here some steps to prepare your machine:
+
+- create a new folder (e.g., `datascience`) on your machine (which is not synchronized with a cloud service like Apple's iCloud or Microsoft's OneDrive)
+
+- open a terminal where you can use `conda` and `cd`(change directory) into your newly created folder:
+
+```bash
+cd datascience
+```
+
+- use "cookiecutter" to create a data science folder structure (see [this site](https://kirenz.github.io/python-basics/docs/programming-toolkit.html#cookiecutter-data-science) for more details). 
+
+In your terminal:  
+
+```bash
+cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+```
+
+Connect your local folder with GitHub.
+
+
 ### Import data
 
-The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
+The next step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
 
 ```Python
 path_to_file = "my-file.csv"
