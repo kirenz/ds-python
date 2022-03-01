@@ -256,6 +256,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-environment">
+     Prepare environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-data">
      Import data
     </a>
@@ -466,6 +471,11 @@ const thebe_selector_output = ".output, .cell_output"
    Data ingestion
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-environment">
+     Prepare environment
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-data">
      Import data
@@ -680,9 +690,28 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
 </div>
+<div class="section" id="prepare-environment">
+<h3>Prepare environment<a class="headerlink" href="#prepare-environment" title="Permalink to this headline">¶</a></h3>
+<p>In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine. Here some steps to prepare your machine:</p>
+<ul class="simple">
+<li><p>create a new folder (e.g., <code class="docutils literal notranslate"><span class="pre">datascience</span></code>) on your machine (which is not synchronized with a cloud service like Apple’s iCloud or Microsoft’s OneDrive)</p></li>
+<li><p>open a terminal where you can use <code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">cd</span></code>(change directory) into your newly created folder:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> datascience
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>use “cookiecutter” to create a data science folder structure (see <a class="reference external" href="https://kirenz.github.io/python-basics/docs/programming-toolkit.html#cookiecutter-data-science">this site</a> for more details).</p></li>
+</ul>
+<p>In your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+</pre></div>
+</div>
+<p>Connect your local folder with GitHub.</p>
+</div>
 <div class="section" id="import-data">
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
-<p>The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
+<p>The next step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;my-file.csv&quot;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
