@@ -6,7 +6,7 @@ Once our features have been preprocessed in a format ready for modeling algorith
 The type of data preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)). 
 :::
 
-The following Jupyter Books provide information about different regression and classifiaction models: 
+The following Jupyter Books provide information about different regression and classification models: 
 
 ```{admonition} Jupyter Book
 :class: tip
