@@ -827,7 +827,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="data-exploration-set">
 <h3>Data exploration set<a class="headerlink" href="#data-exploration-set" title="Permalink to this headline">¶</a></h3>
-<p>Furthermore, we create a new DataFrame called <code class="docutils literal notranslate"><span class="pre">df_train</span></code> where we combine the training features with the corresponding y training labels. We will use this data for our exploratory data analysis:</p>
+<p>We make a copy of the training data since we don’t want to alter our data during data exploration. We will use this data for our exploratory data analysis.</p>
+<p>We create a new DataFrame called <code class="docutils literal notranslate"><span class="pre">df_train</span></code> where we combine the training features with the corresponding y training labels:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">df_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
 </pre></div>

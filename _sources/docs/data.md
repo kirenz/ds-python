@@ -177,7 +177,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ### Data exploration set
 
-Furthermore, we create a new DataFrame called `df_train` where we combine the training features with the corresponding y training labels. We will use this data for our exploratory data analysis:
+We make a copy of the training data since we don’t want to alter our data during data exploration. We will use this data for our exploratory data analysis. 
+
+We create a new DataFrame called `df_train` where we combine the training features with the corresponding y training labels:
 
 ```Python
 df_train = pd.DataFrame(X_train.copy())
