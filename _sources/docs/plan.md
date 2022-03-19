@@ -36,7 +36,7 @@ Provide a statement of what is to be learned and how decisions should be made.
 ```{admonition} Slides
 :class: tip
 
-- [Download slides](https://docs.google.com/presentation/d/https://docs.google.com/presentation/d/12WRK3EgiHOHz2vsJnYxIxNvDQmjTMax1iTSqsjVr7JY/export/pdf)
+- [Download slides](https://docs.google.com/presentation/d/12WRK3EgiHOHz2vsJnYxIxNvDQmjTMax1iTSqsjVr7JY/export/pdf)
 
 ```
 
@@ -68,6 +68,6 @@ Write down your metrics for success and failure with the data science project.
 ```{admonition} Slides
 :class: tip
 
-- [Download slides](https://docs.google.com/presentation/d/https://docs.google.com/presentation/d/1vlVqqU4Frt8y_GaCs4qVx7EVPyNravGhpgkV6tGeYmY/export/pdf)
+- [Download slides](https://docs.google.com/presentation/d/1vlVqqU4Frt8y_GaCs4qVx7EVPyNravGhpgkV6tGeYmY/export/pdf)
 
 ```
