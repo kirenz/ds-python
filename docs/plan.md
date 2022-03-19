@@ -21,10 +21,9 @@ Use the business model canvas.
 ```{admonition} Slides
 :class: tip
 
-- [Download slides](https://docs.google.com/presentation/d/1WPUVfUe4rZu1bt61IwjneHqldhH9nC6U0F_u7Mj_ZL4/export/pdf)
+- [Download slides](https://docs.google.com/presentation/d/1RT7IhYgLgNJ8RiT28sMr8Mfyk5y_e-rfYg3jRsPKGEA/export/pdf)
 
 ```
-
 
 ## Frame the problem
 
