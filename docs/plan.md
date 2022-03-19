@@ -53,7 +53,7 @@ For structured data problems, we need to identify potentially relevant variables
 ```{admonition} Slides
 :class: tip
 
-- [Download slides](https://docs.google.com/presentation/d/https://docs.google.com/presentation/d/1VqXuDX_3VFNOGMw3y3uQmvFr2m7b6BlW3if_icQSstM/export/pdf)
+- [Download slides](/https://docs.google.com/presentation/d/1VqXuDX_3VFNOGMw3y3uQmvFr2m7b6BlW3if_icQSstM/export/pdf)
 
 ```
 
