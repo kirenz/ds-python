@@ -133,11 +133,16 @@ set_config(display="diagram")
 
 # Fit model
 lm_pipe.fit(X_train, y_train)
+
+# Obtain model coefficients
+lm_pipe.named_steps['lm'].coef_
 ```
 
 ### Evaluation
 
-In model evaluation, we mainly assess the model’s performance metrics (using an evaluation set) and examine residual plots (see this [example for linear regression dagnostics](https://kirenz.github.io/regression/docs/diagnostics.html)) to understand how well the models work. 
+In model evaluation, we mainly assess the model’s performance metrics (using an evaluation set) and examine residual plots (see this [example for linear regression diagnostics](https://kirenz.github.io/regression/docs/diagnostics.html)) to understand how well the models work. Our first goal in this process is to shortlist a few (two to five) promising models. 
+
+
 
 Scikit-learn provides an extensive list of possible metrics to quantify the quality of model predictions:
 
@@ -148,7 +153,42 @@ Scikit-learn provides an extensive list of possible metrics to quantify the qual
 
 ```
 
-Our first goal in this process is to shortlist a few (two to five) promising models. 
+
+```Python
+from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+
+
+# obtain predictions for training data
+y_pred = lm_pipe.predict(X_train)
+
+# R squared
+r2_score(y_train, y_pred) 
+
+# MSE
+mean_squared_error(y_train, y_pred)
+
+# RMSE
+mean_squared_error(y_train, y_pred, squared=False)
+
+# MAE
+mean_absolute_error(y_train, y_pred)
+
+```
+
+Show residual plot:
+
+```Python
+import seaborn as sns
+
+sns.residplot(x=y_pred, y=y_train, scatter_kws={"s": 80});
+
+```
+
+
+
+
 
 ## Tuning
 
@@ -173,7 +213,7 @@ Instead of trying to find good hyper-paramters manually, it is recommended to se
 
 The *GridSearchCV* approach is fine when you are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use *RandomizedSearchCV* instead {cite:p}`Geron2019`. Both methods use cross-validation (CV) to evaluate combinations of hyperparameter values. 
 
-Example of hyperparameter tuning with skicit-learn pipeline ([scikit-learn developers](https://scikit-learn.org/stable/tutorial/statistical_inference/putting_together.html)): Define a pipeline to search for the best combination of PCA truncation and classifier regularization.
+Next, we take a look at an example of hyperparameter tuning with a skicit-learn pipeline ([scikit-learn developers](https://scikit-learn.org/stable/tutorial/statistical_inference/putting_together.html)) for a classification problem (we use the dataset [digits](https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html#sphx-glr-auto-examples-classification-plot-digits-classification-py)) with logistic regression. In particular, we define a pipeline to search for the best combination of [PCA](https://kirenz.github.io/dimension-reduction/docs/pca.html) truncation and classifier regularization:
 
 ```Python
 import numpy as np
@@ -207,6 +247,11 @@ search.fit(X_digits, y_digits)
 print("Best parameter (CV score=%0.3f):" % search.best_score_)
 print(search.best_params_)
 ```
+
+- `pca__n_components`: Number of components to keep
+
+- `logistic__c`: Each of the values in Cs describes the inverse of regularization strength. If Cs is as an int, then a grid of Cs values are chosen in a logarithmic scale between 1e-4 and 1e4. Smaller values specify stronger regularization.
+
 
 ## Voting and stacking
 
@@ -242,15 +287,45 @@ To learn more about the concept of stacking, visit the [documentation of stacks]
 
 ## Evaluate best model
 
-After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in detail. 
+After we tuned hyper-parameters and/or performed voting/stacking, we evaluate the best model (system) and their errors in more detail. 
 
 In particular, we take a look at the specific errors that our model (system) makes, and try to understand why it makes them and what could fix the problem - like adding extra features or getting rid of uninformative ones, cleaning up outliers, etc. {cite:p}`Geron2019`. If possible, we also display the importance scores of our predictors (e.g. using scikit-learn's [permutation feature importance](https://scikit-learn.org/stable/modules/permutation_importance.html)). With this information, we may want to try dropping some of the less useful features to make sure our model generalizes well.
 
+For example, you could assess possible reasons for the 10 wrongest model predictions:
+
+```python
+# create dataframe
+df_error = pd.DataFrame(
+    { "y": y_train,
+      "y_pred": y_pred,
+      "error": y_pred - y_train
+    })
+
+# sort by error, select top 10 and get index
+error_index = df_error.sort_values(by=['error']).nlargest(10, 'error').index
+
+# show corresponding data observations
+df.iloc[error_index]
+
+```
+
 After evaluating the model (system) for a while, we eventually have a system that performs sufficiently well.
+
+
 
 ## Evaluate on test set
 
 Now is the time to evaluate the final model on the test set. If you did a lot of hyperparameter tuning, the performance will usually be slightly worse than what you measured using cross-validation - because your system ends up fine-tuned to perform well on the validation data and will likely not perform as well on unknown dataset {cite:p}`Geron2019`.
+
+
+```python
+y_pred = lm_pipe.predict(X_test)
+
+print('MSE:', mean_squared_error(y_test, y_pred))
+
+print('RMSE:', mean_squared_error(y_test, y_pred, squared=False))
+
+```
 
 It is important to note that we don't change the model (system) anymore to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data. Instead, we use the metrics for our final evaluation to make sure the model performs sufficiently well regarding our success metrics from the planning phase.
 
