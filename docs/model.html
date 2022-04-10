@@ -251,8 +251,8 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#select-algorithm">
-   Select algorithm
+  <a class="reference internal nav-link" href="#select-model">
+   Select model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -323,8 +323,8 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#select-algorithm">
-   Select algorithm
+  <a class="reference internal nav-link" href="#select-model">
+   Select model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -385,7 +385,7 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="model">
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
-<p>Once our features have been preprocessed in a format ready for modeling algorithms (see <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a>), they can be used in the model selection process.</p>
+<p>Once our features have been preprocessed in a format ready for modeling (see <a class="reference internal" href="data.html"><span class="doc std std-doc">Data</span></a>), they can be used in the model selection process.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The type of data preprocessing is dependent on the type of model being fit. <span id="id1">Kuhn and Silge [<a class="reference internal" href="reference.html#id4" title="Max Kuhn and Julia Silge. Tidy Modeling with R. Online book, 2021. URL: https://www.tmwr.org/.">2021</a>]</span> provide recommendations for baseline levels of preprocessing that are needed for various model functions (see <a class="reference external" href="https://www.tmwr.org/pre-proc-table.html">this table</a>).</p>
@@ -416,9 +416,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <p>In the next sections, we’ll discuss the process of model building in detail.</p>
-<div class="section" id="select-algorithm">
-<h2>Select algorithm<a class="headerlink" href="#select-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13" title="David H. Wolpert. The Lack of A Priori Distinctions Between Learning Algorithms. Neural Computation, 8(7):1341–1390, October 1996. URL: https://doi.org/10.1162/neco.1996.8.7.1341, doi:10.1162/neco.1996.8.7.1341.">Wolpert, 1996</a>]</span>.</p>
+<div class="section" id="select-model">
+<h2>Select model<a class="headerlink" href="#select-model" title="Permalink to this headline">¶</a></h2>
+<p>One of the hardest parts during the data science lifecycle can be finding the right model for the job since different types of models are better suited for different types of data and different problems. For some datasets the best model could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the <em>“No Free Lunch (NFL) theorem”</em> <span id="id2">[<a class="reference internal" href="reference.html#id13" title="David H. Wolpert. The Lack of A Priori Distinctions Between Learning Algorithms. Neural Computation, 8(7):1341–1390, October 1996. URL: https://doi.org/10.1162/neco.1996.8.7.1341, doi:10.1162/neco.1996.8.7.1341.">Wolpert, 1996</a>]</span>.</p>
 <br>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTcSDvoljfuWHqUueJAghObDxNULvu-jWuiprqYeeMvA9tITk8gSis1qWsRSAGblEjkExoEiBXFvaPN/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
@@ -428,7 +428,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://docs.google.com/presentation/d/1ZycVKQLPSHGUv3Mga1CE3BHTL0W_gfszs6SkEh7fzeU/export/pdf">Download slides</a></p></li>
 </ul>
 </div>
-<p>Some of the most common algorithms are (take a look at the Jupyter Books <a class="reference external" href="https://kirenz.github.io/regression/docs/intro.html">Regression</a> and <a class="reference external" href="https://kirenz.github.io/classification/docs/intro.html">Classification</a> for more details):</p>
+<p>Some of the most common models are (take a look at the Jupyter Books <a class="reference external" href="https://kirenz.github.io/regression/docs/intro.html">Regression</a> and <a class="reference external" href="https://kirenz.github.io/classification/docs/intro.html">Classification</a> for more details):</p>
 <ul class="simple">
 <li><p>Linear and Polynomial Regression,</p></li>
 <li><p>Logistic Regression,</p></li>
@@ -447,7 +447,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>Each of these methods combines the predictions from multiple versions of the same type of model (e.g., classifications trees).</p>
 <p>Note that the only way to know for sure which model is best would be to evaluate them all <span id="id3">[<a class="reference internal" href="reference.html#id6" title="Aurélien Géron. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019. ISBN 1492032611.">Géron, 2019</a>]</span>. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.</p>
-<p>The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:</p>
+<p>The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which models to try on your data:</p>
 <br>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/algorithms.png"><img alt="datascience" class="bg-primary mb-1 align-center" src="../_images/algorithms.png" style="width: 800px;" /></a>
 <br>

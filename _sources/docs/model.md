@@ -1,6 +1,6 @@
 # Model
 
-Once our features have been preprocessed in a format ready for modeling algorithms (see [](data.md)), they can be used in the model selection process. 
+Once our features have been preprocessed in a format ready for modeling (see [](data.md)), they can be used in the model selection process. 
 
 :::{Note}
 The type of data preprocessing is dependent on the type of model being fit. {cite:t}`Kuhn2021` provide recommendations for baseline levels of preprocessing that are needed for various model functions (see [this table](https://www.tmwr.org/pre-proc-table.html)). 
@@ -38,9 +38,9 @@ Next, we discuss some important model selection topics like
 
 In the next sections, we'll discuss the process of model building in detail.  
 
-## Select algorithm
+## Select model
 
-One of the hardest parts during the data science lifecycle can be finding the right algorithm for the job since different algorithms are better suited for different types of data and different problems. For some datasets the best algorithm could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the *"No Free Lunch (NFL) theorem"* {cite:p}`Wolpert1996`.
+One of the hardest parts during the data science lifecycle can be finding the right model for the job since different types of models are better suited for different types of data and different problems. For some datasets the best model could be a linear model, while for other datasets it is a random forest or neural network. There is no model that is a priori guaranteed to work better. This fact is known as the *"No Free Lunch (NFL) theorem"* {cite:p}`Wolpert1996`.
 
 <br>
 
@@ -55,7 +55,7 @@ One of the hardest parts during the data science lifecycle can be finding the ri
 
 ```
 
-Some of the most common algorithms are (take a look at the Jupyter Books [Regression](https://kirenz.github.io/regression/docs/intro.html) and [Classification](https://kirenz.github.io/classification/docs/intro.html) for more details):
+Some of the most common models are (take a look at the Jupyter Books [Regression](https://kirenz.github.io/regression/docs/intro.html) and [Classification](https://kirenz.github.io/classification/docs/intro.html) for more details):
 
 - Linear and Polynomial Regression, 
 - Logistic Regression, 
@@ -76,7 +76,7 @@ Each of these methods combines the predictions from multiple versions of the sam
 
 Note that the only way to know for sure which model is best would be to evaluate them all {cite:p}`Geron2019`. Since this is often not possible, in practice you make some assumptions about the data and evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization as well as some ensemble methods like Gradient Boosted Decision Trees (GBDT). For very complex problems, you may evaluate various deep neural networks.
 
-The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which algorithms to try on your data:
+The following flowchart was provided by scikit-learn developers to give users a bit of a rough guide on how to approach problems with regard to which models to try on your data:
 
 <br>
 
