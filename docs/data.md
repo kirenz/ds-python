@@ -172,6 +172,8 @@ However, by partitioning the available data into three sets, we drastically redu
 We typically use scikit-learn's [train test split function](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) to perform data splitting and use `random_state` to make this notebook's output identical at every run (we arbitrarily set the number to 42 but you can choose any other number):
 
 ```Python
+from sklearn.model_selection import train_test_split
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
