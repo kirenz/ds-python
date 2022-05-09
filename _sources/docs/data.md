@@ -161,6 +161,25 @@ The error rate on new cases is called the *generalization error* (or out-of-samp
 
 Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the [alpha in Lasso](https://kirenz.github.io/regression/docs/lasso.html), there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). This way, knowledge about the test set can "leak" into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “**validation set**”: training proceeds on the *training set*, after which evaluation is done on the *validation set*, and when the experiment seems to be successful, final evaluation can be done on the *test set*.
 
+Hence, you can greatly reduce your chances of overfitting by partitioning the data set into the three subsets shown in the following figure ([Google Developers](https://developers.google.com/machine-learning/crash-course/validation/another-partition)):
+
+
+```{image} ../_static/img/data-splitting.png
+:alt: data-splitting
+:class: bg-primary mb-1
+:width: 600px
+:align: center
+```
+
+In this workflow, you pick the model that does best on the validation set and double-check that model against the test set ([Google Developers](https://developers.google.com/machine-learning/crash-course/validation/another-partition)):
+
+```{image} ../_static/img/splitting-workflow.png
+:alt: data-splitting-workflow
+:class: bg-primary mb-1
+:width: 600px
+:align: center
+```
+
 However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called **cross-validation** (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
