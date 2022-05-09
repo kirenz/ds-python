@@ -163,6 +163,7 @@ Note that if we want to evaluate different settings (“hyperparameters”) for 
 
 Hence, you can greatly reduce your chances of overfitting by partitioning the data set into the three subsets shown in the following figure ([Google Developers](https://developers.google.com/machine-learning/crash-course/validation/another-partition)):
 
+<br>
 
 ```{image} ../_static/img/data-splitting.png
 :alt: data-splitting
@@ -170,8 +171,11 @@ Hence, you can greatly reduce your chances of overfitting by partitioning the da
 :width: 600px
 :align: center
 ```
+<br>
 
 In this workflow, you pick the model that does best on the validation set and double-check that model against the test set ([Google Developers](https://developers.google.com/machine-learning/crash-course/validation/another-partition)):
+
+<br>
 
 ```{image} ../_static/img/splitting-workflow.png
 :alt: data-splitting-workflow
@@ -179,6 +183,8 @@ In this workflow, you pick the model that does best on the validation set and do
 :width: 600px
 :align: center
 ```
+
+<br>
 
 However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets ([skicit learn developers](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation)). A solution to this problem is a procedure called **cross-validation** (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.
 
