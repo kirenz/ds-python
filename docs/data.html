@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Data &#8212; Data Science with Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduction
  </span>
@@ -166,90 +181,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://kirenz.github.io/ds-python/"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/data.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://kirenz.github.io/ds-python/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://kirenz.github.io/ds-python//issues/new?title=Issue%20on%20page%20%2Fdocs/data.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-ingestion">
    Data ingestion
@@ -448,12 +553,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Data</h1>
@@ -668,13 +772,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="data">
-<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="data-ingestion">
-<h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="data">
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h1>
+<section id="data-ingestion">
+<h2>Data ingestion<a class="headerlink" href="#data-ingestion" title="Permalink to this headline">#</a></h2>
 <p>There are various options how to store and ingest your data but we won’t go into the details of data engineering in this tutorial. However, if you want to learn more about topics like:</p>
 <ul class="simple">
 <li><p>the basics of big data (Hadoop ecosystem and Spark),</p></li>
@@ -690,8 +795,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
 </div>
-<div class="section" id="prepare-environment">
-<h3>Prepare environment<a class="headerlink" href="#prepare-environment" title="Permalink to this headline">¶</a></h3>
+<section id="prepare-environment">
+<h3>Prepare environment<a class="headerlink" href="#prepare-environment" title="Permalink to this headline">#</a></h3>
 <p>In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine. Here some steps to prepare your machine:</p>
 <ul class="simple">
 <li><p>create a new folder (e.g., <code class="docutils literal notranslate"><span class="pre">datascience</span></code>) on your machine (which is not synchronized with a cloud service like Apple’s iCloud or Microsoft’s OneDrive)</p></li>
@@ -708,18 +813,18 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>Connect your local folder with GitHub (visit <a class="reference external" href="https://kirenz.github.io/python-basics/docs/programming-toolkit.html#git-and-github">this site</a> for more information about GitHub).</p>
-</div>
-<div class="section" id="import-data">
-<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="import-data">
+<h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
 <p>The next step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;my-file.csv&quot;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="data-structure">
-<h3>Data structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-structure">
+<h3>Data structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">#</a></h3>
 <p>Next, we get a first impression of the data structure:</p>
 <ul class="simple">
 <li><p>Take a look at the 5 top and bottom observations of your data:</p></li>
@@ -739,9 +844,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="data-corrections">
-<h3>Data corrections<a class="headerlink" href="#data-corrections" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-corrections">
+<h3>Data corrections<a class="headerlink" href="#data-corrections" title="Permalink to this headline">#</a></h3>
 <p>Despite the fact that it would be easiest to preprocess your data right away in pandas, we only take care of the most problematic errors (like the occurence of strings in data columns or wrong data formats). We only perform absolutely necessary data preprocessing because processing your data in pandas before passing it to modules like scikit-learn might be problematic for one of the following reasons (<a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data">scikit learn developers</a>):</p>
 <ul class="simple">
 <li><p>Incorporating statistics from data which later becomes our test data into the preprocessors makes cross-validation scores unreliable (known as data leakage), for example in the case of scalers (like z transformation) or imputing missing values.</p></li>
@@ -765,9 +870,9 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="creation-of-new-variables">
-<h3>Creation of new variables<a class="headerlink" href="#creation-of-new-variables" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="creation-of-new-variables">
+<h3>Creation of new variables<a class="headerlink" href="#creation-of-new-variables" title="Permalink to this headline">#</a></h3>
 <p>During the creation of your <a class="reference internal" href="plan.html"><span class="doc std std-doc">plan</span></a>, you maybe gained knowledge about possible ways to derive new variables from already existing columns in your dataset (e.g. through simple variable combinations). If this is the case, now would be a good time to create these variables.</p>
 <p>Pandas offers multiple ways to derive new columns from existing columns (see this <a class="reference external" href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html">pandas tutorial</a> for more examples). Note that you create a new column by assigning the output to the DataFrame with a new column name in between the <code class="docutils literal notranslate"><span class="pre">[]</span></code> and that operations are element-wise (i.e., no need to loop over rows):</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">my_new_feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_1</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_2</span><span class="p">]</span>
@@ -775,9 +880,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">df</span><span class="p">[</span><span class="n">my_newest_feature</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature_1</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="variable-lists">
-<span id="section-data-variable-lists"></span><h3>Variable lists<a class="headerlink" href="#variable-lists" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="variable-lists">
+<span id="section-data-variable-lists"></span><h3>Variable lists<a class="headerlink" href="#variable-lists" title="Permalink to this headline">#</a></h3>
 <p>We often need specific variables for exploratory data analysis as well as data preprocessing steps. We can use pandas to create specific lists (provided all columns are stored in the correct data format):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of all numerical data</span>
 <span class="n">list_num</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -806,13 +911,13 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="data-splitting">
-<h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="data-splitting">
+<h2>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">#</a></h2>
 <p>Before you start analyzing your data, it is a good idea to split your data into a <em>training</em> and <em>test set</em> <span id="id1">[<a class="reference internal" href="reference.html#id6" title="Aurélien Géron. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019. ISBN 1492032611.">Géron, 2019</a>]</span>. We do this because this is the only way to know how well a model will generalize to new cases. Furthermore, we will perform exploratory data analysis only on the training data so we don’t use insights from the test data during the model building process.</p>
-<div class="section" id="training-evaluation-and-test-set">
-<h3>Training, evaluation and test set<a class="headerlink" href="#training-evaluation-and-test-set" title="Permalink to this headline">¶</a></h3>
+<section id="training-evaluation-and-test-set">
+<h3>Training, evaluation and test set<a class="headerlink" href="#training-evaluation-and-test-set" title="Permalink to this headline">#</a></h3>
 <p>The error rate on new cases is called the <em>generalization error</em> (or out-of-sample error), and by evaluating our model on the test set, we get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before. If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is <strong>overfitting</strong> the training data.</p>
 <p>Note that if we want to evaluate different settings (“hyperparameters”) for models, such as the <a class="reference external" href="https://kirenz.github.io/regression/docs/lasso.html">alpha in Lasso</a>, there is still a risk of overfitting on the test set because the parameters can be tweaked until the model performs optimally (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). This way, knowledge about the test set can “leak” into the model and evaluation metrics no longer report on generalization performance. To solve this problem, yet another part of the dataset can be held out as a so-called “<strong>validation set</strong>”: training proceeds on the <em>training set</em>, after which evaluation is done on the <em>validation set</em>, and when the experiment seems to be successful, final evaluation can be done on the <em>test set</em>.</p>
 <p>Hence, you can greatly reduce your chances of overfitting by partitioning the data set into the three subsets shown in the following figure (<a class="reference external" href="https://developers.google.com/machine-learning/crash-course/validation/another-partition">Google Developers</a>):</p>
@@ -825,28 +930,28 @@ const thebe_selector_output = ".output, .cell_output"
 <br>
 <p>However, by partitioning the available data into three sets, we drastically reduce the number of samples which can be used for learning the model, and the results can depend on a particular random choice for the pair of (train, validation) sets (<a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">skicit learn developers</a>). A solution to this problem is a procedure called <strong>cross-validation</strong> (CV for short). A test set should still be held out for final evaluation, but the validation set is no longer needed when doing CV. In the basic approach, called k-fold CV, the training set is split into k smaller sets.</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPAoobEeafrN7WzxPwwKBr4G18Yh3P12ru6b123FakIWspNXe6EJU47nBKjfBqs1S7U-2Jwdhm_RKD/embed?start=false&loop=false&delayms=3000" frameborder="0" width="820" height="520" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-</div>
-<div class="section" id="train-and-test-split">
-<h3>Train and test split<a class="headerlink" href="#train-and-test-split" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="train-and-test-split">
+<h3>Train and test split<a class="headerlink" href="#train-and-test-split" title="Permalink to this headline">#</a></h3>
 <p>We typically use scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train test split function</a> to perform data splitting and use <code class="docutils literal notranslate"><span class="pre">random_state</span></code> to make this notebook’s output identical at every run (we arbitrarily set the number to 42 but you can choose any other number):</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="data-exploration-set">
-<h3>Data exploration set<a class="headerlink" href="#data-exploration-set" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-exploration-set">
+<h3>Data exploration set<a class="headerlink" href="#data-exploration-set" title="Permalink to this headline">#</a></h3>
 <p>We make a copy of the training data since we don’t want to alter our data during data exploration. We will use this data for our exploratory data analysis.</p>
 <p>We create a new DataFrame called <code class="docutils literal notranslate"><span class="pre">df_train</span></code> where we combine the training features with the corresponding y training labels:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">df_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="analyze-data">
-<span id="section-data-analyze"></span><h2>Analyze data<a class="headerlink" href="#analyze-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="analyze-data">
+<span id="section-data-analyze"></span><h2>Analyze data<a class="headerlink" href="#analyze-data" title="Permalink to this headline">#</a></h2>
 <p>The goal of this phase is to understand the training data. In particular, exploratory data analysis (EDA) is used to understand important predictor characteristics. Good visualisations will show you things that you did not expect, or raise new questions about the data <span id="id2">[<a class="reference internal" href="reference.html#id9" title="Hadley Wickham and Garrett Grolemund. R for data science: import, tidy, transform, visualize, and model data. O'Reilly Media, Inc., 2016. URL: https://r4ds.had.co.nz.">Wickham and Grolemund, 2016</a>]</span>: A good visualisation might also hint that you’re asking the wrong question, or you need to collect different data. Furthermore, we want to understand if there are any challenges associated with the data that can be discovered prior to modeling.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -861,8 +966,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <p>Note that in the next section, we will use lists created in <a class="reference internal" href="#section-data-variable-lists"><span class="std std-ref">Variable lists</span></a> for some of the steps shown below.</p>
-<div class="section" id="categorical-data">
-<span id="section-data-categorical"></span><h3>Categorical data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">¶</a></h3>
+<section id="categorical-data">
+<span id="section-data-categorical"></span><h3>Categorical data<a class="headerlink" href="#categorical-data" title="Permalink to this headline">#</a></h3>
 <p>For categorical data we check the levels and their uniqueness:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> 
 </pre></div>
@@ -897,9 +1002,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-categorical.html">Visualization of categorical data</a></p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="numerical-grouped-by-categorical">
-<h3>Numerical grouped by categorical<a class="headerlink" href="#numerical-grouped-by-categorical" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="numerical-grouped-by-categorical">
+<h3>Numerical grouped by categorical<a class="headerlink" href="#numerical-grouped-by-categorical" title="Permalink to this headline">#</a></h3>
 <p>We can also investigate numerical data grouped by categorical data:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># median</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_cat</span><span class="p">:</span>
@@ -923,9 +1028,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-categorical.html#comparisons-across-groups">Visualization of numerical data grouped by categorical data</a></p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="numerical-data">
-<h3>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="numerical-data">
+<h3>Numerical data<a class="headerlink" href="#numerical-data" title="Permalink to this headline">#</a></h3>
 <p>For numerical data we take a look at the central tendency and distribution:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># summary of numerical attributes</span>
 <span class="n">df_train</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -942,11 +1047,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-numerical.html">Visualization of numerical data</a></p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="relationships">
-<h3>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="correlation-with-response">
-<h4>Correlation with response<a class="headerlink" href="#correlation-with-response" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="relationships">
+<h3>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">#</a></h3>
+<section id="correlation-with-response">
+<h4>Correlation with response<a class="headerlink" href="#correlation-with-response" title="Permalink to this headline">#</a></h4>
 <p>Detect the relationship between each predictor and the response:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_train</span><span class="p">,</span> <span class="n">y_vars</span><span class="o">=</span><span class="n">y_label</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">features</span><span class="p">);</span>
 </pre></div>
@@ -960,9 +1065,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">corr_matrix</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="correlation-between-predictors">
-<h4>Correlation between predictors<a class="headerlink" href="#correlation-between-predictors" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="correlation-between-predictors">
+<h4>Correlation between predictors<a class="headerlink" href="#correlation-between-predictors" title="Permalink to this headline">#</a></h4>
 <p>Investigate relationships between predictors to detect multicollinearity:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">);</span>
 </pre></div>
@@ -995,11 +1100,11 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>An alternative way to handle multicollinear features is by performing hierarchical clustering on the Spearman rank-order correlations, picking a threshold, and keeping a single feature from each cluster (see this <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">scikit-learn documentation</a>).</p>
-</div>
-</div>
-</div>
-<div class="section" id="define-schema">
-<h2>Define schema<a class="headerlink" href="#define-schema" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="define-schema">
+<h2>Define schema<a class="headerlink" href="#define-schema" title="Permalink to this headline">#</a></h2>
 <p>Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are (<a class="reference external" href="https://www.tensorflow.org/tfx/data_validation/get_started">TensorFlow</a>):</p>
 <ul class="simple">
 <li><p>which features are expected to be present</p></li>
@@ -1015,13 +1120,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://stackoverflow.com/questions/54971410/how-do-you-specify-a-pandas-dataframe-schema-structure-in-a-docstring/61041468#61041468">Simple solution for pandas</a></p></li>
 <li><p><a class="reference external" href="https://multimeric.github.io/PandasSchema/">3rd party tool PandasSchema</a></p></li>
 </ul>
-</div>
-<div class="section" id="anomaly-detection">
-<h2>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="anomaly-detection">
+<h2>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline">#</a></h2>
 <p>Next, we need to identify missing values and anomalies in the data (with respect to a given schema).</p>
 <p>Note that we just gain insights and don’t perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering (with pipelines).</p>
-<div class="section" id="missing-values">
-<h3>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this headline">¶</a></h3>
+<section id="missing-values">
+<h3>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this headline">#</a></h3>
 <p>We check the degree of missingness within each predictor in the original dataframe to avoid code duplication (otherwise we first would perform all checks on <code class="docutils literal notranslate"><span class="pre">df_train</span></code> and afterwards on <code class="docutils literal notranslate"><span class="pre">df_test</span></code>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1040,9 +1145,9 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>We cover this topic in the section about <span class="xref myst">preprocessing pipelines</span>.</p>
-</div>
-<div class="section" id="outlier-and-novelty-detection">
-<h3>Outlier and novelty detection<a class="headerlink" href="#outlier-and-novelty-detection" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="outlier-and-novelty-detection">
+<h3>Outlier and novelty detection<a class="headerlink" href="#outlier-and-novelty-detection" title="Permalink to this headline">#</a></h3>
 <p>Many applications require being able to decide whether a new observation belongs to the same distribution as existing observations (it is an inlier), or should be considered as different (it is an outlier). Two important distinctions must be made (<a class="reference external" href="https://scikit-learn.org/stable/modules/outlier_detection.html">scikit-learn developers</a>):</p>
 <ul class="simple">
 <li><p><strong>outlier detection</strong>: The training data contains outliers which are defined as observations that are far from the others. Outlier detection estimators thus try to fit the regions where the training data is the most concentrated, ignoring the deviant observations.</p></li>
@@ -1058,10 +1163,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>To investigate categorical data we can use the same methods as described in <a class="reference internal" href="#section-data-categorical"><span class="std std-ref">Categorical data</span></a>.</p>
 <p>There are various strategies of how to deal with unusual cases which we will cover in <span class="xref myst"> preprocessing pipelines</span>.</p>
-</div>
-</div>
-<div class="section" id="feature-engineering">
-<h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="feature-engineering">
+<h2>Feature engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>“Applied machine learning is basically feature engineering” Andrew Ng</p>
 </div></blockquote>
@@ -1078,8 +1183,8 @@ engineering. Therefore, we first take a look at pipelines.</p>
 <p class="admonition-title">Note</p>
 <p>The topic of <strong>feature selection</strong> is part of the model building process and will be covered in the <a class="reference external" href="https://kirenz.github.io/ds-python/docs/model.html#feature-selection">modeling phase</a>.</p>
 </div>
-<div class="section" id="pipelines">
-<span id="section-data-pipeline"></span><h3>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h3>
+<section id="pipelines">
+<span id="section-data-pipeline"></span><h3>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">#</a></h3>
 <p>scikit-learn provides a library of transformers for data preprocessing and feature engineering.</p>
 <div class="tip admonition">
 <p class="admonition-title">Pipelines</p>
@@ -1087,9 +1192,9 @@ engineering. Therefore, we first take a look at pipelines.</p>
 <li><p>scikit-learn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/compose.html">pipelines documentation</a></p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="feature-transformation">
-<h3>Feature transformation<a class="headerlink" href="#feature-transformation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="feature-transformation">
+<h3>Feature transformation<a class="headerlink" href="#feature-transformation" title="Permalink to this headline">#</a></h3>
 <p>Typically, we need to perform feature transformations because predictors may <span id="id4">[<a class="reference internal" href="reference.html#id5" title="Max Kuhn and Kjell Johnson. Feature engineering and selection: A practical approach for predictive models. CRC Press, 2019. URL: http://www.feat.engineering/.">Kuhn and Johnson, 2019</a>]</span>:</p>
 <ul class="simple">
 <li><p>have missing values</p></li>
@@ -1099,8 +1204,8 @@ engineering. Therefore, we first take a look at pipelines.</p>
 <li><p>follow a skewed distribution where a small proportion of samples are orders of magnitude larger than the majority of the data (i.e., skewness).</p></li>
 <li><p>be censored on the low and/or high end of the range.</p></li>
 </ul>
-<div class="section" id="fix-missing-values">
-<h4>Fix missing values<a class="headerlink" href="#fix-missing-values" title="Permalink to this headline">¶</a></h4>
+<section id="fix-missing-values">
+<h4>Fix missing values<a class="headerlink" href="#fix-missing-values" title="Permalink to this headline">#</a></h4>
 <p>If we find missing cases in our data, we need to decide how to deal with them. For example, we could:</p>
 <ol class="simple">
 <li><p>Get rid of the corresponding observations.</p></li>
@@ -1108,9 +1213,9 @@ engineering. Therefore, we first take a look at pipelines.</p>
 <li><p>Impute with some other value (zero, the mean, the median, etc.).</p></li>
 </ol>
 <p>We will include a <a class="reference external" href="https://scikit-learn.org/stable/modules/impute.html">imputation of missing values</a> in our pipeline.</p>
-</div>
-<div class="section" id="fix-outliers">
-<span id="section-data-fix-outliers"></span><h4>Fix outliers<a class="headerlink" href="#fix-outliers" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fix-outliers">
+<span id="section-data-fix-outliers"></span><h4>Fix outliers<a class="headerlink" href="#fix-outliers" title="Permalink to this headline">#</a></h4>
 <p>There are various options of how to fix outliers and scikit-learn provides a set of machine learning tools that can be used both for novelty or outlier detection. For a comparison of outlier detection algorithms in scikit-learn, review <a class="reference external" href="https://scikit-learn.org/stable/modules/outlier_detection.html#overview-of-outlier-detection-methods">this site</a>.</p>
 <p>For example, one efficient way of performing outlier detection in high-dimensional datasets is to use the random forest algorithm <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html#sklearn.ensemble.IsolationForest">IsolationForest</a> (this algorithm can’t be included in a pipline). When we perform fit on our variable, it returns labels for it: -1 for outliers and 1 for inliers.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
@@ -1125,23 +1230,23 @@ engineering. Therefore, we first take a look at pipelines.</p>
 </pre></div>
 </div>
 <p>An alternative and more simple approach to handle outliers would be the usage of robust scalers for numeric data, which can be included in a pipline (see [robust scaling](data:scaling:robustscaling).</p>
-</div>
-<div class="section" id="feature-scaling">
-<span id="section-data-scaling"></span><h4>Feature scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="feature-scaling">
+<span id="section-data-scaling"></span><h4>Feature scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">#</a></h4>
 <p>Feature scaling is a method used to change raw feature vectors into a representation that is more suitable for learning algorithms.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Scaling the target values is generally not required.</p>
 </div>
-<div class="section" id="types">
-<h5>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h5>
+<section id="types">
+<h5>Types<a class="headerlink" href="#types" title="Permalink to this headline">#</a></h5>
 <p>Most learning algorithms benefit from standardization (normalization) of the data set since they don’t perform well when the input numerical attributes have very different scales (think of different measurment units like cm and m). For instance, many elements used in the objective function of a learning algorithm (such as the RBF kernel of Support Vector Machines or the l1 and l2 regularizers of linear models) assume that all features are centered around zero and have variance in the same order (an exception are decision tree-based estimators since they are robust to arbitrary scaling of the data).</p>
 <p>In general, <strong>standardization</strong> uses linear transformers (scalers) which differ from each other in the way they estimate the parameters used to shift and scale each feature.</p>
 <p>Scikit-learn also offers <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html#sklearn.preprocessing.QuantileTransformer"><code class="docutils literal notranslate"><span class="pre">QuantileTransformer</span></code></a> which provides non-linear transformations in which distances between marginal outliers and inliers are shrunk. Furthermore, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PowerTransformer.html#sklearn.preprocessing.PowerTransformer"><code class="docutils literal notranslate"><span class="pre">PowerTransformer</span></code></a> provides non-linear transformations in which data is mapped to a normal distribution to stabilize variance and minimize skewness.</p>
 <p>Unlike the previous methods, <strong>normalization</strong> refers to a per sample transformation instead of a per feature transformation.</p>
-</div>
-<div class="section" id="standardscaler">
-<h5>StandardScaler<a class="headerlink" href="#standardscaler" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="standardscaler">
+<h5>StandardScaler<a class="headerlink" href="#standardscaler" title="Permalink to this headline">#</a></h5>
 <p>In our projects, we usually use <strong>standardization</strong> to scale our features: Standardization centers the data by removing the mean value of each feature, then scale it by dividing features by their standard deviation. This leads to a standard normally Gaussian distribution with zero mean and unit variance.</p>
 <p>Scikit-learn provides a transformer called <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a> for this:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -1150,18 +1255,18 @@ engineering. Therefore, we first take a look at pipelines.</p>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> cannot guarantee balanced feature scales in the presence of outliers.</p>
-</div>
-<div class="section" id="robustscaler">
-<span id="data-scaling-robustscaling"></span><h5>RobustScaler<a class="headerlink" href="#robustscaler" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="robustscaler">
+<span id="data-scaling-robustscaling"></span><h5>RobustScaler<a class="headerlink" href="#robustscaler" title="Permalink to this headline">#</a></h5>
 <p>If outliers are present in the data set, <strong>robust scalers</strong> are more appropriate then standard scaler. This Scaler removes the median and scales the data according to the quantile range (defaults to IQR: Interquartile Range). The IQR is the range between the 1st quartile (25th quantile) and the 3rd quartile (75th quantile): <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html#sklearn.preprocessing.RobustScaler">RobustScaler</a>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">RobustScaler</span>
 
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">RobustScaler</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="minmaxscaler">
-<h5>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="minmaxscaler">
+<h5>MinMaxScaler<a class="headerlink" href="#minmaxscaler" title="Permalink to this headline">#</a></h5>
 <p>An alternative to standardization is <strong>Min-max scaling</strong>, also called <strong>normalization</strong>. Here, values are shifted and rescaled so that they end up ranging from 0 to 1 (e.g., neural networks often expect an input value ranging from 0 to 1). We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html">MinMaxScaler</a> for this. It has a feature_range hyperparameter that lets you change the range if, for some reason, you don’t want 0–1.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 
@@ -1169,22 +1274,22 @@ engineering. Therefore, we first take a look at pipelines.</p>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> is very sensitive to the presence of outliers.</p>
-</div>
-</div>
-<div class="section" id="encode-categorical-features">
-<h4>Encode categorical features<a class="headerlink" href="#encode-categorical-features" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="encode-categorical-features">
+<h4>Encode categorical features<a class="headerlink" href="#encode-categorical-features" title="Permalink to this headline">#</a></h4>
 <p>Usually algorithms prefer to work with numbers, so we need to convert categorial variables from text to numbers.</p>
 <p><em>Scikit-learn</em> provides a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">OneHotEncoder</a> class to convert categorical values into one-hot vectors (one-hot encoding) which we will use in our data preprocessing pipeline.</p>
 <p><em>Pandas</em> also has a function to convert categorical variable into dummy/indicator variables: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html">pandas.get_dummies</a></p>
-</div>
-</div>
-<div class="section" id="feature-extraction">
-<h3>Feature extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="feature-extraction">
+<h3>Feature extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">#</a></h3>
 <p>Features may contain relevant but overly redundant information. That is, the information collected could be more effectively and efficiently represented with a smaller, consolidated number of new predictors while still preserving or enhancing the new predictors’ relationship with the response <span id="id5">[<a class="reference internal" href="reference.html#id5" title="Max Kuhn and Kjell Johnson. Feature engineering and selection: A practical approach for predictive models. CRC Press, 2019. URL: http://www.feat.engineering/.">Kuhn and Johnson, 2019</a>]</span>. In that case, feature extraction can be achieved by simply using the ratio of two predictors or with the help of more complex methods like pricipal component analysis.</p>
 <p>If your number of features is high, it may be useful to reduce it with an unsupervised step prior to supervised steps. You can reduce features with different <a class="reference external" href="https://scikit-learn.org/stable/modules/unsupervised_reduction.html#data-reduction">unsupervised dimensionality reduction methods</a> in scikit-learn.</p>
-</div>
-<div class="section" id="custom-feature-operations">
-<h3>Custom feature operations<a class="headerlink" href="#custom-feature-operations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="custom-feature-operations">
+<h3>Custom feature operations<a class="headerlink" href="#custom-feature-operations" title="Permalink to this headline">#</a></h3>
 <p>Although scikit-Learn provides many useful transformers, eventually you may need to write your own functions for tasks such as custom data cleaning procedures or feature engineering (like creating new features).</p>
 <p>If you want your transformer to work with scikit-Learn functionalities (such as pipelines), all you need to do is create a class and implement three methods:</p>
 <ul class="simple">
@@ -1194,9 +1299,9 @@ engineering. Therefore, we first take a look at pipelines.</p>
 </ul>
 <p>You find a code template to build your own functions <a class="reference external" href="https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py">here</a> (see <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">TemplateTransformer(TransformerMixin,</span> <span class="pre">BaseEstimator)</span></code>).</p>
 <p>Note that you get the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> automatically by simply adding <code class="docutils literal notranslate"><span class="pre">TransformerMixin</span></code> as a base class. If you add <code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code> as a base class (and avoid args and kargs in your constructor), you will also get the two extra methods <a class="reference external" href="https://scikit-learn.org/stable/developers/develop.html#get-params-and-set-params">get_params() and set_params()</a> that will be useful for automatic hyperparameter tuning.</p>
-</div>
-<div class="section" id="final-data-pipeline">
-<span id="section-data-final-pipeline"></span><h3>Final data pipeline<a class="headerlink" href="#final-data-pipeline" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="final-data-pipeline">
+<span id="section-data-final-pipeline"></span><h3>Final data pipeline<a class="headerlink" href="#final-data-pipeline" title="Permalink to this headline">#</a></h3>
 <p>In this final step, we will build a typical data preprocessing pipeline using some of the functions covered in the previous sections.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1228,9 +1333,9 @@ engineering. Therefore, we first take a look at pipelines.</p>
 </pre></div>
 </div>
 <p>In the following model building phase (see <a class="reference internal" href="model.html"><span class="doc std std-doc">Model</span></a>), section “Train and evaluate”, we can easily combine our full pipline with scikit-learn algorithms.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1254,9 +1359,11 @@ engineering. Therefore, we first take a look at pipelines.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="plan.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1272,24 +1379,28 @@ engineering. Therefore, we first take a look at pipelines.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Jan Kirenz<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Jan Kirenz<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
