@@ -1,8 +1,8 @@
 # Welcome
 
-The goal of this book is to give you an introduction of some important tools and concepts in Python when doing data science or statistics projects. 
+The goal of this book is to give you an introduction of some important tools and concepts in Python when doing data science projects. 
 
-We will cover programming in Python and the usage of different data science modules like scikit-learn for machine learning and data preprocessing as well as pandas and seaborn for data exploration. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important methods. 
+We will cover programming in Python and the usage of different data science modules like Scikit-learn for machine learning and data preprocessing as well as pandas and seaborn for data exploration. You’ll use these tools in almost every data science project and this book will give you a short introduction into the most important methods. 
 
 
 ---
