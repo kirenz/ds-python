@@ -357,6 +357,11 @@ corr[y_label].sort_values(ascending=False)
 Investigate relationships between predictors to detect multicollinearity:
 
 ```Python
+corr = df_train.corr()
+corr.style.background_gradient(cmap='Blues')
+```
+
+```Python
 sns.pairplot(df_train);
 ```
 
