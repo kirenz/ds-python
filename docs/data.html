@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -1060,19 +1060,23 @@ title="Print to PDF"
 <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_train</span><span class="p">,</span> <span class="n">y_vars</span><span class="o">=</span><span class="n">y_label</span><span class="p">,</span> <span class="n">x_vars</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;a_categorical_variable&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect correlation</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect correlation between response and predictors</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
-<span class="n">corr_matrix</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">corr</span><span class="p">[</span><span class="n">y_label</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="correlation-between-predictors">
 <h4>Correlation between predictors<a class="headerlink" href="#correlation-between-predictors" title="Permalink to this headline">#</a></h4>
 <p>Investigate relationships between predictors to detect multicollinearity:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">corr</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">corr</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_train</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect correlation</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect correlations between all variables</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 <span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices_from</span><span class="p">(</span><span class="n">mask</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
