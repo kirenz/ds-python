@@ -347,7 +347,7 @@ sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical_
 ```
 
 ```Python
-# inspect correlation
+# inspect correlation between response and predictors
 corr = df_train.corr()
 corr[y_label].sort_values(ascending=False)
 ```
@@ -361,7 +361,7 @@ sns.pairplot(df_train);
 ```
 
 ```Python
-# inspect correlation
+# inspect correlations between all variables
 corr = df_train.corr()
 mask = np.zeros_like(corr, dtype=bool)
 mask[np.triu_indices_from(mask)] = True
