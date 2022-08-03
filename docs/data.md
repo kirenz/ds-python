@@ -349,7 +349,7 @@ sns.pairplot(data=df_train, y_vars=y_label, x_vars=features, hue="a_categorical_
 ```Python
 # inspect correlation
 corr = df_train.corr()
-corr_matrix[y_label].sort_values(ascending=False)
+corr[y_label].sort_values(ascending=False)
 ```
 
 #### Correlation between predictors
