@@ -17,10 +17,15 @@ There are various options how to store and ingest your data but we won't go into
 
 - [Introduction to Data Engineering](https://kirenz.github.io/data-engineering/docs/intro.html)
 ```
+<!--
+
 
 ### Prepare environment
 
-In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine. Here some steps to prepare your machine:
+In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine.
+
+
+ Here some steps to prepare your machine:
 
 - create a new folder (e.g., `datascience`) on your machine (which is not synchronized with a cloud service like Apple's iCloud or Microsoft's OneDrive)
 
@@ -40,12 +45,15 @@ cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 
 Connect your local folder with GitHub (visit [this site](https://kirenz.github.io/python-basics/docs/programming-toolkit.html#git-and-github) for more information about GitHub).
 
+-->
 
 ### Import data
 
-The next step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
+The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use [pandas to import CSV files](https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data) and store it as `df` (short for DataFrame): 
 
 ```Python
+import pandas as pd
+
 path_to_file = "my-file.csv"
 
 df = pd.read_csv(path_to_file)
@@ -222,12 +230,12 @@ The goal of this phase is to understand the training data. In particular, explor
 The interactive website [From Data to Viz](https://www.data-to-viz.com/) leads you to the most appropriate graph for your data.
 :::
 
-To learn more about data visualization modules in Python, visit this Jupyter Books:
+We will mainly use Pandas, Altair, Seaborn and Matplotlib to visualize data. To learn more about data visualization modules in Python, visit the following resources:
 
 ```{admonition} Jupyter Book
 :class: tip
+- [Altair](https://altair-viz.github.io/)
 - [Matplotlib and seaborn](https://kirenz.github.io/python-basics/docs/matplotlib-seaborn.html)
-- [Dash](https://kirenz.github.io/python-basics/docs/dash.html)
 ```
 
 Note that in the next section, we will use lists created in [](section:data:variable-lists) for some of the steps shown below.
@@ -255,6 +263,8 @@ for i in list_cat:
 If you have variables with many levels and are interested only in the top 10 values:
 
 ```Python
+import seaborn as sns
+
 for i in cat_list:
 
     TOP_10 = df[i].value_counts().iloc[:10].index
@@ -322,13 +332,14 @@ df_train.describe().round(2).T
 df_train.hist(figsize=(20, 15));
 ```
 
+<!--
 To learn more about data visualizations, visit the following site:
 
 ```{admonition} Resources
 :class: tip
 - [Visualization of numerical data](https://kirenz.github.io/applied-statistics/docs/eda-numerical.html)
 ```
-
+-->
 
 
 ### Relationships
@@ -397,6 +408,8 @@ vif.round(2)
 
 An alternative way to handle multicollinear features is by performing hierarchical clustering on the Spearman rank-order correlations, picking a threshold, and keeping a single feature from each cluster (see this [scikit-learn documentation](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features)).
 
+<!--
+
 ## Define schema
 
 Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
@@ -414,9 +427,11 @@ We don't cover this topic in detail here but if you want to learn more about sch
 - [Simple solution for pandas](https://stackoverflow.com/questions/54971410/how-do-you-specify-a-pandas-dataframe-schema-structure-in-a-docstring/61041468#61041468)
 - [3rd party tool PandasSchema](https://multimeric.github.io/PandasSchema/)
 
+-->
+
 ## Anomaly detection
 
-Next, we need to identify missing values and anomalies in the data (with respect to a given schema).  
+Next, we need to identify missing values and anomalies in the data.  
 
 Note that we just gain insights and don't perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering (with pipelines).  
 

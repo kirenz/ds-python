@@ -361,11 +361,6 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prepare-environment">
-     Prepare environment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-data">
      Import data
     </a>
@@ -452,11 +447,6 @@ title="Print to PDF"
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-schema">
-   Define schema
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anomaly-detection">
@@ -576,11 +566,6 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prepare-environment">
-     Prepare environment
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-data">
      Import data
     </a>
@@ -667,11 +652,6 @@ title="Print to PDF"
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#define-schema">
-   Define schema
-  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anomaly-detection">
@@ -795,29 +775,41 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://kirenz.github.io/data-engineering/docs/intro.html">Introduction to Data Engineering</a></p></li>
 </ul>
 </div>
-<section id="prepare-environment">
-<h3>Prepare environment<a class="headerlink" href="#prepare-environment" title="Permalink to this headline">#</a></h3>
-<p>In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine. Here some steps to prepare your machine:</p>
-<ul class="simple">
-<li><p>create a new folder (e.g., <code class="docutils literal notranslate"><span class="pre">datascience</span></code>) on your machine (which is not synchronized with a cloud service like Apple’s iCloud or Microsoft’s OneDrive)</p></li>
-<li><p>open a terminal where you can use <code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory) into your newly created folder:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> datascience
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>use “cookiecutter” to create a data science folder structure (see <a class="reference external" href="https://kirenz.github.io/python-basics/docs/programming-toolkit.html#cookiecutter-data-science">this site</a> for more details).</p></li>
-</ul>
-<p>In your terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
-</pre></div>
-</div>
-<p>Connect your local folder with GitHub (visit <a class="reference external" href="https://kirenz.github.io/python-basics/docs/programming-toolkit.html#git-and-github">this site</a> for more information about GitHub).</p>
-</section>
+<!--
+
+
+### Prepare environment
+
+In a real world data science project you would usually use a cloud environment (e.g. in Microsoft Azure, Google Cloud or Amazon AWS) to perform your data science project. However, for our course purposes, a local machine is fine.
+
+
+ Here some steps to prepare your machine:
+
+- create a new folder (e.g., `datascience`) on your machine (which is not synchronized with a cloud service like Apple's iCloud or Microsoft's OneDrive)
+
+- open a terminal where you can use `conda` and `cd` (change directory) into your newly created folder:
+
+```bash
+cd datascience
+```
+
+- use "cookiecutter" to create a data science folder structure (see [this site](https://kirenz.github.io/python-basics/docs/programming-toolkit.html#cookiecutter-data-science) for more details). 
+
+In your terminal:  
+
+```bash
+cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
+```
+
+Connect your local folder with GitHub (visit [this site](https://kirenz.github.io/python-basics/docs/programming-toolkit.html#git-and-github) for more information about GitHub).
+
+-->
 <section id="import-data">
 <h3>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">#</a></h3>
-<p>The next step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;my-file.csv&quot;</span>
+<p>The first step is to import the data. This means that you take data stored in a file, a relational database, a NoSQL database or data lakehouse and load it into Python. In our examples, we often use <a class="reference external" href="https://kirenz.github.io/pandas/docs/pandas-intro-short.html#read-and-write-data">pandas to import CSV files</a> and store it as <code class="docutils literal notranslate"><span class="pre">df</span></code> (short for DataFrame):</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">path_to_file</span> <span class="o">=</span> <span class="s2">&quot;my-file.csv&quot;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_file</span><span class="p">)</span>
 </pre></div>
@@ -957,12 +949,12 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p>The interactive website <a class="reference external" href="https://www.data-to-viz.com/">From Data to Viz</a> leads you to the most appropriate graph for your data.</p>
 </div>
-<p>To learn more about data visualization modules in Python, visit this Jupyter Books:</p>
+<p>We will mainly use Pandas, Altair, Seaborn and Matplotlib to visualize data. To learn more about data visualization modules in Python, visit the following resources:</p>
 <div class="tip admonition">
 <p class="admonition-title">Jupyter Book</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://altair-viz.github.io/">Altair</a></p></li>
 <li><p><a class="reference external" href="https://kirenz.github.io/python-basics/docs/matplotlib-seaborn.html">Matplotlib and seaborn</a></p></li>
-<li><p><a class="reference external" href="https://kirenz.github.io/python-basics/docs/dash.html">Dash</a></p></li>
 </ul>
 </div>
 <p>Note that in the next section, we will use lists created in <a class="reference internal" href="#section-data-variable-lists"><span class="std std-ref">Variable lists</span></a> for some of the steps shown below.</p>
@@ -981,7 +973,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>If you have variables with many levels and are interested only in the top 10 values:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_list</span><span class="p">:</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cat_list</span><span class="p">:</span>
 
     <span class="n">TOP_10</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
 
@@ -1040,13 +1034,14 @@ title="Print to PDF"
 <span class="n">df_train</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>To learn more about data visualizations, visit the following site:</p>
-<div class="tip admonition">
-<p class="admonition-title">Resources</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://kirenz.github.io/applied-statistics/docs/eda-numerical.html">Visualization of numerical data</a></p></li>
-</ul>
-</div>
+<!--
+To learn more about data visualizations, visit the following site:
+
+```{admonition} Resources
+:class: tip
+- [Visualization of numerical data](https://kirenz.github.io/applied-statistics/docs/eda-numerical.html)
+```
+-->
 </section>
 <section id="relationships">
 <h3>Relationships<a class="headerlink" href="#relationships" title="Permalink to this headline">#</a></h3>
@@ -1104,30 +1099,32 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>An alternative way to handle multicollinear features is by performing hierarchical clustering on the Spearman rank-order correlations, picking a threshold, and keeping a single feature from each cluster (see this <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html#handling-multicollinear-features">scikit-learn documentation</a>).</p>
+<!--
+
+## Define schema
+
+Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are ([TensorFlow](https://www.tensorflow.org/tfx/data_validation/get_started)):
+
+- which features are expected to be present
+- their type
+- the number of values for a feature in each example
+- the presence of each feature across all examples
+- the expected domains of features.
+
+We don't cover this topic in detail here but if you want to learn more about schemas, check out the following resources:
+
+- [The SchemaGen TFX Pipeline Component](https://www.tensorflow.org/tfx/guide/schemagen)
+- [List of schema anomalies provided by TFX](https://github.com/tensorflow/data-validation/blob/master/g3doc/anomalies.md)
+- [Simple solution for pandas](https://stackoverflow.com/questions/54971410/how-do-you-specify-a-pandas-dataframe-schema-structure-in-a-docstring/61041468#61041468)
+- [3rd party tool PandasSchema](https://multimeric.github.io/PandasSchema/)
+
+-->
 </section>
 </section>
-</section>
-<section id="define-schema">
-<h2>Define schema<a class="headerlink" href="#define-schema" title="Permalink to this headline">#</a></h2>
-<p>Usually it is a good idea to define some sort of schema that describes the expected properties of the data. Some of these properties are (<a class="reference external" href="https://www.tensorflow.org/tfx/data_validation/get_started">TensorFlow</a>):</p>
-<ul class="simple">
-<li><p>which features are expected to be present</p></li>
-<li><p>their type</p></li>
-<li><p>the number of values for a feature in each example</p></li>
-<li><p>the presence of each feature across all examples</p></li>
-<li><p>the expected domains of features.</p></li>
-</ul>
-<p>We don’t cover this topic in detail here but if you want to learn more about schemas, check out the following resources:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.tensorflow.org/tfx/guide/schemagen">The SchemaGen TFX Pipeline Component</a></p></li>
-<li><p><a class="reference external" href="https://github.com/tensorflow/data-validation/blob/master/g3doc/anomalies.md">List of schema anomalies provided by TFX</a></p></li>
-<li><p><a class="reference external" href="https://stackoverflow.com/questions/54971410/how-do-you-specify-a-pandas-dataframe-schema-structure-in-a-docstring/61041468#61041468">Simple solution for pandas</a></p></li>
-<li><p><a class="reference external" href="https://multimeric.github.io/PandasSchema/">3rd party tool PandasSchema</a></p></li>
-</ul>
 </section>
 <section id="anomaly-detection">
 <h2>Anomaly detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this headline">#</a></h2>
-<p>Next, we need to identify missing values and anomalies in the data (with respect to a given schema).</p>
+<p>Next, we need to identify missing values and anomalies in the data.</p>
 <p>Note that we just gain insights and don’t perform any data preprocessing during the phase of anomaly detection. We only need to decide how to deal with the issues we detect. All data transformations will be performed during feature engineering (with pipelines).</p>
 <section id="missing-values">
 <h3>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this headline">#</a></h3>
