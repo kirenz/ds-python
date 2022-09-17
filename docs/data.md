@@ -287,37 +287,6 @@ To learn more about data visualizations, visit the following site:
 ```
 
 
-### Numerical grouped by categorical
-
-We can also investigate numerical data grouped by categorical data:
-
-```Python
-# median
-for i in list_cat:
-    print(df_train.groupby(i).median().round(2).T)
-```
-
-```Python
-# mean
-for i in list_cat:
-    print(df_train.groupby(i).mean().round(2).T)
-```
-
-```Python
-# standard deviation
-for i in list_cat:
-    print(df_train.groupby(i).std().round(2).T)
-```
-
-To learn more about data visualizations, visit the following site:
-
-```{admonition} Resources
-:class: tip
-- [Visualization of numerical data grouped by categorical data](https://kirenz.github.io/applied-statistics/docs/eda-categorical.html#comparisons-across-groups)
-```
-
-
-
 ### Numerical data
 
 For numerical data we take a look at the central tendency and distribution:
@@ -341,6 +310,38 @@ To learn more about data visualizations, visit the following site:
 ```
 -->
 
+
+### Numerical grouped by categorical
+
+We can also investigate numerical data grouped by categorical data:
+
+```Python
+# median
+for i in list_cat:
+    print(df_train.groupby(i).median().round(2).T)
+```
+
+```Python
+# mean
+for i in list_cat:
+    print(df_train.groupby(i).mean().round(2).T)
+```
+
+```Python
+# standard deviation
+for i in list_cat:
+    print(df_train.groupby(i).std().round(2).T)
+```
+
+<!--
+
+To learn more about data visualizations, visit the following site:
+
+```{admonition} Resources
+:class: tip
+- [Visualization of numerical data grouped by categorical data](https://kirenz.github.io/applied-statistics/docs/eda-categorical.html#comparisons-across-groups)
+```
+-->
 
 ### Relationships
 
