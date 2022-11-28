@@ -384,75 +384,75 @@ title="Print to PDF"
                 
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This is a module to be used as a reference for building other modules</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+This is a module to be used as a reference for building other modules
 
-<span class="sd">source: https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+source: https://github.com/scikit-learn-contrib/project-template/blob/master/skltemplate/_template.py
+&quot;&quot;&quot;
+import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
 
-<span class="k">class</span> <span class="nc">TemplateTransformer</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; An example transformer that returns the element-wise square root.</span>
-<span class="sd">    For more information regarding how to build your own transformer, read more</span>
-<span class="sd">    in the :ref:`User Guide &lt;user_guide&gt;`.</span>
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    demo_param : str, default=&#39;demo&#39;</span>
-<span class="sd">        A parameter used for demonstation of how to pass and store paramters.</span>
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    n_features_ : int</span>
-<span class="sd">        The number of features of the data passed to :meth:`fit`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">demo_param</span><span class="o">=</span><span class="s1">&#39;demo&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">demo_param</span> <span class="o">=</span> <span class="n">demo_param</span>
+class TemplateTransformer(TransformerMixin, BaseEstimator):
+    &quot;&quot;&quot; An example transformer that returns the element-wise square root.
+    For more information regarding how to build your own transformer, read more
+    in the :ref:`User Guide &lt;user_guide&gt;`.
+    Parameters
+    ----------
+    demo_param : str, default=&#39;demo&#39;
+        A parameter used for demonstation of how to pass and store paramters.
+    Attributes
+    ----------
+    n_features_ : int
+        The number of features of the data passed to :meth:`fit`.
+    &quot;&quot;&quot;
+    def __init__(self, demo_param=&#39;demo&#39;):
+        self.demo_param = demo_param
 
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;A reference implementation of a fitting function for a transformer.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        X : {array-like, sparse matrix}, shape (n_samples, n_features)</span>
-<span class="sd">            The training input samples.</span>
-<span class="sd">        y : None</span>
-<span class="sd">            There is no need of a target in a transformer, yet the pipeline API</span>
-<span class="sd">            requires this parameter.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        self : object</span>
-<span class="sd">            Returns self.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    def fit(self, X, y=None):
+        &quot;&quot;&quot;A reference implementation of a fitting function for a transformer.
+        Parameters
+        ----------
+        X : {array-like, sparse matrix}, shape (n_samples, n_features)
+            The training input samples.
+        y : None
+            There is no need of a target in a transformer, yet the pipeline API
+            requires this parameter.
+        Returns
+        -------
+        self : object
+            Returns self.
+        &quot;&quot;&quot;
+        X = check_array(X, accept_sparse=True)
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        self.n_features_ = X.shape[1]
 
-        <span class="c1"># Return the transformer</span>
-        <span class="k">return</span> <span class="bp">self</span>
+        # Return the transformer
+        return self
 
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; A reference implementation of a transform function.</span>
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        X : {array-like, sparse-matrix}, shape (n_samples, n_features)</span>
-<span class="sd">            The input samples.</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        X_transformed : array, shape (n_samples, n_features)</span>
-<span class="sd">            The array containing the element-wise square roots of the values</span>
-<span class="sd">            in ``X``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Check is fit had been called</span>
-        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;n_features_&#39;</span><span class="p">)</span>
+    def transform(self, X):
+        &quot;&quot;&quot; A reference implementation of a transform function.
+        Parameters
+        ----------
+        X : {array-like, sparse-matrix}, shape (n_samples, n_features)
+            The input samples.
+        Returns
+        -------
+        X_transformed : array, shape (n_samples, n_features)
+            The array containing the element-wise square roots of the values
+            in ``X``.
+        &quot;&quot;&quot;
+        # Check is fit had been called
+        check_is_fitted(self, &#39;n_features_&#39;)
 
-        <span class="c1"># Input validation</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        # Input validation
+        X = check_array(X, accept_sparse=True)
 
-        <span class="c1"># Check that the input is of the same shape as the one passed</span>
-        <span class="c1"># during fit.</span>
-        <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Shape of input is different from what was seen&#39;</span>
-                             <span class="s1">&#39;in `fit`&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        # Check that the input is of the same shape as the one passed
+        # during fit.
+        if X.shape[1] != self.n_features_:
+            raise ValueError(&#39;Shape of input is different from what was seen&#39;
+                             &#39;in `fit`&#39;)
+        return np.sqrt(X)
 </pre></div>
 </div>
 </div>
